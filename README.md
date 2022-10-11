@@ -1,4 +1,7 @@
-##HEY, PRONTOS PARA O DESAFIO FINAL?
+### Esteira
+[![DesafioStone](https://github.com/SamDoing/Stone-desafio/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/SamDoing/Stone-desafio/actions/workflows/testPipeline.yml)
+
+## HEY, PRONTOS PARA O DESAFIO FINAL?
 
 Em ano de Copa do Mundo, seu cliente está querendo fazer um sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos.
 Com isso devemos criar um sistema para que possamos fazer este acompanhamento.
