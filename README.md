@@ -1,5 +1,5 @@
 ### Esteira
-[![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml))
+[![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml)
 
 ## HEY, PRONTOS PARA O DESAFIO FINAL?
 
