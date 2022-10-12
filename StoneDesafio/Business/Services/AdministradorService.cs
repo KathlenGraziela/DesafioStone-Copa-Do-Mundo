@@ -51,7 +51,7 @@ namespace StoneDesafio.Business.Services
 
             if(!string.IsNullOrEmpty(editDto.Senha))
             {
-                var senhaCript = HashPassword(editDto.Senha, salt);
+                var senhaCript = HashPassword(editDto.Senha + salt, 11);
                 administrador.Senha = senhaCript;
             }
 

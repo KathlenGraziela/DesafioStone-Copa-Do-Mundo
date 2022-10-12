@@ -1,9 +1,16 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
+using StoneDesafio.Controllers;
 using StoneDesafio.Data;
 using StoneDesafio.Entities;
+using System.Net.Http.Json;
+using System.Reflection;
 using System.Threading.Channels;
 using Xunit.Sdk;
 
@@ -11,47 +18,42 @@ namespace StoneDesafio.Tests
 {
     public class AdministradorIntegracao
     {
-        private readonly AppDbContext context;
-        private readonly AdministradorRepository administradorRepository;
-        private readonly AdministradorService administradorService;
+        private readonly HttpClient clientTest;
 
         public AdministradorIntegracao()
         {
-
-            var servico = new ServiceCollection();
-
-            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__MySqlConnectionString") ?? throw new Exception();
-            servico.AddDbContext<AppDbContext>(opt => opt.UseMySQL(connectionString));
-
-            context = servico.BuildServiceProvider().GetService<AppDbContext>() ?? throw new Exception();
-            context.Database.EnsureCreated();
-
-            administradorRepository = new(context);
-            administradorService = new(context, administradorRepository, new());
+            var appFactory = new WebApplicationFactory<Program>();
+            clientTest = appFactory.CreateClient();
         }
 
 
-        [Fact(DisplayName = "Teste de CRUD dos Administradores")]
+        [Fact(DisplayName = "Teste de rotas dos Administradores")]
         public async Task DeveFazerOperacoesCRUDAsync()
         {
+            var rotaAtributo = (RouteAttribute?)Attribute.GetCustomAttribute(typeof(AdministradorController), typeof(RouteAttribute));
+            var rotaBase = rotaAtributo.Template;
+
+
             var createDto = new AdministradorCreateDto()
             {
                 Nome = "Adm",
                 Email = "adm@adms.com",
                 Senha = "pass"
             };
-
-            var administradorCreate = await administradorService.CriarAsync(createDto);
+            
+            var httpResponse = await clientTest.PostAsJsonAsync(rotaBase, createDto);
+            var administradorCreate = await httpResponse.Content.ReadFromJsonAsync<AdministradorReadDto>() ?? throw new NullReferenceException();
 
             Assert.Equal(createDto.Nome, administradorCreate.Nome);
             Assert.Equal(createDto.Email, administradorCreate.Email);
-            Assert.NotEqual(createDto.Senha, administradorCreate.Senha);
 
-            
-            var administradorRead = await administradorRepository.SelectByIdAsync(administradorCreate.Id);
-            Assert.NotNull(administradorRead);
 
-            
+
+
+            httpResponse = await clientTest.GetAsync(rotaBase + $"/{administradorCreate.Id}");
+            Assert.True(httpResponse.IsSuccessStatusCode);
+
+
             var editDto = new AdministradorEditDto()
             {
                 Nome = "Admas",
@@ -59,14 +61,15 @@ namespace StoneDesafio.Tests
             };
 
 
-            var administradorUpdate = await administradorService.EditarAsync(administradorRead.Id, editDto);
+            httpResponse = await clientTest.PutAsJsonAsync(rotaBase + $"/{administradorCreate.Id}", editDto);
+            var administradorUpdate = await httpResponse.Content.ReadFromJsonAsync<AdministradorReadDto>() ?? throw new NullReferenceException();
 
+            Assert.True(httpResponse.IsSuccessStatusCode);
             Assert.Equal(editDto.Nome, administradorUpdate.Nome);
-            Assert.NotEqual(editDto.Senha, administradorCreate.Senha);
-            Assert.NotEqual(editDto.Senha, administradorUpdate.Senha);
 
 
-            await administradorRepository.DeletarAsync(administradorUpdate);
+            httpResponse = await clientTest.DeleteAsync(rotaBase + $"/{administradorCreate.Id}");
+            Assert.True(httpResponse.IsSuccessStatusCode);
         }
     }
 }
