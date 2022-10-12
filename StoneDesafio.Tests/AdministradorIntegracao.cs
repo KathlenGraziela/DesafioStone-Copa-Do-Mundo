@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Stone_Desafio.Business.Repositorys;
-using Stone_Desafio.Business.Services;
-using Stone_Desafio.Data;
-using Stone_Desafio.Entities;
+using StoneDesafio.Business.Repositorys;
+using StoneDesafio.Business.Services;
+using StoneDesafio.Data;
+using StoneDesafio.Entities;
 using System.Threading.Channels;
 using Xunit.Sdk;
 

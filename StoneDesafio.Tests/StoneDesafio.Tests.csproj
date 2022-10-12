@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StoneDesafio\StoneDesafio.csproj" />
-  </ItemGroup>
-
 </Project>
