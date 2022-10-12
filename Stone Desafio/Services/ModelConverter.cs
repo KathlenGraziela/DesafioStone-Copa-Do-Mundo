@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Stone_Desafio.Models.Utils
+namespace StoneDesafio.Models.Utils
 {
     public class ModelConverter
     {

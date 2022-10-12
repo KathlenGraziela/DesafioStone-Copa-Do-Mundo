@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stone_Desafio.Models
+namespace StoneDesafio.Models
 {
     public class FaseCampeonato
     {

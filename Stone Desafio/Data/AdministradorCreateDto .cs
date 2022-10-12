@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stone_Desafio.Data
+namespace StoneDesafio.Data
 {
     public class AdministradorCreateDto
     {
