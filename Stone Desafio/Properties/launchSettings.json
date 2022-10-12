@@ -6,7 +6,6 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MySqlConnectionString": "Server=localhost;DataBase=Copa;Uid=root;Pwd=maria123"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7296;http://localhost:5296"

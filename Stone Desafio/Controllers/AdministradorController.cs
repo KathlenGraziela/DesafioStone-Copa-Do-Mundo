@@ -10,13 +10,13 @@ namespace Stone_Desafio.Controllers
     [ApiController]
     [Route("administradores")]
     [Produces("application/json")]
-    public class AdministradoresController : ControllerBase
+    public class AdministradorController : ControllerBase
     {
         private readonly AdministradorRepository administradorRepository;
         private readonly AdministradorService administradorService;
         private readonly ModelConverter modelConverter;
 
-        public AdministradoresController(AdministradorRepository administradorRepository, ModelConverter modelConverter, AdministradorService administradorService)
+        public AdministradorController(AdministradorRepository administradorRepository, ModelConverter modelConverter, AdministradorService administradorService)
         {
             this.administradorRepository = administradorRepository;
             this.modelConverter = modelConverter;
