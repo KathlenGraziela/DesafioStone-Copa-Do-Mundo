@@ -2,6 +2,4 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY . .
 WORKDIR "/src"
-RUN dotnet restore StoneDesafio/StoneDesafio.csproj
-RUN dotnet build StoneDesafio/StoneDesafio.csproj
 ENTRYPOINT ["dotnet", "test", "StoneDesafio.Tests/StoneDesafio.Tests.csproj"]

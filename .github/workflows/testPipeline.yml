@@ -14,7 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build MySQL
-      run: docker run -d -e 'MYSQL_ROOT_PASSWORD=pass' mysql
+      run: docker run --name mysql -e 'MYSQL_ROOT_PASSWORD=pass' -d mysql/mysql-server:latest
+
     - name: Build Docker
       run: docker build -t test -f DockerfileTest .
     - name: Run Docker
