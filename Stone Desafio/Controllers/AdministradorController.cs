@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Stone_Desafio.Business.Repositorys;
-using Stone_Desafio.Business.Services;
-using Stone_Desafio.Data;
-using Stone_Desafio.Models;
-using Stone_Desafio.Models.Utils;
+using StoneDesafio.Business.Repositorys;
+using StoneDesafio.Business.Services;
+using StoneDesafio.Data;
+using StoneDesafio.Models;
+using StoneDesafio.Models.Utils;
 
-namespace Stone_Desafio.Controllers
+namespace StoneDesafio.Controllers
 {
     [ApiController]
     [Route("administradores")]

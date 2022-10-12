@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Stone_Desafio.Models;
+using StoneDesafio.Models;
 using System.Net.Mail;
 
-namespace Stone_Desafio.Entities
+namespace StoneDesafio.Entities
 {
     public class AppDbContext : DbContext
     {
         public DbSet<Administrador> Administradores { get; set; }
+        public DbSet<Clube> Clubes { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)
@@ -17,6 +18,7 @@ namespace Stone_Desafio.Entities
         {
             base.OnModelCreating(modelBuilder);
 
+            #region Administradores
             modelBuilder.Entity<Administrador>().HasIndex(u => u.Email).IsUnique();
 
             modelBuilder.Entity<Administrador>().HasData(
@@ -33,6 +35,35 @@ namespace Stone_Desafio.Entities
                     Email = "adm2@adms.com",
                     Senha = "AdmPass"
                 });
+            #endregion
+
+            #region Clube
+            modelBuilder.Entity<Clube>().HasIndex(u => u.Id).IsUnique();
+
+            modelBuilder.Entity<Clube>().HasData(
+                new()
+                {
+                    Id = 1,
+                    Nome = "Clube 01",
+                    Descricao = "Descrição Clube 01",
+                    UrlFoto = ""
+                },
+                new()
+                {
+                    Id = 2,
+                    Nome = "Clube 02",
+                    Descricao = "Descrição Clube 02",
+                    UrlFoto = ""
+                },
+                new()
+                {
+                    Id = 3,
+                    Nome = "Clube 03",
+                    Descricao = "Descrição Clube 03",
+                    UrlFoto = ""
+                }
+            );
+            #endregion
         }
     }
 }

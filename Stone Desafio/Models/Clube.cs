@@ -1,18 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Stone_Desafio.Models
+﻿namespace StoneDesafio.Models
 {
     public class Clube
     {
-        public Guid Id { get; set; }
-
-        [MaxLength(100)]
-        string Nome { get; set; }
-        
-        [MaxLength(500)]
-        string Descricao { get; set; }
-
-        [MaxLength(300)]
-        string UrlFoto { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public string UrlFoto { get; set; }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Utilities.Encoders;
-using Stone_Desafio.Business.Repositorys;
-using Stone_Desafio.Businesss;
-using Stone_Desafio.Data;
-using Stone_Desafio.Entities;
-using Stone_Desafio.Models;
-using Stone_Desafio.Models.Utils;
+using StoneDesafio.Business.Repositorys;
+using StoneDesafio.Businesss;
+using StoneDesafio.Data;
+using StoneDesafio.Entities;
+using StoneDesafio.Models;
+using StoneDesafio.Models.Utils;
 using System.Text;
 using static BCrypt.Net.BCrypt;
 
-namespace Stone_Desafio.Business.Services
+namespace StoneDesafio.Business.Services
 {
     public class AdministradorService
     {

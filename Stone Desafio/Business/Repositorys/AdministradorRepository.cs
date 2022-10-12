@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Stone_Desafio.Businesss;
-using Stone_Desafio.Entities;
-using Stone_Desafio.Models;
+using StoneDesafio.Businesss;
+using StoneDesafio.Entities;
+using StoneDesafio.Models;
 
-namespace Stone_Desafio.Business.Repositorys
+namespace StoneDesafio.Business.Repositorys
 {
     public class AdministradorRepository
     {

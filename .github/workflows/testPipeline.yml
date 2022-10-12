@@ -2,9 +2,9 @@ name: DesafioStone
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: BuildDocker
-      run: docker build -t api -f DockerfileTest .
-    - name: RunDocker
-      run: docker run api
+    - name: Build Docker
+      run: docker build -t test -f DockerfileTest .
+    - name: Run Docker
+      run: docker run test

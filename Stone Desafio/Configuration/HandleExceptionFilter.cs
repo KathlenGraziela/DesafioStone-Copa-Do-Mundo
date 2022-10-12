@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
-using Stone_Desafio.Businesss;
+using StoneDesafio.Businesss;
 using System.Net;
 
-namespace Stone_Desafio.Configuration
+namespace StoneDesafio.Configuration
 {
     public class HandleExceptionFilter : IExceptionFilter
     {
