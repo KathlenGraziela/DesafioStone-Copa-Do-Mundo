@@ -18,4 +18,4 @@ jobs:
     - name: Build Docker
       run: docker build -t test -f DockerfileTest .
     - name: Run Docker
-      run: docker run --network="host" -e 'ConnectionStrings__MySqlConnectionString=Server=db;DataBase=Copa;Uid=root;Pwd=pass' test
+      run: docker run --network="host" -e 'ConnectionStrings__MySqlConnectionString=Server=localhost;DataBase=Copa;Uid=root;Pwd=pass' test
