@@ -8,7 +8,6 @@ using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
 using System.Text;
-using static BCrypt.Net.BCrypt;
 
 namespace StoneDesafio.Business.Services
 {
@@ -18,7 +17,7 @@ namespace StoneDesafio.Business.Services
         private readonly ModelConverter modelConverter;
         private readonly AdministradorRepository administradorRepository;
         private static readonly string salt = 
-            Convert.ToBase64String(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("salt") ?? "salter"));
+            Convert.ToBase64String(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("saltDB") ?? "salter"));
 
         public AdministradorService(AppDbContext dbContext, AdministradorRepository administradorRepository, ModelConverter modelConverter)
         {
@@ -29,7 +28,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<Administrador> CriarAsync(AdministradorCreateDto createDto)
         {
-            var senhaCript = HashPassword(createDto.Senha + salt, 11);
+            var senhaCript = CriptografiaService.Criptografar(createDto.Senha);
             var administrador = new Administrador
             {
                 Id = Guid.NewGuid(),
@@ -51,7 +50,7 @@ namespace StoneDesafio.Business.Services
 
             if(!string.IsNullOrEmpty(editDto.Senha))
             {
-                var senhaCript = HashPassword(editDto.Senha + salt, 11);
+                var senhaCript = CriptografiaService.Criptografar(editDto.Senha);
                 administrador.Senha = senhaCript;
             }
 

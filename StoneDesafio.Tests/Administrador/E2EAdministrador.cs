@@ -1,46 +1,39 @@
+﻿
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
-using StoneDesafio.Business.Repositorys;
-using StoneDesafio.Business.Services;
 using StoneDesafio.Controllers;
 using StoneDesafio.Data;
-using StoneDesafio.Entities;
 using System.Net.Http.Json;
-using System.Reflection;
-using System.Threading.Channels;
-using Xunit.Sdk;
 
-namespace StoneDesafio.Tests
+namespace StoneDesafio.Tests.Administrador
 {
-    public class AdministradorIntegracao
+    public class E2EAdministrador
     {
-        private readonly HttpClient clientTest;
 
-        public AdministradorIntegracao()
+        private readonly HttpClient clientTest;
+        private readonly string rotaBase;
+
+        public E2EAdministrador()
         {
             var appFactory = new WebApplicationFactory<Program>();
             clientTest = appFactory.CreateClient();
+
+            var rotaAtributo = (RouteAttribute?)Attribute.GetCustomAttribute(typeof(AdministradorController), typeof(RouteAttribute));
+            rotaBase = rotaAtributo.Template;
         }
 
 
-        [Fact(DisplayName = "Teste de rotas dos Administradores")]
-        public async Task DeveFazerOperacoesCRUDAsync()
+        [Fact(DisplayName = "Teste de CRUD usando as rotas dos Administradores")]
+        public async Task DeveFazerCRUDComRotasAsync()
         {
-            var rotaAtributo = (RouteAttribute?)Attribute.GetCustomAttribute(typeof(AdministradorController), typeof(RouteAttribute));
-            var rotaBase = rotaAtributo.Template;
-
-
             var createDto = new AdministradorCreateDto()
             {
                 Nome = "Adm",
                 Email = "adm@adms.com",
                 Senha = "pass"
             };
-            
+
             var httpResponse = await clientTest.PostAsJsonAsync(rotaBase, createDto);
             var administradorCreate = await httpResponse.Content.ReadFromJsonAsync<AdministradorReadDto>() ?? throw new NullReferenceException();
 
@@ -48,9 +41,13 @@ namespace StoneDesafio.Tests
             Assert.Equal(createDto.Email, administradorCreate.Email);
 
 
+            httpResponse = await clientTest.PostAsJsonAsync(rotaBase, createDto);
+            Assert.False(httpResponse.IsSuccessStatusCode);
 
 
-            httpResponse = await clientTest.GetAsync(rotaBase + $"/{administradorCreate.Id}");
+            var rotaId = rotaBase + $"/{administradorCreate.Id}";
+
+            httpResponse = await clientTest.GetAsync(rotaId);
             Assert.True(httpResponse.IsSuccessStatusCode);
 
 
@@ -61,14 +58,14 @@ namespace StoneDesafio.Tests
             };
 
 
-            httpResponse = await clientTest.PutAsJsonAsync(rotaBase + $"/{administradorCreate.Id}", editDto);
+            httpResponse = await clientTest.PutAsJsonAsync(rotaId, editDto);
             var administradorUpdate = await httpResponse.Content.ReadFromJsonAsync<AdministradorReadDto>() ?? throw new NullReferenceException();
 
             Assert.True(httpResponse.IsSuccessStatusCode);
             Assert.Equal(editDto.Nome, administradorUpdate.Nome);
 
 
-            httpResponse = await clientTest.DeleteAsync(rotaBase + $"/{administradorCreate.Id}");
+            httpResponse = await clientTest.DeleteAsync(rotaId);
             Assert.True(httpResponse.IsSuccessStatusCode);
         }
     }
