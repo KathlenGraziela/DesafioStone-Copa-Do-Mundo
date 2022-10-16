@@ -15,20 +15,23 @@ namespace StoneDesafio.Business.Services
     {
         private readonly AppDbContext dbContext;
         private readonly ModelConverter modelConverter;
-        private readonly AdministradorRepository administradorRepository;
         private readonly IAdministradorRepository genericRepository;
 
 
-        public AdministradorService(AppDbContext dbContext, AdministradorRepository administradorRepository, ModelConverter modelConverter, IAdministradorRepository genericRepository)
+        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IAdministradorRepository genericRepository)
         {
             this.dbContext = dbContext;
-            this.administradorRepository = administradorRepository;
             this.modelConverter = modelConverter;
             this.genericRepository = genericRepository;
         }
 
         public async Task<Administrador> CriarAsync(AdministradorCreateDto createDto)
         {
+            if (await genericRepository.SelectFirstAsync(a => a.Email == createDto.Email) != null)
+            {
+                throw new ApiException($"Administador com email {createDto.Email} já existe");
+            }
+
             var senhaCript = CriptografiaService.Criptografar(createDto.Senha);
             var administrador = new Administrador
             {
