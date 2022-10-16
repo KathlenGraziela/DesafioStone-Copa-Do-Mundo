@@ -13,21 +13,22 @@
 }
 
 <form asp-controller="login" asp-action="Entrar">
-      <div class="mb-3">
+    <div class="mb-3">
         <label for="login" class="form-label">Login</label>
-        <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control" id="login">
+        <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login">
         @Html.ValidationMessageFor(x => x.Email)
-      </div>
-
-      <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
         <label for="senha" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" placeholder="Coloque sua senha" class="form-control" id="senha">
+        <input type="password" asp-for="Senha" placeholder="Coloque sua senha" class="form-control input-sm" id="senha">
         @Html.ValidationMessageFor(x => x.Senha)
-      </div>
+    </div>
 
-      <button type="submit" class="btn btn-primary">Entrar</button>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar-se</button>
       
-      <div>
+    <div>
         <a asp-action="EsqueceuSenha" asp-route-id="Id">Esqueci minha senha</a>
-      </div>
-    </form>
+    </div>
+</form>
