@@ -1,0 +1,23 @@
+﻿@{
+	Layout = "_LayoutDeslogado";
+	ViewData["Tittle"] = "Login";
+
+}
+
+<form>
+      <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" class="form-control" id="login">
+      </div>
+
+      <div class="mb-3">
+        <label for="senha" class="form-label" aria-placeholder="insira sua senha">Senha</label>
+        <input type="password" class="form-control" id="senha">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Logar</button>
+      
+      <td>
+        <a asp-action="EsqueceuSenha" asp-route-id="Id">Esqueci minha senha</a>
+      </td>
+    </form>
