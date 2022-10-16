@@ -9,6 +9,7 @@ namespace StoneDesafio.Controllers
         public LoginController()
         {
             //espaço para implementar o código que possa validar os usuários cadastrados.
+            //solicitar acompanhamento do samuel para juntar com o administrador.
         }
 
         public IActionResult Index()
