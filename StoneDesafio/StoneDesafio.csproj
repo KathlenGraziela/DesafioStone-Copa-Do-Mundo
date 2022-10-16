@@ -21,4 +21,12 @@
     <InternalsVisibleTo Include="StoneDesafio.Tests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Utils\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetMetaprograming\GenericRepositoryBuilder.csproj" />
+  </ItemGroup>
+
 </Project>

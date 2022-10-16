@@ -17,7 +17,6 @@ namespace StoneDesafio.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             #region Administradores
             modelBuilder.Entity<Administrador>().HasIndex(u => u.Email).IsUnique();
 

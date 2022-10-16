@@ -12,28 +12,35 @@ namespace StoneDesafio.Controllers
     [Produces("application/json")]
     public class AdministradorController : ControllerBase
     {
-        private readonly AdministradorRepository administradorRepository;
         private readonly AdministradorService administradorService;
         private readonly ModelConverter modelConverter;
+        private readonly IAdministradorRepository genericRepository;
 
-        public AdministradorController(AdministradorRepository administradorRepository, ModelConverter modelConverter, AdministradorService administradorService)
+        public AdministradorController(ModelConverter modelConverter, AdministradorService administradorService, IAdministradorRepository genericRepository)
         {
-            this.administradorRepository = administradorRepository;
             this.modelConverter = modelConverter;
             this.administradorService = administradorService;
+            this.genericRepository = genericRepository;
         }
 
         [HttpGet]
         public async Task<List<AdministradorReadDto>> PegarTodosAsync()
         {
-            var adiministradores = await administradorRepository.SelectTopNAsync();
+            var adiministradores =  await genericRepository.SelectAllAsync();
+            return adiministradores.ConvertAll(a => modelConverter.Convert<AdministradorReadDto, Administrador>(a));
+        }
+
+        [HttpGet]
+        public async Task<List<AdministradorReadDto>> PegarNAsync([FromQuery]int n)
+        {
+            var adiministradores = await genericRepository.SelectNAsync(n);
             return adiministradores.ConvertAll(a => modelConverter.Convert<AdministradorReadDto, Administrador>(a));
         }
 
         [HttpGet("{id}")]
         public async Task<AdministradorReadDto> PegarUmAsync(Guid id)
         {
-            var adiministrador = await administradorRepository.SelectByIdRequiredAsync(id);
+            var adiministrador = await genericRepository.SelectFirstAsync(a => a.Id == id);
             return modelConverter.Convert<AdministradorReadDto, Administrador>(adiministrador);
         }
 
@@ -47,15 +54,14 @@ namespace StoneDesafio.Controllers
         [HttpPut("{id}")]
         public async Task<AdministradorReadDto> EditarAsync(Guid id, [FromBody] AdministradorEditDto editDto)
         {
-            var adiministrador = await administradorService.EditarAsync(id, editDto);
-            return modelConverter.Convert<AdministradorReadDto, Administrador>(adiministrador);
+            var administrador = await administradorService.EditarAsync(id, editDto);
+            return modelConverter.Convert<AdministradorReadDto, Administrador>(administrador);
         }
 
         [HttpDelete("{id}")]
         public async Task DeletarAsync(Guid id)
         {
-            var administrador = await administradorRepository.SelectByIdRequiredAsync(id);
-            await administradorRepository.DeletarAsync(administrador);
+            await administradorService.DeletarAsync(id);
         }
 
     }
