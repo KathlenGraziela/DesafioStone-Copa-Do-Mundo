@@ -15,19 +15,23 @@ namespace StoneDesafio.Business.Services
     {
         private readonly AppDbContext dbContext;
         private readonly ModelConverter modelConverter;
-        private readonly AdministradorRepository administradorRepository;
-        private static readonly string salt = 
-            Convert.ToBase64String(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("saltDB") ?? "salter"));
+        private readonly IAdministradorRepository genericRepository;
 
-        public AdministradorService(AppDbContext dbContext, AdministradorRepository administradorRepository, ModelConverter modelConverter)
+
+        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IAdministradorRepository genericRepository)
         {
             this.dbContext = dbContext;
-            this.administradorRepository = administradorRepository;
             this.modelConverter = modelConverter;
+            this.genericRepository = genericRepository;
         }
 
         public async Task<Administrador> CriarAsync(AdministradorCreateDto createDto)
         {
+            if (await genericRepository.SelectFirstAsync(a => a.Email == createDto.Email) != null)
+            {
+                throw new ApiException($"Administador com email {createDto.Email} já existe");
+            }
+
             var senhaCript = CriptografiaService.Criptografar(createDto.Senha);
             var administrador = new Administrador
             {
@@ -37,14 +41,16 @@ namespace StoneDesafio.Business.Services
                 Senha = senhaCript
             };
 
-            await administradorRepository.CriarAsync(administrador);
+            genericRepository.Add(administrador);
+            await genericRepository.SaveChangesAsync();
 
             return administrador;
         }
 
         public async Task<Administrador> EditarAsync(Guid id, AdministradorEditDto editDto)
         {
-            var administrador = await administradorRepository.SelectByIdRequiredAsync(id);
+            var administrador = await genericRepository.SelectFirstAsync(a => a.Id == id)  ??
+                throw new ApiException($"Administador com id {id} não foi encontrado"); 
 
             modelConverter.ConvertInPlace(editDto, administrador, checkNull: true);
 
@@ -54,9 +60,19 @@ namespace StoneDesafio.Business.Services
                 administrador.Senha = senhaCript;
             }
 
-            await administradorRepository.EditarAsync(administrador);
+            genericRepository.Update(administrador);
+            await genericRepository.SaveChangesAsync();
 
             return administrador;
+        }
+
+        public async Task DeletarAsync(Guid id)
+        {
+            var administrador = await genericRepository.SelectFirstAsync(a => a.Id == id) ??
+                    throw new ApiException($"Administador com id {id} não foi encontrado");
+            
+            genericRepository.Remove(administrador);
+            await genericRepository.SaveChangesAsync();
         }
     }
 }
