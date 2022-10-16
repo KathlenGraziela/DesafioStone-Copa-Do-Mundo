@@ -7,7 +7,7 @@
 @if (TempData["MensagemErro"] != null)
 {
     <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
         @TempData["MensagemErro"]
     </div>
 }
@@ -25,10 +25,12 @@
         @Html.ValidationMessageFor(x => x.Senha)
     </div>
 
-    <button type="submit" class="btn btn-primary">Entrar</button>
-    <button type="submit" class="btn btn-primary">Cadastrar-se</button>
       
     <div>
-        <a asp-action="EsqueceuSenha" asp-route-id="Id">Esqueci minha senha</a>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+        
+        @*Necessário um direcionamento para redefinição de senha - samuel*@
+        <button type="button" class="btn btn-link" asp-action="" asp-route-id="">Esqueci minha senha</button>
     </div>
 </form>
