@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetMetaprograming\GenericRepositoryBuilder.csproj" />
+    <ProjectReference Include="..\GenericRepositoryBuilder\GenericRepositoryBuilder.csproj" />
   </ItemGroup>
 
 </Project>

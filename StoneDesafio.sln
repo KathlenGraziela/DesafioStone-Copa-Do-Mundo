@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneDesafio", "StoneDesafi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneDesafio.Tests", "StoneDesafio.Tests\StoneDesafio.Tests.csproj", "{D0320BBC-F2D9-4087-BEB8-A8A0047B5EAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepositoryBuilder", "NetMetaprograming\GenericRepositoryBuilder.csproj", "{73AC24F7-8D97-4419-B017-D2312DAC9D60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepositoryBuilder", "GenericRepositoryBuilder\GenericRepositoryBuilder.csproj", "{73AC24F7-8D97-4419-B017-D2312DAC9D60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
