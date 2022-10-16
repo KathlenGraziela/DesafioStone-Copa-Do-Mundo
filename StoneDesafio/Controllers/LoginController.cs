@@ -5,6 +5,12 @@ namespace StoneDesafio.Controllers
 {
     public class LoginController : Controller
     {
+        
+        public LoginController()
+        {
+            //espaço para implementar o código que possa validar os usuários cadastrados.
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -21,7 +27,7 @@ namespace StoneDesafio.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválidos, tente novamente.";
+                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválidos. Por favor, tente novamente.";
                 }
                 return View("Index");
 
