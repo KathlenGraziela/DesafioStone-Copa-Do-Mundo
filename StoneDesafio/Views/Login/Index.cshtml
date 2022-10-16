@@ -4,16 +4,24 @@
 	ViewData["Tittle"] = "Login";
 }
 
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <form asp-controller="login" asp-action="Entrar">
       <div class="mb-3">
         <label for="login" class="form-label">Login</label>
-        <input type="text" asp-for="Email" class="form-control" id="login">
+        <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control" id="login">
         @Html.ValidationMessageFor(x => x.Email)
       </div>
 
       <div class="mb-3">
-        <label for="senha" class="form-label" aria-placeholder="insira sua senha">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" id="senha">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" asp-for="Senha" placeholder="Coloque sua senha" class="form-control" id="senha">
         @Html.ValidationMessageFor(x => x.Senha)
       </div>
 

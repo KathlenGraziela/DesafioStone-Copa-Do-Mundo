@@ -17,7 +17,11 @@ namespace StoneDesafio.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (login.Email == "daniel" && login.Senha == "daniel")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválidos, tente novamente.";
                 }
                 return View("Index");
 
