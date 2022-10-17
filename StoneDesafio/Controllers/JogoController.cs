@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 
@@ -6,16 +7,16 @@ namespace StoneDesafio.Controllers
 {
     public class JogoController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IRepository<Jogo> repository;
 
-        public JogoController(AppDbContext context)
+        public JogoController(IRepository<Jogo> repository)
         {
-            _context = context;
+            this.repository = repository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            var jogos = _context.Jogos.ToList();
+            var jogos = await repository.SelectAllAsync();
             return View(jogos);
         }
 
@@ -26,34 +27,31 @@ namespace StoneDesafio.Controllers
 
         [HttpPost]
 
-        public ActionResult Criar(Jogo jogo)
+        public async Task<ActionResult> CriarAsync(Jogo jogo)
         {
             if (ModelState.IsValid)
             {
-                _context.Jogos.Add(jogo);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                await repository.AddAndSaveAsync(jogo);
+                return RedirectToAction(nameof(IndexAsync));
             }
 
             return View(jogo);
-                              
-                      
         }
 
-        public ActionResult Editar(int id)
+        public async Task<ActionResult> EditarAsync(int id)
         {
-            var jogo = _context.Jogos.Find(id);
+            var jogo = await repository.FindAsync(id);
             if (jogo == null)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
 
             return View(jogo);
             
         }
 
         [HttpPost]
-        public ActionResult Editar(Jogo jogo)
+        public async Task<ActionResult> EditarAsync(Jogo jogo)
         {
-            var jogoBanco = _context.Jogos.Find(jogo.Id);
+            var jogoBanco = await repository.FindAsync(jogo.Id);
 
             jogoBanco.ClubeA = jogo.ClubeA;
             jogoBanco.ClubeB = jogo.ClubeB;
@@ -62,34 +60,34 @@ namespace StoneDesafio.Controllers
             jogoBanco.InicioJogo = jogo.InicioJogo;
             jogoBanco.FimJogo = jogo.FimJogo;
 
-            _context.Jogos.Update(jogoBanco);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            await repository.UpdateAndSaveAsync(jogoBanco);
+
+            return RedirectToAction(nameof(IndexAsync));
         }
 
-        public ActionResult Deletar(int id)
+        public async Task<ActionResult> DeletarAsync(int id)
         {
-            var jogo = _context.Jogos.Find(id);
+            var jogo = await repository.FindAsync(id);
 
             if (jogo == null)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             return View(jogo);
                         
         }
 
         [HttpDelete]
-        public ActionResult Deletar(Jogo jogo)
+        public async Task<ActionResult> DeletarAsync(Jogo jogo)
         {
-            var jogoBanco = _context.Jogos.Find(jogo.Id);
-            _context.Jogos.Remove(jogoBanco);
-            return RedirectToAction(nameof(Index));
+            var jogoBanco = await repository.FindAsync(jogo.Id);
+            await repository.RemoveAndSaveAsync(jogoBanco);
+            return RedirectToAction(nameof(IndexAsync));
         }
 
-        public ActionResult Detalhar(int id)
+        public async Task<ActionResult> DetalharAsync(int id)
         {
-            var jogo = _context.Jogos.Find(id);
-            if (jogo == null) ;
-            return RedirectToAction(nameof(Index));
+            var jogo = await repository.FindAsync(id);
+            if (jogo == null) 
+                return RedirectToAction(nameof(IndexAsync));
 
             return View(jogo);
         }

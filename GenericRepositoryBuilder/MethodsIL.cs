@@ -54,8 +54,34 @@ namespace GenericRepositoryBuilder
             Action<ILGenerator> Add = (il) =>
             {
                 GenericDbSetIL(il, nameof(DbSet<object>.Add));
+                il.Emit(OpCodes.Pop);
             };
             methodsIL.Add("Add", Add);
+
+            Action<ILGenerator> AddSave = (il) =>
+            {
+                Add(il);
+                LoadDbContextIL(il);
+                SaveChangesAsyncIL(il);
+            };
+            methodsIL.Add("AddAndSaveAsync", AddSave);
+
+            Action<ILGenerator> UpdateSave = (il) =>
+            {
+                Update(il);
+                LoadDbContextIL(il);
+                SaveChangesAsyncIL(il);
+            };
+            methodsIL.Add("UpdateAndSaveAsync", UpdateSave);
+
+
+            Action<ILGenerator> RemoveSave = (il) =>
+            {
+                Remove(il);
+                LoadDbContextIL(il);
+                SaveChangesAsyncIL(il);
+            };
+            methodsIL.Add("RemoveAndSaveAsync", RemoveSave);
 
             Action<ILGenerator> FindAsync = (il) =>
             {
@@ -100,6 +126,12 @@ namespace GenericRepositoryBuilder
         {
             iLGenerator.Emit(OpCodes.Ldarg_1);
             iLGenerator.Emit(OpCodes.Callvirt, GetMethod(typeof(DbSet<>).MakeGenericType(genericType), methName));
+        }
+
+        private void LoadDbContextIL(ILGenerator iLGenerator)
+        {
+            iLGenerator.Emit(OpCodes.Ldarg_0);
+            iLGenerator.Emit(OpCodes.Ldfld, fbDbContext);
         }
     }
 }
