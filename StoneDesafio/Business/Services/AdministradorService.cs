@@ -3,7 +3,7 @@ using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Utilities.Encoders;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Businesss;
-using StoneDesafio.Data;
+using StoneDesafio.Data.AdministradorDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;

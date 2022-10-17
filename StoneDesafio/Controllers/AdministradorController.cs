@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Data;
+using StoneDesafio.Data.AdministradorDtos;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
 
@@ -16,11 +16,11 @@ namespace StoneDesafio.Controllers
         private readonly ModelConverter modelConverter;
         private readonly IRepository<Administrador> administradorRepository;
 
-        public AdministradorController(ModelConverter modelConverter, AdministradorService administradorService, IRepository<Administrador> genericRepository)
+        public AdministradorController(ModelConverter modelConverter, AdministradorService administradorService, IRepository<Administrador> administradorRepository)
         {
             this.modelConverter = modelConverter;
             this.administradorService = administradorService;
-            this.administradorRepository = genericRepository;
+            this.administradorRepository = administradorRepository;
         }
 
         [HttpGet]
@@ -58,6 +58,5 @@ namespace StoneDesafio.Controllers
         {
             await administradorService.DeletarAsync(id);
         }
-
     }
 }

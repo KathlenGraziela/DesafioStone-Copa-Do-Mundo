@@ -1,43 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoneDesafio.Business.Repositorys;
+using StoneDesafio.Business.Services;
+using StoneDesafio.Data.AdministradorDtos;
 using StoneDesafio.Models;
 
 namespace StoneDesafio.Controllers
 {
     public class LoginController : Controller
     {
-        
-        public LoginController()
+        private readonly IRepository<Administrador> repository;
+
+        public LoginController(IRepository<Administrador> repository)
         {
-            //espaço para implementar o código que possa validar os usuários cadastrados.
-            //solicitar acompanhamento do samuel para juntar com o administrador.
+            this.repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string? msg = null)
         {
+            ViewBag.msg = msg;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Entrar(Login login)
+        public async Task<IActionResult> EntrarAsync(AdministradorLoginDto login)
         {
-            try
+            var administrador = await repository.SelectFirstAsync(a => a.Email == login.Email);
+            if (!ModelState.IsValid || administrador == null || !CriptografiaService.Verficar(login.Senha, administrador.Senha))
             {
-                if (ModelState.IsValid)
-                {
-                    if (login.Email == "daniel" && login.Senha == "daniel") //login de teste para logar.
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválidos. Por favor, tente novamente.";
-                }
-                return View("Index");
-
+                TempData["Email"] = login.Email;
+                return RedirectToAction(nameof(Index), new { msg = "Usuário e/ou Senha inválidos. Por favor, tente novamente." });
             }
-            catch (Exception erro)
-            {
-                TempData["MensagemErro"] = $"Ops, não conseguimos realizar seu login, tente novamente. Detalhe do erro: {erro.Message}";
-                return RedirectToAction("Index");
-            }
+            return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
     }
 }

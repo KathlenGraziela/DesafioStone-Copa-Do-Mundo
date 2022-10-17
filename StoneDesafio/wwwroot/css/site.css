@@ -1,18 +1,65 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
+}
+
+* {
+    margin: 0px;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100vh;
 }
 
 body {
-  margin-bottom: 60px;
+    background: linear-gradient(182deg, white, #00000030);
+    margin-bottom: 0px;
+    min-height: 100%;
+}
+
+main {
+    padding-top: 60px;
+    min-height: calc(100vh - 137px);
+}
+
+footer {
+    background: #DDD;
+    height: 30px;
+}
+
+.border_gradient {
+    border-color: transparent;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.border_gradient::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    background: linear-gradient(to right, red, purple);
+    animation: linear border-animation infinite;
+    animation-duration: 6s;
+}
+
+@keyframes border-animation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

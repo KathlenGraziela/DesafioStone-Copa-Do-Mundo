@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StoneDesafio.Business.Services;
 using StoneDesafio.Models;
 using System.Net.Mail;
 
@@ -27,14 +28,14 @@ namespace StoneDesafio.Entities
                     Id = Guid.NewGuid(),
                     Nome = "Adm1",
                     Email = "adm1@adms.com",
-                    Senha = "AdmPass"
+                    Senha = CriptografiaService.Criptografar("AdmPass")
                 },
                 new()
                 {
                     Id = Guid.NewGuid(),
                     Nome = "Adm2",
                     Email = "adm2@adms.com",
-                    Senha = "AdmPass"
+                    Senha = CriptografiaService.Criptografar("AdmPass")
                 });
             #endregion
 
