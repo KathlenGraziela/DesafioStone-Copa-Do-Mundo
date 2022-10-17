@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using StoneDesafio.Controllers;
-using StoneDesafio.Data;
+using StoneDesafio.Data.AdministradorDtos;
 using System.Net.Http.Json;
 
 namespace StoneDesafio.Tests.Administrador

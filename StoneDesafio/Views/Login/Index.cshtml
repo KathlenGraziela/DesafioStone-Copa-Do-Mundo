@@ -1,14 +1,16 @@
-﻿@model Login
+﻿@using StoneDesafio.Data.AdministradorDtos
+
+@model AdministradorLoginDto
 @{
 	Layout = "_LayoutDeslogado";
 	ViewData["Tittle"] = "Login";
 }
 
-@if (TempData["MensagemErro"] != null)
+@if (ViewBag.msg != null)
 {
     <div class="alert alert-danger" role="alert">
         <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
-        @TempData["MensagemErro"]
+        @ViewBag.msg
     </div>
 }
 
@@ -16,7 +18,7 @@
     <div class="container col-sm-5">
         <div class="form-group">
             <label for="login" class="form-label">Login</label>
-            <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login">
+            <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login" value="@TempData["Email"]">
             @Html.ValidationMessageFor(x => x.Email)
         </div>
     

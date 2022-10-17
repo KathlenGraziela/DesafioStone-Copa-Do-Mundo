@@ -7,23 +7,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Copa do Mundo</a> @*algum link para copa do mundo*@
-                </div>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Copa do Mundo</a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 shadow-lg">
+            <div class="container-fluid w-75 m-auto">
+                <a class="navbar-brand rounded-2 p-2 bg-success text-black fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Copa do Mundo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 text-white">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
@@ -34,20 +31,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Jogo" asp-action="Index">Jogo</a>
                         </li>
                     </ul>
+                    <div class="d-flex">
+                        <div>
+                            <form asp-action="Index" asp-controller="Movie" class="form-inline d-flex align-items-center p-1" method="get" autocomplete="off">
+                                <input name="search" id="search" class="form-control d-inline w-auto  h-50"
+                                       type="search" placeholder="Search" style="margin-right: 3px">
+
+                                <button class="btn btn-outline-success my-2 my-sm-0 w-25 h-50" type="submit">Search</button>
+                            </form>
+                        </div>
+                        <div>
+                            <ul class="d-flex gap-2">
+                                @*Finalizar usando o link para alterar dados - apoio samuel*@
+                                <li><a class="nav-link text-white" href="Link do alterar">
+                                    <span class="glyphicon glyphicon-user"></span>Alterar dados
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-white" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-in">
+                                        </span> Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <ul class="nav navbar-nav navbar">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark"asp-controller="Clube" asp-action="Index">Clube</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @*Finalizar usando o link para alterar dados - apoio samuel*@
-                    <li><a href="Link do alterar"><span class="glyphicon glyphicon-user"></span>Alterar dados</a></li>
-                    <li><a asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
-                </ul>
             </div>
         </nav>
     </header>
@@ -59,12 +67,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Trilha de Especialização StoneTech - <a asp-area="" asp-controller="Login" asp-action="Index">Grupo 4</a>
+            &copy; 2022 - Trilha de Especialização StoneTech
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

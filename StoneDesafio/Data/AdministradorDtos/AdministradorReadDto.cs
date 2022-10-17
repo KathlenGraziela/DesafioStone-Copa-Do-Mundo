@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace StoneDesafio.Data
+namespace StoneDesafio.Data.AdministradorDtos
 {
     public class AdministradorReadDto
     {
