@@ -1,0 +1,75 @@
+﻿@model StoneDesafio.Models.Jogo
+
+
+@{
+    ViewData["Title"] = "Criar novo jogo";
+    var listaClubes = (List<Clube>)ViewData["ListaClubes"];
+}
+
+<h1>Criar novo jogo</h1>
+     
+</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="criar">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClubeA)
+                @Html.ValidationMessageFor(model => model.ClubeA, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(
+                model => model.ClubeA,
+                new SelectList(listaClubes, "Id", "Nome"),
+                "Selecione...",
+                new {
+                @class = "dropdown-toggle form-control",
+                style = "width: 100%",
+                @required = true,
+                id = "Id",
+                @tabindex = "1"
+                }
+                )
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClubeB)
+                @Html.ValidationMessageFor(model => model.ClubeB, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(
+                model => model.ClubeB,
+                new SelectList(listaClubes, "Id", "Nome"),
+                "Selecione...",
+                new {
+                @class = "dropdown-toggle form-control",
+                style = "width: 100%",
+                @required = true,
+                id = "Id",
+                @tabindex = "1"
+                }
+                )
+            </div>
+            <div class="form-group">
+                <label asp-for="GolsClubeA" class="control-label"></label>
+                <input asp-for="GolsClubeA" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GolsClubeB" class="control-label"></label>
+                <input asp-for="GolsClubeB" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="InicioJogo" class="control-label"></label>
+                <input asp-for="InicioJogo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FimJogo" class="control-label"></label>
+                <input asp-for="FimJogo" class="form-control" />
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+<br>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
