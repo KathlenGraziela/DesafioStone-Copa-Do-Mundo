@@ -24,7 +24,7 @@ namespace StoneDesafio.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (login.Email == "daniel" && login.Senha == "daniel")
+                    if (login.Email == "daniel" && login.Senha == "daniel") //login de teste para logar.
                     {
                         return RedirectToAction("Index", "Home");
                     }
