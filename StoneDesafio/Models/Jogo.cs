@@ -16,6 +16,8 @@ namespace StoneDesafio.Models
 
         public DateTime InicioJogo { get; set; }
 
+        public DateTime FimJogo { get; set; }
+
         [NotMapped]
         public TimeSpan Tempo_atual 
         { 
