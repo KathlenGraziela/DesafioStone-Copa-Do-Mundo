@@ -24,16 +24,11 @@ namespace StoneDesafio.Controllers
         }
 
         [HttpGet]
-        public async Task<List<AdministradorReadDto>> PegarTodosAsync()
+        public async Task<List<AdministradorReadDto>> PegarListaAsync(int? n)
         {
-            var adiministradores =  await genericRepository.SelectAllAsync();
-            return adiministradores.ConvertAll(a => modelConverter.Convert<AdministradorReadDto, Administrador>(a));
-        }
+            var adiministradores =  n == null ? await genericRepository.SelectAllAsync() 
+                                              : await genericRepository.SelectNAsync((int) n);
 
-        [HttpGet]
-        public async Task<List<AdministradorReadDto>> PegarNAsync([FromQuery]int n)
-        {
-            var adiministradores = await genericRepository.SelectNAsync(n);
             return adiministradores.ConvertAll(a => modelConverter.Convert<AdministradorReadDto, Administrador>(a));
         }
 

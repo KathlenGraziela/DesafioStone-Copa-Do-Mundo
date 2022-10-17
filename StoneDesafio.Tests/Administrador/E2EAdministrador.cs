@@ -10,13 +10,12 @@ namespace StoneDesafio.Tests.Administrador
 {
     public class E2EAdministrador
     {
-
+        private readonly WebApplicationFactory<Program> appFactory = new();
         private readonly HttpClient clientTest;
         private readonly string rotaBase;
 
         public E2EAdministrador()
         {
-            var appFactory = new WebApplicationFactory<Program>();
             clientTest = appFactory.CreateClient();
 
             var rotaAtributo = (RouteAttribute?)Attribute.GetCustomAttribute(typeof(AdministradorController), typeof(RouteAttribute));
@@ -68,5 +67,7 @@ namespace StoneDesafio.Tests.Administrador
             httpResponse = await clientTest.DeleteAsync(rotaId);
             Assert.True(httpResponse.IsSuccessStatusCode);
         }
+
+        
     }
 }

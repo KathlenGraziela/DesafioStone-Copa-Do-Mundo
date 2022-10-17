@@ -9,21 +9,39 @@ namespace GenericRepositoryBuilder
         private readonly Type interfaceType;
         private readonly TypeBuilder typeBuilder;
         private readonly Type genericType;
+        private readonly Type dbContextType;
         private readonly List<MethodInfo> interfaceMethods = new();
-        private static readonly Dictionary<string, Action<ILGenerator>> methodsIL = new();
-        private FieldBuilder fbDbContext;
+        private static readonly Dictionary<Type, object> Repositorys = new();
+        private FieldBuilder? fbDbContext;
 
-
-        public Builder(Type interfaceType)
+        private Builder(Type interfaceType, Type dbContextType)
         {
             this.interfaceType = interfaceType;
             genericType = ValidateInterface();
             InitializeMethodsIL();
-            typeBuilder = CreateType();
+            typeBuilder = CreateAsemblyModule();
             AddAndCheckMethodsImplementation();
+            this.dbContextType = dbContextType;
+        }
+        public static void BuildRepository<TInterface, TDbContext>()
+        {
+            var repositoryInterfaceType = typeof(TInterface);
+            if (Repositorys.ContainsKey(repositoryInterfaceType)) return;
+
+            var repositoryBuild = new Builder(repositoryInterfaceType, typeof(TDbContext)).BuildType();
+            Repositorys.Add(repositoryInterfaceType, repositoryBuild);
         }
 
-        private TypeBuilder CreateType()
+        public static T GetRepository<T>(DbContext dbContext)
+        {
+            var repositoryInterfaceType = typeof(T);
+            var repository = Repositorys[repositoryInterfaceType];
+            repository.GetType().GetRuntimeFields().Single().SetValue(repository, dbContext);
+
+            return (T)repository;
+        }
+
+        private TypeBuilder CreateAsemblyModule()
         {
             AssemblyName aName = new AssemblyName("DynamicAssembly");
             AssemblyBuilder ab = AssemblyBuilder.DefineDynamicAssembly(aName, AssemblyBuilderAccess.Run);
@@ -54,27 +72,27 @@ namespace GenericRepositoryBuilder
                 throw new Exception($"{methNotImplemented.Name} not implemented");
         }
 
-        public object Build(DbContext appDbContext)
+        private object BuildType()
         {
             typeBuilder.AddInterfaceImplementation(interfaceType);
             fbDbContext = typeBuilder.DefineField("dbContext", typeof(DbContext), FieldAttributes.Private);
 
-            GenerateConstructor(fbDbContext);
-            GenerateMethods(appDbContext);
+            GenerateConstructor();
+            GenerateMethods();
 
             var tp = typeBuilder.CreateType() ?? throw new Exception();
-            return Activator.CreateInstance(tp, appDbContext) ?? throw new Exception();
+            return Activator.CreateInstance(tp) ?? throw new Exception();
         }
 
-        private void GenerateMethods(DbContext dbContext)
+        private void GenerateMethods()
         {
             foreach (var methInterface in interfaceMethods)
             {
-                GenerateMethod(methInterface, dbContext);
+                GenerateMethod(methInterface);
             }
         }
 
-        private void GenerateMethod(MethodInfo methInterface, DbContext dbContext)
+        private void GenerateMethod(MethodInfo methInterface)
         {
             var paramTypes = methInterface.GetParameters().Select(p => p.ParameterType).ToArray();
             var methBuilder = typeBuilder.DefineMethod
@@ -94,7 +112,7 @@ namespace GenericRepositoryBuilder
 
             if(methInterface.Name != "SaveChangesAsync")
             {
-                var dbSetType = GetDbSetGenericGetter(dbContext.GetType());
+                var dbSetType = GetDbSetGenericGetter(dbContextType);
                 iLGenerator.Emit(OpCodes.Callvirt, dbSetType);
             }
 
@@ -103,19 +121,15 @@ namespace GenericRepositoryBuilder
             iLGenerator.Emit(OpCodes.Ret);
         }
 
-        private void GenerateConstructor(FieldBuilder fbDbContext)
+        private void GenerateConstructor()
         {
-            Type[] parameterTypes = { typeof(DbContext) };
-            ConstructorBuilder constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, parameterTypes);
+            ConstructorBuilder constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, null);
 
             ILGenerator iLGenerator = constructor.GetILGenerator();
 
             iLGenerator.Emit(OpCodes.Ldarg_0);
             iLGenerator.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes));
 
-            iLGenerator.Emit(OpCodes.Ldarg_0);
-            iLGenerator.Emit(OpCodes.Ldarg_1);
-            iLGenerator.Emit(OpCodes.Stfld, fbDbContext);
             iLGenerator.Emit(OpCodes.Ret);
         }
     }

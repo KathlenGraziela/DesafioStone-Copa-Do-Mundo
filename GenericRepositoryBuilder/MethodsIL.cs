@@ -5,8 +5,12 @@ namespace GenericRepositoryBuilder
 {
     public partial class Builder
     {
+        private static readonly Dictionary<string, Action<ILGenerator>> methodsIL = new();
+
         private void InitializeMethodsIL()
         {
+            if (methodsIL.Any()) return;
+            
             methodsIL.Add("SelectAllAsync", (il) => ToListAsyncIL(il));
 
             Action<ILGenerator> Where = (il) =>
