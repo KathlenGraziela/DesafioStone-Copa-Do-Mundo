@@ -99,9 +99,10 @@ namespace GenericRepositoryBuilder
             (
                 methInterface.Name,
                 MethodAttributes.Public | MethodAttributes.Virtual,
-                methInterface.ReturnType, paramTypes
+                methInterface.CallingConvention,
+                methInterface.ReturnType,
+                paramTypes
             );
-
             typeBuilder.DefineMethodOverride(methBuilder, methInterface);
 
             ILGenerator iLGenerator = methBuilder.GetILGenerator();

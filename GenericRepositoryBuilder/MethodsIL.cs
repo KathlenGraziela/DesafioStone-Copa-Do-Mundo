@@ -5,12 +5,10 @@ namespace GenericRepositoryBuilder
 {
     public partial class Builder
     {
-        private static readonly Dictionary<string, Action<ILGenerator>> methodsIL = new();
+        private readonly Dictionary<string, Action<ILGenerator>> methodsIL = new();
 
         private void InitializeMethodsIL()
-        {
-            if (methodsIL.Any()) return;
-            
+        {            
             methodsIL.Add("SelectAllAsync", (il) => ToListAsyncIL(il));
 
             Action<ILGenerator> Where = (il) =>
@@ -55,15 +53,15 @@ namespace GenericRepositoryBuilder
 
             Action<ILGenerator> Add = (il) =>
             {
-                AddDbSetIL(il);
+                GenericDbSetIL(il, nameof(DbSet<object>.Add));
             };
             methodsIL.Add("Add", Add);
-        }
 
-        private void AddDbSetIL(ILGenerator iLGenerator)
-        {
-            iLGenerator.Emit(OpCodes.Ldarg_1);
-            iLGenerator.Emit(OpCodes.Callvirt, GetMethod(typeof(DbSet<>).MakeGenericType(genericType), nameof(DbSet<object>.Add)));
+            Action<ILGenerator> FindAsync = (il) =>
+            {
+                GenericDbSetIL(il, nameof(DbSet<object>.FindAsync));
+            };
+            methodsIL.Add("FindAsync", FindAsync);
         }
 
         private void GenericQueriableIL(ILGenerator iLGenerator, string methName)

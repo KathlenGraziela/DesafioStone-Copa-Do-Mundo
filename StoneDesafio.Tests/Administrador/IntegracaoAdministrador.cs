@@ -24,7 +24,7 @@ namespace StoneDesafio.Tests.Administrador
             applicationFactory = new WebApplicationFactory<Program>();
         }
 
-        [Fact]
+        [Fact(Skip = "Skip")]
         public async Task Test1Async()
         {
             var services = new ServiceCollection()

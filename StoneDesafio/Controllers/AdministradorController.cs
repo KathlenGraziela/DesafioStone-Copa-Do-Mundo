@@ -14,20 +14,20 @@ namespace StoneDesafio.Controllers
     {
         private readonly AdministradorService administradorService;
         private readonly ModelConverter modelConverter;
-        private readonly IAdministradorRepository genericRepository;
+        private readonly IRepository<Administrador> administradorRepository;
 
-        public AdministradorController(ModelConverter modelConverter, AdministradorService administradorService, IAdministradorRepository genericRepository)
+        public AdministradorController(ModelConverter modelConverter, AdministradorService administradorService, IRepository<Administrador> genericRepository)
         {
             this.modelConverter = modelConverter;
             this.administradorService = administradorService;
-            this.genericRepository = genericRepository;
+            this.administradorRepository = genericRepository;
         }
 
         [HttpGet]
         public async Task<List<AdministradorReadDto>> PegarListaAsync(int? n)
         {
-            var adiministradores =  n == null ? await genericRepository.SelectAllAsync() 
-                                              : await genericRepository.SelectNAsync((int) n);
+            var adiministradores =  n == null ? await administradorRepository.SelectAllAsync() 
+                                              : await administradorRepository.SelectNAsync((int) n);
 
             return adiministradores.ConvertAll(a => modelConverter.Convert<AdministradorReadDto, Administrador>(a));
         }
@@ -35,8 +35,8 @@ namespace StoneDesafio.Controllers
         [HttpGet("{id}")]
         public async Task<AdministradorReadDto> PegarUmAsync(Guid id)
         {
-            var adiministrador = await genericRepository.SelectFirstAsync(a => a.Id == id);
-            return modelConverter.Convert<AdministradorReadDto, Administrador>(adiministrador);
+            var adiministrador = await administradorRepository.FindAsync(id);
+            return modelConverter.Convert<AdministradorReadDto, object>(adiministrador);
         }
 
         [HttpPost]

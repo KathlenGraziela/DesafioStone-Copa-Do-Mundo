@@ -3,6 +3,7 @@ using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Configuration;
 using StoneDesafio.Entities;
+using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
 using StoneDesafio.Services;
 
@@ -21,7 +22,8 @@ var connectionString = Environment.GetEnvironmentVariable("MySqlConnectionString
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connectionString));
 
-builder.Services.AddGenericRepository<IAdministradorRepository, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Administrador>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddSingleton<ModelConverter>();

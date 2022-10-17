@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 
@@ -8,12 +9,13 @@ namespace StoneDesafio.Controllers
     {
         private readonly AppDbContext _context;
 
+
         public ClubeController(AppDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult IndexAsync()
         {
             var clubes = _context.Clubes.ToList();
             return View(clubes);
@@ -31,7 +33,7 @@ namespace StoneDesafio.Controllers
             {
                 _context.Clubes.Add(clube);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             return View(clube);
         }
@@ -40,7 +42,7 @@ namespace StoneDesafio.Controllers
         {
             var clube = _context.Clubes.Find(id);
             if (clube == null)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
 
             return View(clube);
         }
@@ -57,7 +59,7 @@ namespace StoneDesafio.Controllers
             _context.Clubes.Update(clubeBanco);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAsync));
         }
 
         public IActionResult Detalhes(int id)
@@ -65,7 +67,7 @@ namespace StoneDesafio.Controllers
             var clube = _context.Clubes.Find(id);
 
             if (clube == null)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
 
             return View(clube);
         }
@@ -74,7 +76,7 @@ namespace StoneDesafio.Controllers
         {
             var clube = _context.Clubes.Find(id);
             if (clube == null)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
 
             return View(clube);
         }
@@ -87,7 +89,7 @@ namespace StoneDesafio.Controllers
             _context.Clubes.Remove(clubeBanco);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAsync));
         }
     }
 }
