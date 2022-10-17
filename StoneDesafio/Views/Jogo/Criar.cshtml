@@ -3,7 +3,10 @@
 
 @{
     ViewData["Title"] = "Criar novo jogo";
+<<<<<<< HEAD
     var listaClubes = (List<Clube>)ViewData["ListaClubes"];
+=======
+>>>>>>> 5c43f3532456e23dc1cd80985895bdbabae14640
 }
 
 <h1>Criar novo jogo</h1>
@@ -14,6 +17,7 @@
     <div class="col-md-4">
         <form asp-action="criar">
             <div class="form-group">
+<<<<<<< HEAD
                 @Html.LabelFor(model => model.ClubeA)
                 @Html.ValidationMessageFor(model => model.ClubeA, "", new { @class = "text-danger" })
                 @Html.DropDownListFor(
@@ -44,6 +48,14 @@
                 @tabindex = "1"
                 }
                 )
+=======
+                <label asp-for="ClubeA" class="control-label"></label>
+                <input asp-for="ClubeA" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ClubeB" class="control-label"></label>
+                <input asp-for="ClubeB" class="form-control" />
+>>>>>>> 5c43f3532456e23dc1cd80985895bdbabae14640
             </div>
             <div class="form-group">
                 <label asp-for="GolsClubeA" class="control-label"></label>

@@ -15,10 +15,10 @@ namespace StoneDesafio.Business.Services
     {
         private readonly AppDbContext dbContext;
         private readonly ModelConverter modelConverter;
-        private readonly IAdministradorRepository genericRepository;
+        private readonly IRepository<Administrador> genericRepository;
 
 
-        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IAdministradorRepository genericRepository)
+        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IRepository<Administrador> genericRepository)
         {
             this.dbContext = dbContext;
             this.modelConverter = modelConverter;
@@ -41,8 +41,7 @@ namespace StoneDesafio.Business.Services
                 Senha = senhaCript
             };
 
-            genericRepository.Add(administrador);
-            await genericRepository.SaveChangesAsync();
+            await genericRepository.AddAndSaveAsync(administrador);
 
             return administrador;
         }
@@ -60,8 +59,7 @@ namespace StoneDesafio.Business.Services
                 administrador.Senha = senhaCript;
             }
 
-            genericRepository.Update(administrador);
-            await genericRepository.SaveChangesAsync();
+            await genericRepository.UpdateAndSaveAsync(administrador);
 
             return administrador;
         }
@@ -71,8 +69,7 @@ namespace StoneDesafio.Business.Services
             var administrador = await genericRepository.SelectFirstAsync(a => a.Id == id) ??
                     throw new ApiException($"Administador com id {id} não foi encontrado");
             
-            genericRepository.Remove(administrador);
-            await genericRepository.SaveChangesAsync();
+            await genericRepository.RemoveAndSaveAsync(administrador);
         }
     }
 }
