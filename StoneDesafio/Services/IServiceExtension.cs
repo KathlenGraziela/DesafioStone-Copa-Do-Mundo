@@ -6,28 +6,15 @@ namespace StoneDesafio.Services
 {
     public static class IServiceExtension
     {
-        private static object repository;
-
-        public static IServiceCollection AddGenericRepository<TGeneric, TContext>(this IServiceCollection serviceCollection) 
-            where TGeneric : class where TContext : DbContext
+        public static IServiceCollection AddGenericRepository<TInterface, TContext>(this IServiceCollection serviceCollection) 
+            where TInterface : class where TContext : DbContext
         {
+            Builder.BuildRepository<TInterface, TContext>();
             serviceCollection.AddScoped(factory =>
             {
                 var dbContext = factory.GetRequiredService<TContext>();
-                if (repository == null)
-                {
-                    var repoBuilder = new Builder(typeof(TGeneric));
-                    repository = repoBuilder.Build(dbContext);
-
-                    return (TGeneric)repository;
-                }
-                
-                var dbField = repository.GetType().GetRuntimeFields().Single();
-                dbField.SetValue(repository,dbContext);
-                
-                return (TGeneric) repository;
+                return Builder.GetRepository<TInterface>(dbContext);
             });
-
             return serviceCollection;
         }
     }

@@ -15,10 +15,10 @@ namespace StoneDesafio.Business.Services
     {
         private readonly AppDbContext dbContext;
         private readonly ModelConverter modelConverter;
-        private readonly IAdministradorRepository genericRepository;
+        private readonly IRepository<Administrador> genericRepository;
 
 
-        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IAdministradorRepository genericRepository)
+        public AdministradorService(AppDbContext dbContext, ModelConverter modelConverter, IRepository<Administrador> genericRepository)
         {
             this.dbContext = dbContext;
             this.modelConverter = modelConverter;

@@ -3,7 +3,7 @@ using StoneDesafio.Models;
 
 namespace StoneDesafio.Business.Repositorys
 {
-    public interface IAdministradorRepository : IGenericRepository<Administrador>
+    public interface IRepository<T> : IGenericRepository<T> where T : class
     {
     }
 }
