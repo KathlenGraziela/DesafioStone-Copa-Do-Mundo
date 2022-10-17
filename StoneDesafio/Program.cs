@@ -23,7 +23,7 @@ var connectionString = Environment.GetEnvironmentVariable("MySqlConnectionString
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connectionString));
 
 builder.Services.AddGenericRepository<IRepository<Administrador>, AppDbContext>();
-builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddSingleton<ModelConverter>();
