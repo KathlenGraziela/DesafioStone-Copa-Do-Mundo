@@ -9,6 +9,8 @@ namespace StoneDesafio.Entities
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Clube> Clubes { get; set; }
 
+        public DbSet<Jogo> Jogos { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)
         {
@@ -17,7 +19,6 @@ namespace StoneDesafio.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             #region Administradores
             modelBuilder.Entity<Administrador>().HasIndex(u => u.Email).IsUnique();
 
@@ -64,6 +65,8 @@ namespace StoneDesafio.Entities
                 }
             );
             #endregion
+
+            
         }
     }
 }

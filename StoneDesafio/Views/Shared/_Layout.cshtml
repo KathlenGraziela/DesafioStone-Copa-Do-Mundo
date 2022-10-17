@@ -17,6 +17,24 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Copa do Mundo</a> @*algum link para copa do mundo*@
                 </div>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Copa do Mundo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Clube" asp-action="Index">Clube</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Jogo" asp-action="Index">Jogo</a>
+                        </li>
+                    </ul>
+                </div>
                 <ul class="nav navbar-nav navbar">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a>

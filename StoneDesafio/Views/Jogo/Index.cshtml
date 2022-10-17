@@ -1,0 +1,73 @@
+﻿@model IEnumerable<StoneDesafio.Models.Jogo>
+
+@{
+    ViewData["Title"] = "Listagem de jogos";
+}
+
+
+<h2>Clubes</h2>
+<p>
+    <a asp-action="Criar">Novo Jogo</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubeA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubeB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GolsClubeA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GolsClubeB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InicioJogo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FimJogo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ClubeA)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ClubeB)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GolsClubeA)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GolsClubeB)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.InicioJogo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.FimJogo)
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
