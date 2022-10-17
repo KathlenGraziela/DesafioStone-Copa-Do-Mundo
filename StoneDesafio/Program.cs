@@ -51,6 +51,7 @@ if (app.Environment.IsDevelopment())
         
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<AppDbContext>();
+        
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
     }
@@ -71,6 +72,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

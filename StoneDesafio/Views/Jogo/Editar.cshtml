@@ -1,0 +1,58 @@
+﻿@model StoneDesafio.Models.Jogo
+
+@{
+    ViewData["Title"] = "Editar jogo";
+}
+
+<h1>Editar Jogo</h1>
+
+</h1>
+
+<div class="row">
+    <div class=" = " col-md-4">
+        <form asp-action="Editar">
+            <div class="form-group">
+                <label asp-for="ClubeA" class="control-label"></label>
+                <input asp-for="ClubeA" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ClubeA" class="control-label"></label>
+                <input asp-for="ClubeA" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ClubeB" class="control-label"></label>
+                <input asp-for="ClubeB" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ClubeB" class="control-label"></label>
+                <input asp-for="ClubeB" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GolsClubeA" class="control-label"></label>
+                <input asp-for="GolsClubeA" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GolsClubeB" class="control-label"></label>
+                <input asp-for="GolsClubeB" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="InicioJogo" class="control-label"></label>
+                <input asp-for="InicioJogo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FimJogo" class="control-label"></label>
+                <input asp-for="FimJogo" class="form-control" />
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</hr>
+<br>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
