@@ -3,20 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Copa do Mundo</title>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <title>@ViewData["Title"] Copa do Mundo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    @*<link rel="stylesheet" href="~/ProjetoMVC.styles.css" asp-append-version="true" />*@
 </head>
 <body>
     <header>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Copa do Mundo</a> @*Link para copa do mundo*@
+                    <a class="navbar-brand" href="#">Copa do Mundo</a> @*algum link para copa do mundo*@
                 </div>
                 <ul class="nav navbar-nav navbar">
                     <li class="nav-item">
@@ -27,7 +26,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @*Finalizar usando o link para alterar dados - samuel*@
+                    @*Finalizar usando o link para alterar dados - apoio samuel*@
                     <li><a href="Link do alterar"><span class="glyphicon glyphicon-user"></span>Alterar dados</a></li>
                     <li><a asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
                 </ul>
