@@ -13,25 +13,27 @@
 }
 
 <form asp-controller="login" asp-action="Entrar">
-    <div class="form-group">
-        <label for="login" class="form-label">Login</label>
-        <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login">
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
+    <div class="container col-sm-9">
+        <div class="form-group">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login">
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
     
-    <div class="form-group">
-        <label for="senha" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" placeholder="Coloque sua senha" class="form-control input-sm" id="senha">
-        @Html.ValidationMessageFor(x => x.Senha)
-    </div>
-
-    <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Entrar</button>
-    <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+        <div class="form-group">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" asp-for="Senha" placeholder="Coloque sua senha" class="form-control input-sm" id="senha">
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
         
-    @*Necessário um direcionamento para redefinição de senha - samuel*@
-    <button type="button" class="btn btn-link" asp-action="" asp-route-id="">Esqueci minha senha</button>    
+        <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+        
+        @*Necessário um direcionamento para redefinição de senha - samuel*@
+        <button type="button" class="btn btn-link" asp-action="" asp-route-id="">Esqueci minha senha</button>    
+    </div>
 </form> 
