@@ -13,7 +13,7 @@ namespace StoneDesafio.Services
             serviceCollection.AddScoped(factory =>
             {
                 var dbContext = factory.GetRequiredService<TContext>();
-                return Builder.GetRepository<TInterface>(dbContext);
+                return Builder.GetScopedRepository<TInterface>(dbContext);
             });
             return serviceCollection;
         }

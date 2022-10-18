@@ -26,7 +26,7 @@ namespace StoneDesafio.Controllers
         [HttpPost]
         public async Task<IActionResult> EntrarAsync(AdministradorLoginDto login)
         {
-            var administrador = await repository.SelectFirstAsync(a => a.Email == login.Email);
+            var administrador = await repository.FindFirstAsync(a => a.Email == login.Email);
             if (!ModelState.IsValid || administrador == null || !CriptografiaService.Verficar(login.Senha, administrador.Senha))
             {
                 TempData["Email"] = login.Email;
