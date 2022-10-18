@@ -6,32 +6,34 @@
 
 <h1 style="color: red;">Deseja realmente deletar esse clube? Essa operação é irreversível</h1>
 
-</hr>
-
-<div>
-    <d1 class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.Nome)
-        </dt>
-        <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.Nome)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.Descricao)
-        </dt>
-        <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.Descricao)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.UrlFoto)
-        </dt>
-        <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.UrlFoto)
-        </dt>
-    </d1>
-</div>
-
 <form asp-action="Deletar">
+    <div>
+        <d1 class="row">
+            <div style="visibility:hidden">
+                @Html.EditorFor(x => x.Id)
+            </div>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(x => x.Nome)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayFor(x => x.Nome)
+            </dt>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(x => x.Descricao)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayFor(x => x.Descricao)
+            </dt>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(x => x.UrlFoto)
+            </dt>
+            <dt class="col-sm-10">
+                @Html.DisplayFor(x => x.UrlFoto)
+            </dt>
+        </d1>
+    </div>
+
     <input type="submit" value="Deletar" class="btn btn-danger"/>
 </form>
 

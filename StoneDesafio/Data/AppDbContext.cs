@@ -41,30 +41,6 @@ namespace StoneDesafio.Entities
 
             #region Clube
             modelBuilder.Entity<Clube>().HasIndex(u => u.Id).IsUnique();
-
-            modelBuilder.Entity<Clube>().HasData(
-                new()
-                {
-                    Id = 1,
-                    Nome = "Clube 01",
-                    Descricao = "Descrição Clube 01",
-                    UrlFoto = ""
-                },
-                new()
-                {
-                    Id = 2,
-                    Nome = "Clube 02",
-                    Descricao = "Descrição Clube 02",
-                    UrlFoto = ""
-                },
-                new()
-                {
-                    Id = 3,
-                    Nome = "Clube 03",
-                    Descricao = "Descrição Clube 03",
-                    UrlFoto = ""
-                }
-            );
             #endregion
 
             
