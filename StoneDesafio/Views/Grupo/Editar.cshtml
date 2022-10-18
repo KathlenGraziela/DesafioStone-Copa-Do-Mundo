@@ -1,13 +1,13 @@
-﻿@model StoneDesafio.Models.Clube
+﻿@model StoneDesafio.Models.Grupo
 
 @{
-    ViewData["Title"] = "Editar clube";
+    ViewData["Title"] = "Editar Grupo";
 }
 
-<h1>Editar Clube</h1>
+<h1>Editar Grupo</h1>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class=" = " col-md-4">
         <form asp-action="Editar">
             <div class="form-group" style="visibility:hidden">
                 <label asp-for="Id" class="control-label"></label>
@@ -16,15 +16,7 @@
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="UrlFoto" class="control-label"></label>
-                <input asp-for="UrlFoto" class="form-control" />
-            </div>
+            </div>       
             <br>
             <div class="form-group">
                 <input type="submit" value="Editar" class="btn btn-primary" />
@@ -32,11 +24,7 @@
         </form>
     </div>
 </div>
-
-<hr>
 <br>
-
 <div>
     <a asp-action="Index">Voltar</a>
 </div>
-
