@@ -8,9 +8,8 @@ using StoneDesafio.Models.Utils;
 namespace StoneDesafio.Controllers
 {
     [ApiController]
-    [Route("administradores")]
     [Produces("application/json")]
-    public class AdministradorController : ControllerBase
+    public class AdministradorController : AppBaseController
     {
         private readonly AdministradorService administradorService;
         private readonly ModelConverter modelConverter;

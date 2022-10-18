@@ -6,7 +6,7 @@ using StoneDesafio.Models;
 
 namespace StoneDesafio.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : AppBaseController
     {
         private readonly IRepository<Administrador> repository;
 

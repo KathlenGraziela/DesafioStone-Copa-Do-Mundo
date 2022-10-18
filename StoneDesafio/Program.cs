@@ -24,6 +24,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connecti
 
 builder.Services.AddGenericRepository<IRepository<Administrador>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddSingleton<ModelConverter>();
