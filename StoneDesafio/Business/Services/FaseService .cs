@@ -30,7 +30,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<FaseCampeonato> CriarAsync(FaseCriarDto createDto)
         {
-            if (await faseRepository.SelectFirstAsync(a => a.FasesCampeonato == createDto.FasesCampeonato) != null)
+            if (await faseRepository.FindFirstAsync(a => a.FasesCampeonato == createDto.FasesCampeonato) != null)
             {
                 throw new ApiException($"Fase {createDto.FasesCampeonato} já existe");
             }
@@ -50,7 +50,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<FaseCampeonato> EditarAsync(Guid id, FaseEditarDto editDto)
         {
-            var fase = await faseRepository.SelectFirstAsync(a => a.Id == id)  ??
+            var fase = await faseRepository.FindFirstAsync(a => a.Id == id)  ??
                 throw new ApiException($"Fase com id {id} não foi encontrado"); 
 
             modelConverter.ConvertInPlace(editDto, fase, checkNull: true);
@@ -62,7 +62,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task DeletarAsync(Guid id)
         {
-            var administrador = await faseRepository.SelectFirstAsync(a => a.Id == id) ??
+            var administrador = await faseRepository.FindFirstAsync(a => a.Id == id) ??
                     throw new ApiException($"Fase com id {id} não foi encontrado");
 
             await faseRepository.RemoveAndSaveAsync(administrador);

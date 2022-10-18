@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Models;
 

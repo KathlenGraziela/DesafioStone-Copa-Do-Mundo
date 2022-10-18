@@ -29,7 +29,7 @@ namespace GenericRepositoryBuilder
             {
                 FirstOrDefaultAsyncIL(il);
             };
-            methodsIL.Add("SelectFirstAsync", FirstOrDefault);
+            methodsIL.Add("FindFirstAsync", FirstOrDefault);
 
             Action<ILGenerator> Update = (il) =>
             {

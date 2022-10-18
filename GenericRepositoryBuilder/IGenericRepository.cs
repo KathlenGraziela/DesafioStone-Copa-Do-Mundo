@@ -7,7 +7,7 @@ namespace GenericRepositoryBuilder
         public Task<List<T>> SelectWhereAsync(Expression<Func<T, bool>> filter);
         public Task<List<T>> SelectAllAsync();
         public Task<List<T>> SelectNAsync(int n);
-        public Task<T?> SelectFirstAsync(Expression<Func<T, bool>> filter);
+        public Task<T?> FindFirstAsync(Expression<Func<T, bool>> filter);
         public ValueTask<T?> FindAsync(params object?[]? values);
         public void Add(T entity);
         public void Update(T entity);

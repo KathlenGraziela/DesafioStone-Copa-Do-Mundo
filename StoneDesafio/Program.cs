@@ -53,10 +53,9 @@ if (app.Environment.IsDevelopment())
         
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<AppDbContext>();
-        
-
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
+
     }
 
     app.UseHsts();
