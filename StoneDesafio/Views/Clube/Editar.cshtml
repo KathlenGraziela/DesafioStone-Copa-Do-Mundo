@@ -6,11 +6,13 @@
 
 <h1>Editar novo contato</h1>
 
-</h1>
-
 <div class="row">
-    <div class=" = " col-md-4">
+    <div class="col-md-4">
         <form asp-action="Editar">
+            <div class="form-group" style="visibility:hidden">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+            </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -25,13 +27,15 @@
             </div>
             <br>
             <div class="form-group">
-                <input type="submit" value="Editar" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-</hr>
+
+<hr>
 <br>
+
 <div>
     <a asp-action="Index">Voltar</a>
 </div>

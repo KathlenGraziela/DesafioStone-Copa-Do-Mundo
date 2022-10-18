@@ -3,9 +3,7 @@
 
 @{
     ViewData["Title"] = "Criar novo jogo";
-
     var listaClubes = (List<Clube>)ViewData["ListaClubes"];
-
 }
 
 <h1>Criar novo jogo</h1>
@@ -16,7 +14,6 @@
     <div class="col-md-4">
         <form asp-action="criar">
             <div class="form-group">
-
                 @Html.LabelFor(model => model.ClubeA)
                 @Html.ValidationMessageFor(model => model.ClubeA, "", new { @class = "text-danger" })
                 @Html.DropDownListFor(
