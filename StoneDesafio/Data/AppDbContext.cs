@@ -9,8 +9,8 @@ namespace StoneDesafio.Entities
     {
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Clube> Clubes { get; set; }
-
         public DbSet<Jogo> Jogos { get; set; }
+        public DbSet<Grupo> Grupos { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)
