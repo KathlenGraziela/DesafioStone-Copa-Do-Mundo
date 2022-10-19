@@ -60,7 +60,7 @@ namespace StoneDesafio.Models.Utils
                             
                             var propListObjectType = pO.PropertyType.GenericTypeArguments.Single();
 
-                            var propOutputList = (IList?) Activator.CreateInstance(pO.PropertyType);
+                            var propOutputList = (IList) Activator.CreateInstance(pO.PropertyType);
 
                             foreach (var obj in propInputList)
                             {

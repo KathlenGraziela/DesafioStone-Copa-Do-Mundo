@@ -30,7 +30,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<FaseCampeonato> CriarAsync(FaseCriarDto createDto)
         {
-            if (await faseRepository.FindFirstAsync(a => a.FasesCampeonato == createDto.FasesCampeonato) != null)
+            if (await faseRepository.FindFirstAsync(a => a.FaseAtualCampeonato == createDto.FasesCampeonato) != null)
             {
                 throw new ApiException($"Fase {createDto.FasesCampeonato} já existe");
             }
@@ -39,7 +39,7 @@ namespace StoneDesafio.Business.Services
             var fase = new FaseCampeonato
             {
                 Id = Guid.NewGuid(),
-                FasesCampeonato = createDto.FasesCampeonato,
+                FaseAtualCampeonato = createDto.FasesCampeonato,
                 Jogos = jogos
             };
 

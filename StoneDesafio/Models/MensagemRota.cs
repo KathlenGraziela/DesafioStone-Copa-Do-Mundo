@@ -11,7 +11,7 @@
         public string Mensagem { get; set; }
         public MensagemResultado Resultado { get; set; }
 
-        public T? Sucessos { get; set; }
+        public T Sucessos { get; set; }
 
         public MensagemRota(MensagemResultado resultado, string mensagem, T sucessos = null)
         {

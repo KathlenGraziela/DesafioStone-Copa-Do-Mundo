@@ -17,7 +17,7 @@ namespace StoneDesafio.Controllers
             this.administradorService = administradorService;
         }
 
-        public IActionResult Index([FromQuery] string? msg = null)
+        public IActionResult Index([FromQuery] string msg = null)
         {
             ViewBag.msg = msg;
             return View();

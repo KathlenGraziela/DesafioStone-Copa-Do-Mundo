@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StoneDesafio.Models.FasesDoCampeonato>
+﻿@model IEnumerable<StoneDesafio.Models.FaseCampeonato>
 
 @{
     ViewData["Title"] = "Listagem das fases do campeonato";
@@ -16,13 +16,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.First().Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FasesDoCampeonato)
+                @Html.DisplayNameFor(model => model.First().FaseAtualCampeonato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Jogos)
+                @Html.DisplayNameFor(model => model.First().Jogos)
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
                     @Html.DisplayFor(model => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.FasesDoCampeonato)
+                    @Html.DisplayFor(model => item.FaseAtualCampeonato)
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.Jogos)
