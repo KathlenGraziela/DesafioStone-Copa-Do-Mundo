@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "_Layout";
+    var modelType = ViewBag.ModelGenericType;
+    var propriedades = modelType.GetProperties();
+    var propId = @modelType.GetProperty("Id");
+    IgnoreBody();
+}
+
+@if (ViewData["Mensagem"] != null)
+{
+    var erro = (MensagemResultado)ViewBag.Mensagem.Resultado == MensagemResultado.Falha;
+
+    <div class="alert d-flex justify-content-between @(erro ? "alert-danger" : "alert-success")">
+        <div class="d-inline-block">
+            @ViewBag.Mensagem
+        </div>
+        <div class="d-inline-block">
+            <button type="button" class="btn btn-warning btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+    </div>
+}
+
+<h2>
+    @ViewBag.SubTitulo
+</h2>
+
+<table border="1" class="table table-striped shadow mb-2 bg-white">
+    <thead>
+        <tr>
+            @foreach (var propriedade in propriedades) {
+                <th>
+                    @propriedade.Name
+                </th>
+            }
+            <th class="text-center">
+                Acoes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var propriedade in propriedades)
+                {
+                    <td>
+                        @propriedade.GetValue(item)?.ToString()
+                    </td>
+                }
+                <td class="d-flex justify-content-center gap-2 align-items-center">
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@propId.GetValue(item)">Editar</a>
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@propId.GetValue(item)">Detalhes</a>
+                    <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@propId.GetValue(item)"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Criar">@ViewBag.BotaoTexto</a>
+<script>
+    function Deletar(e) {
+        console.log(e);
+        let excluir = confirm("Tem certeza que deseja excluir?");
+        if (!excluir) e.preventDefault();
+    }
+
+    document.querySelectorAll("#deletar").forEach(element => element.addEventListener("click", Deletar));
+</script>

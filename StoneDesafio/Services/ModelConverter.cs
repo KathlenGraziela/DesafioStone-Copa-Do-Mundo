@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StoneDesafio.Data.AdministradorDtos;
+using System.Collections;
 
 namespace StoneDesafio.Models.Utils
 {
