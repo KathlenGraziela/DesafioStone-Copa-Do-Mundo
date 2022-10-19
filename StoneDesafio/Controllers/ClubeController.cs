@@ -39,7 +39,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Editar")]
-        public async Task<IActionResult> EditarAsync(int id)
+        public async Task<IActionResult> EditarAsync(Guid id)
         {
             var clube = await _clubeRepository.FindAsync(id);
             if (clube == null)
@@ -63,7 +63,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Detalhes")]
-        public async Task<IActionResult> DetalhesAsync(int id)
+        public async Task<IActionResult> DetalhesAsync(Guid id)
         {
             var clube = await _clubeRepository.FindAsync(id);
 
@@ -74,7 +74,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Deletar")]
-        public async Task<IActionResult> DeletarAsync(int id)
+        public async Task<IActionResult> DeletarAsync(Guid id)
         {
             var clube = await _clubeRepository.FindAsync(id);
             if (clube == null)

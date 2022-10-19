@@ -38,7 +38,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Editar")]
-        public async Task<IActionResult> EditarAsync(int id)
+        public async Task<IActionResult> EditarAsync(Guid id)
         {
             var grupo = await _grupoRepository.FindAsync(id);
             if (grupo == null)
@@ -60,7 +60,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Deletar")]
-        public async Task<IActionResult> DeletarAsync(int id)
+        public async Task<IActionResult> DeletarAsync(Guid id)
         {
             var grupo = await _grupoRepository.FindAsync(id);
             if (grupo == null)

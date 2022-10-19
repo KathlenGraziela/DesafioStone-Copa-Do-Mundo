@@ -10,16 +10,26 @@ namespace StoneDesafio.Controllers
     {
         private readonly IRepository<Jogo> _jogoRepository;
         private readonly IRepository<Clube> _clubeRepository;
+        private readonly AppDbContext _appDbContext;
 
-        public JogoController(IRepository<Jogo> jogoRepository, IRepository<Clube> clubeRepository)
+        public JogoController(
+            IRepository<Jogo> jogoRepository, 
+            IRepository<Clube> clubeRepository,
+            AppDbContext appDbContext)
         {
             _jogoRepository = jogoRepository;
             _clubeRepository = clubeRepository;
+            _appDbContext = appDbContext;
         }
 
         public async Task<IActionResult> IndexAsync()
         {
-            var jogos = await _jogoRepository.SelectAllAsync();
+            var queryJogos = _appDbContext.Jogos
+                .Include(j => j.ClubeA)
+                .Include(j => j.ClubeB);
+
+            var jogos = queryJogos.ToList();
+
             return View(jogos);
         }
 
@@ -45,7 +55,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Editar")]
-        public async Task<ActionResult> Editar(int id)
+        public async Task<ActionResult> Editar(Guid id)
         {
             var jogo = await _jogoRepository.FindAsync(id);
             if (jogo == null)
@@ -73,7 +83,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Deletar")]
-        public async Task<ActionResult> Deletar(int id)
+        public async Task<ActionResult> Deletar(Guid id)
         {
             var jogo = await _jogoRepository.FindAsync(id);
 
@@ -93,7 +103,7 @@ namespace StoneDesafio.Controllers
         }
 
         [Route("Detalhes")]
-        public async Task<ActionResult> Detalhar(int id)
+        public async Task<ActionResult> Detalhar(Guid id)
         {
             var jogo = await _jogoRepository.FindAsync(id);
             if (jogo == null) 
