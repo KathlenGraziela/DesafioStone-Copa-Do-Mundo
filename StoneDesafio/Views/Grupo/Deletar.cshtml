@@ -1,0 +1,27 @@
+﻿@model StoneDesafio.Models.Grupo
+
+@{
+    ViewData["Title"] = "Deletar Grupo";
+}
+
+<h1 style="color: red;">Deseja realmente deletar esse grupo? Essa operação é irreversível</h1>
+
+<form asp-action="Deletar">
+    <div>
+        <d1 class="row">
+            <div style="visibility:hidden">
+                @Html.EditorFor(x => x.Id)
+            </div>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(x => x.Nome)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(x => x.Nome)
+        </dt>
+    </d1>
+
+    <input type="submit" value="Deletar" class="btn btn-danger"/>
+</form>
+
+<br>
+<a asp-action="Deletar">Voltar</a>
