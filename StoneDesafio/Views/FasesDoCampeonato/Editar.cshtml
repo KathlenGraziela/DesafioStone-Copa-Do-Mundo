@@ -1,0 +1,34 @@
+﻿@model StoneDesafio.Models.FasesDoCampeonato
+
+@{
+    ViewData["Title"] = "Editar fases do campeonato";
+}
+
+<h1>Editar fases do campeonato</h1>
+
+</h1>
+
+<div class="row">
+    <div class=" = " col-md-4">
+        <form asp-action="Editar">
+            <div class="form-group">
+                <label asp-for="FasesDoCampeonato" class="control-label"></label>
+                <input asp-for="FasesDoCampeonato" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Jogos" class="control-label"></label>
+                <input asp-for="Jogos" class="form-control" />
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</hr>
+<br>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
