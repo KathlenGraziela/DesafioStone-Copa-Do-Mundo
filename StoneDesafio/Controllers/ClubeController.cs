@@ -11,6 +11,7 @@ namespace StoneDesafio.Controllers
 {
     public class ClubeController : GenericController<Clube, ClubeCriarDto, ClubeEditarDto>
     {
+
         public ClubeController(IRepository<Clube> repository, IService<Clube, ClubeCriarDto, ClubeEditarDto> service) : base(repository, service)
         {
         }

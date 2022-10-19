@@ -8,8 +8,8 @@ namespace StoneDesafio.Controllers.Teste
 {
     public class GenericController<TModel, TCriarDto, TEditarDto> : AppBaseController where TModel : class 
     {
-        private readonly IRepository<TModel> repository;
-        private readonly IService<TModel, TCriarDto, TEditarDto> service;
+        protected readonly IRepository<TModel> repository;
+        protected readonly IService<TModel, TCriarDto, TEditarDto> service;
 
         public GenericController(IRepository<TModel> repository, IService<TModel, TCriarDto, TEditarDto> service)
         {

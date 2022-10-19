@@ -35,6 +35,7 @@ namespace StoneDesafio.Controllers
             return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
 
+        [Route("cadastrar")]
         [HttpPost]
         public async Task<IActionResult> CadastrarAsync(AdministradorCriarDto createDto)
         {
