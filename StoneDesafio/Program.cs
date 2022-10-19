@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Configuration;
+using StoneDesafio.Data.ClubeDtos;
+using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
@@ -12,10 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddControllersWithViews(o =>
-{
-    o.Filters.Add<HandleExceptionFilter>();
-});
 
 var connectionString = Environment.GetEnvironmentVariable("MySqlConnectionString") ?? 
                        builder.Configuration.GetConnectionString("MySqlConnectionString");
@@ -27,6 +24,8 @@ builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
+builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
+builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
 builder.Services.AddSingleton<ModelConverter>();
 
 //builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>

@@ -26,7 +26,7 @@ namespace StoneDesafio.Tests.Administrador
         [Fact(DisplayName = "Teste de CRUD usando as rotas dos Administradores")]
         public async Task DeveFazerCRUDComRotasAsync()
         {
-            var createDto = new AdministradorCreateDto()
+            var createDto = new AdministradorCriarDto()
             {
                 Nome = "Adm",
                 Email = "adm@adms.com",
@@ -50,7 +50,7 @@ namespace StoneDesafio.Tests.Administrador
             Assert.True(httpResponse.IsSuccessStatusCode);
 
 
-            var editDto = new AdministradorEditDto()
+            var editDto = new AdministradorEditarDto()
             {
                 Nome = "Admas",
                 Senha = "mustache"

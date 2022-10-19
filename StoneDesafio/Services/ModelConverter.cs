@@ -4,18 +4,18 @@ namespace StoneDesafio.Models.Utils
 {
     public class ModelConverter
     {
-        public TOutput Convert<TOutput, TInput>(in TInput input, bool checkNull = false)
+        public TOutput Convert<TOutput>(in object input, bool checkNull = false)
         {
-            var output = (TOutput?)Activator.CreateInstance(typeof(TOutput));
+            var output = (TOutput)Activator.CreateInstance(typeof(TOutput));
             ConvertInPlace(input, output, checkNull);
             return output;
         }
 
-        public void ConvertInPlace<TOutput, TInput>(in TInput input, TOutput output, bool checkNull = false)
+        public void ConvertInPlace(in object input, object output, bool checkNull = false)
         {
-            foreach (var pI in typeof(TInput).GetProperties())
+            foreach (var pI in input.GetType().GetProperties())
             {
-                foreach (var pO in typeof(TOutput).GetProperties())
+                foreach (var pO in output.GetType().GetProperties())
                 {
                     if (checkNull && pI.GetValue(input) == null)
                     {
@@ -31,14 +31,14 @@ namespace StoneDesafio.Models.Utils
             }
         }
 
-        public TOutput DepthConvert<TOutput, TInput>(in TInput input)
+        public TOutput DepthConvert<TOutput>(in object input)
         {
-            var output = (TOutput?)Activator.CreateInstance(typeof(TOutput));
+            var output = (TOutput)Activator.CreateInstance(typeof(TOutput));
             DepthConvertInPlace(input, output);
             return output;
         }
 
-        public void DepthConvertInPlace<TOutput, TInput>(in TInput input, TOutput output)
+        public void DepthConvertInPlace(in object input, object output)
         {
             foreach (var pI in input.GetType().GetProperties())
             {

@@ -4,7 +4,7 @@ namespace StoneDesafio.Models
 {
     public class Jogo
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public Clube ClubeA { get; set; }
 

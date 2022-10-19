@@ -1,51 +1,10 @@
 ﻿@model IEnumerable<StoneDesafio.Models.Clube>
 
 @{
+    Layout = "_TabelaLayout";
     ViewData["Title"] = "Listagem de Clubes";
+
+    ViewBag.ModelGenericType = typeof(Clube);
+    ViewBag.SubTitulo = "Clubes";
+    ViewBag.BotaoTexto = "Novo Clube";
 }
-
-
-<h2>Clubes</h2>
-<p>
-    <a asp-action="Criar">Novo Clube</a>
-</p>
-
-<table border="1" class="table table-striped rounded-2 shadow mb-1 bg-white">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th class="text-center">
-                Acoes
-            </th>
-           </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Descricao)
-                </td>
-                <td class="d-flex justify-content-center gap-2 align-items-center">
-                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
-                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> 
-                    <a class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@item.Id"></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>

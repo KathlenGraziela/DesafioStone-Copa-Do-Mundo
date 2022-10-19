@@ -25,14 +25,14 @@ namespace StoneDesafio.Entities
 
             modelBuilder.Entity<Administrador>().HasData(
                 new() { 
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Nome = "Adm1",
                     Email = "adm1@adms.com",
                     Senha = CriptografiaService.Criptografar("AdmPass")
                 },
                 new()
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 2,
                     Nome = "Adm2",
                     Email = "adm2@adms.com",
                     Senha = CriptografiaService.Criptografar("AdmPass")

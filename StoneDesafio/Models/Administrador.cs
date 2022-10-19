@@ -4,7 +4,7 @@ namespace StoneDesafio.Models
 {
     public class Administrador
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(100)]
         public string Nome { get; set; }

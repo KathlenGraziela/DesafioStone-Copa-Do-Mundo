@@ -36,7 +36,7 @@ namespace StoneDesafio.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastrarAsync(AdministradorCreateDto createDto)
+        public async Task<IActionResult> CadastrarAsync(AdministradorCriarDto createDto)
         {
             if (!ModelState.IsValid)
             {

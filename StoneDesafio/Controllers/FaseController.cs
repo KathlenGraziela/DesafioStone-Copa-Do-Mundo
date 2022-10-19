@@ -8,7 +8,7 @@ using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Controllers
 {
-    public class FaseController : Controller
+    public class FaseController : AppBaseController
     {
         
         private readonly IRepository<FaseCampeonato> repository;
@@ -39,7 +39,7 @@ namespace StoneDesafio.Controllers
             {
                 return RedirectToAction(nameof(IndexAsync));
             }
-            var fase = modelConverter.Convert<FaseCampeonato, FaseCriarDto>(FaseDto);
+            var fase = modelConverter.Convert<FaseCampeonato>(FaseDto);
             await repository.AddAndSaveAsync(fase);
 
 

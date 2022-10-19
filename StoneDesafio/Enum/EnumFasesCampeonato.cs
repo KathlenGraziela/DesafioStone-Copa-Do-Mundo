@@ -1,6 +1,6 @@
 ﻿namespace StoneDesafio.Enum
 {
-    public enum EnumFasesCampeonato
+    public enum FasesCampeonato
     {
         DeGrupo,
         Oitavas,

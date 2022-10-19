@@ -25,7 +25,7 @@ namespace StoneDesafio.Business.Services
             this.genericRepository = genericRepository;
         }
 
-        public async Task<Administrador> CriarAsync(AdministradorCreateDto createDto)
+        public async Task<Administrador> CriarAsync(AdministradorCriarDto createDto)
         {
             if (await genericRepository.FindFirstAsync(a => a.Email == createDto.Email) != null)
             {
@@ -33,22 +33,17 @@ namespace StoneDesafio.Business.Services
             }
 
             var senhaCript = CriptografiaService.Criptografar(createDto.Senha);
-            var administrador = new Administrador
-            {
-                Id = Guid.NewGuid(),
-                Nome = createDto.Nome,
-                Email = createDto.Email,
-                Senha = senhaCript
-            };
+            var administrador = modelConverter.Convert<Administrador>(createDto);
+            administrador.Senha = senhaCript;
 
             await genericRepository.AddAndSaveAsync(administrador);
 
             return administrador;
         }
 
-        public async Task<Administrador> EditarAsync(Guid id, AdministradorEditDto editDto)
+        public async Task<Administrador> EditarAsync(int id, AdministradorEditarDto editDto)
         {
-            var administrador = await genericRepository.FindFirstAsync(a => a.Id == id)  ??
+            var administrador = await genericRepository.FindAsync(id)  ??
                 throw new ApiException($"Administador com id {id} não foi encontrado"); 
 
             modelConverter.ConvertInPlace(editDto, administrador, checkNull: true);
@@ -64,9 +59,9 @@ namespace StoneDesafio.Business.Services
             return administrador;
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeletarAsync(int id)
         {
-            var administrador = await genericRepository.FindFirstAsync(a => a.Id == id) ??
+            var administrador = await genericRepository.FindAsync(id) ??
                     throw new ApiException($"Administador com id {id} não foi encontrado");
             
             await genericRepository.RemoveAndSaveAsync(administrador);

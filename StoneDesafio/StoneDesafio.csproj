@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\FaseDtos\" />
     <Folder Include="Views\FasesDeCampeonatos\" />
     <Folder Include="Views\TabelaDeJogos\" />
   </ItemGroup>
