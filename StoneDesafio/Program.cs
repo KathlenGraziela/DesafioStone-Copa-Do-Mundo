@@ -3,6 +3,7 @@ using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.JogoDtos;
+using StoneDesafio.Data.ResultadoDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
@@ -23,9 +24,11 @@ builder.Services.AddGenericRepository<IRepository<Administrador>, AppDbContext>(
 builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Grupo>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Resultado>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
+builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
 builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
 builder.Services.AddSingleton<ModelConverter>();
 
@@ -53,7 +56,7 @@ if (app.Environment.IsDevelopment())
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<AppDbContext>();
         //dbContext.Database.EnsureDeleted();
-        //dbContext.Database.EnsureCreated();
+        dbContext.Database.EnsureCreated();
 
     }
 
