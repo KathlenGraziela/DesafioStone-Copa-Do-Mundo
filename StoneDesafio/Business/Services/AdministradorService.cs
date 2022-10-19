@@ -27,7 +27,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<Administrador> CriarAsync(AdministradorCreateDto createDto)
         {
-            if (await genericRepository.SelectFirstAsync(a => a.Email == createDto.Email) != null)
+            if (await genericRepository.FindFirstAsync(a => a.Email == createDto.Email) != null)
             {
                 throw new ApiException($"Administador com email {createDto.Email} já existe");
             }
@@ -48,7 +48,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<Administrador> EditarAsync(Guid id, AdministradorEditDto editDto)
         {
-            var administrador = await genericRepository.SelectFirstAsync(a => a.Id == id)  ??
+            var administrador = await genericRepository.FindFirstAsync(a => a.Id == id)  ??
                 throw new ApiException($"Administador com id {id} não foi encontrado"); 
 
             modelConverter.ConvertInPlace(editDto, administrador, checkNull: true);
@@ -66,7 +66,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task DeletarAsync(Guid id)
         {
-            var administrador = await genericRepository.SelectFirstAsync(a => a.Id == id) ??
+            var administrador = await genericRepository.FindFirstAsync(a => a.Id == id) ??
                     throw new ApiException($"Administador com id {id} não foi encontrado");
             
             await genericRepository.RemoveAndSaveAsync(administrador);

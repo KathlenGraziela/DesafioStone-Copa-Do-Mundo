@@ -11,7 +11,7 @@ namespace GenericRepositoryBuilder
         private readonly Type genericType;
         private readonly Type dbContextType;
         private readonly List<MethodInfo> interfaceMethods = new();
-        private static readonly Dictionary<Type, object> Repositorys = new();
+        private static readonly Dictionary<Type, Type> Repositorys = new();
         private FieldBuilder? fbDbContext;
 
         private Builder(Type interfaceType, Type dbContextType)
@@ -28,17 +28,16 @@ namespace GenericRepositoryBuilder
             var repositoryInterfaceType = typeof(TInterface);
             if (Repositorys.ContainsKey(repositoryInterfaceType)) return;
 
-            var repositoryBuild = new Builder(repositoryInterfaceType, typeof(TDbContext)).BuildType();
-            Repositorys.Add(repositoryInterfaceType, repositoryBuild);
+            var repositoryBuildType = new Builder(repositoryInterfaceType, typeof(TDbContext)).BuildType();
+            Repositorys.Add(repositoryInterfaceType, repositoryBuildType);
         }
 
-        public static T GetRepository<T>(DbContext dbContext)
+        public static T GetScopedRepository<T>(DbContext dbContext)
         {
             var repositoryInterfaceType = typeof(T);
-            var repository = Repositorys[repositoryInterfaceType];
-            repository.GetType().GetRuntimeFields().Single().SetValue(repository, dbContext);
+            var repositoryImplementationType = Repositorys[repositoryInterfaceType];
 
-            return (T)repository;
+            return (T)(Activator.CreateInstance(repositoryImplementationType, dbContext) ?? throw new Exception());
         }
 
         private TypeBuilder CreateAsemblyModule()
@@ -72,7 +71,7 @@ namespace GenericRepositoryBuilder
                 throw new Exception($"{methNotImplemented.Name} not implemented");
         }
 
-        private object BuildType()
+        private Type BuildType()
         {
             typeBuilder.AddInterfaceImplementation(interfaceType);
             fbDbContext = typeBuilder.DefineField("dbContext", typeof(DbContext), FieldAttributes.Private);
@@ -80,8 +79,7 @@ namespace GenericRepositoryBuilder
             GenerateConstructor();
             GenerateMethods();
 
-            var tp = typeBuilder.CreateType() ?? throw new Exception();
-            return Activator.CreateInstance(tp) ?? throw new Exception();
+            return typeBuilder.CreateType() ?? throw new Exception();
         }
 
         private void GenerateMethods()
@@ -124,13 +122,17 @@ namespace GenericRepositoryBuilder
 
         private void GenerateConstructor()
         {
-            ConstructorBuilder constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, null);
+            Type[] parameterTypes = { typeof(DbContext) };
+            ConstructorBuilder constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, parameterTypes);
 
             ILGenerator iLGenerator = constructor.GetILGenerator();
 
             iLGenerator.Emit(OpCodes.Ldarg_0);
             iLGenerator.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes));
 
+            iLGenerator.Emit(OpCodes.Ldarg_0);
+            iLGenerator.Emit(OpCodes.Ldarg_1);
+            iLGenerator.Emit(OpCodes.Stfld, fbDbContext);
             iLGenerator.Emit(OpCodes.Ret);
         }
     }

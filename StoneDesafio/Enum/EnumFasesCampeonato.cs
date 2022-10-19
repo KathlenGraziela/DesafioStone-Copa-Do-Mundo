@@ -2,6 +2,7 @@
 {
     public enum EnumFasesCampeonato
     {
+        DeGrupo,
         Oitavas,
         Quarta,
         SemiFinal,

@@ -10,7 +10,7 @@
     <a asp-action="Criar">Novo Clube</a>
 </p>
 
-<table class="table">
+<table border="1" class="table table-striped rounded-2 shadow mb-1 bg-white">
     <thead>
         <tr>
             <th>
@@ -22,8 +22,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlFoto)
+            <th class="text-center">
+                Acoes
             </th>
            </tr>
     </thead>
@@ -40,13 +40,10 @@
                 <td>
                     @Html.DisplayFor(model => item.Descricao)
                 </td>
-                <td>
-                    @Html.DisplayFor(model => item.UrlFoto)
-                </td>
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                    <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+                <td class="d-flex justify-content-center gap-2 align-items-center">
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> 
+                    <a class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@item.Id"></a>
                 </td>
             </tr>
         }

@@ -1,58 +1,64 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 
 namespace StoneDesafio.Controllers
 {
-    public class JogoController : Controller
+    public class JogoController : AppBaseController
     {
-        private readonly IRepository<Jogo> repository;
+        private readonly IRepository<Jogo> _jogoRepository;
+        private readonly IRepository<Clube> _clubeRepository;
 
-        public JogoController(IRepository<Jogo> repository)
+        public JogoController(IRepository<Jogo> jogoRepository, IRepository<Clube> clubeRepository)
         {
-            this.repository = repository;
+            _jogoRepository = jogoRepository;
+            _clubeRepository = clubeRepository;
         }
 
         public async Task<IActionResult> IndexAsync()
         {
-            var jogos = await repository.SelectAllAsync();
+            var jogos = await _jogoRepository.SelectAllAsync();
             return View(jogos);
         }
 
-        public ActionResult Criar()
+        [Route("Criar")]
+        public async Task<ActionResult> CriarAsync()
         {
-
+            var clubes = await _clubeRepository.SelectAllAsync();
+            ViewData["ListaClubes"] = clubes;
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, Route("Criar")]
 
         public async Task<ActionResult> CriarAsync(Jogo jogo)
         {
             if (ModelState.IsValid)
             {
-                await repository.AddAndSaveAsync(jogo);
-                return RedirectToAction(nameof(IndexAsync));
+                await _jogoRepository.AddAndSaveAsync(jogo);
+                return RedirectToAction(nameof(Index));
             }
 
             return View(jogo);
         }
 
-        public async Task<ActionResult> EditarAsync(int id)
+        [Route("Editar")]
+        public async Task<ActionResult> Editar(int id)
         {
-            var jogo = await repository.FindAsync(id);
+            var jogo = await _jogoRepository.FindAsync(id);
             if (jogo == null)
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(Index));
 
             return View(jogo);
             
         }
 
-        [HttpPost]
-        public async Task<ActionResult> EditarAsync(Jogo jogo)
+        [HttpPost, Route("Editar")]
+        public async Task<ActionResult> Editar(Jogo jogo)
         {
-            var jogoBanco = await repository.FindAsync(jogo.Id);
+            var jogoBanco = await _jogoRepository.FindAsync(jogo.Id);
 
             jogoBanco.ClubeA = jogo.ClubeA;
             jogoBanco.ClubeB = jogo.ClubeB;
@@ -61,38 +67,39 @@ namespace StoneDesafio.Controllers
             jogoBanco.InicioJogo = jogo.InicioJogo;
             jogoBanco.FimJogo = jogo.FimJogo;
 
-            await repository.UpdateAndSaveAsync(jogoBanco);
+            await _jogoRepository.UpdateAndSaveAsync(jogoBanco);
 
-            return RedirectToAction(nameof(IndexAsync));
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<ActionResult> DeletarAsync(int id)
+        [Route("Deletar")]
+        public async Task<ActionResult> Deletar(int id)
         {
-            var jogo = await repository.FindAsync(id);
+            var jogo = await _jogoRepository.FindAsync(id);
 
             if (jogo == null)
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(Index));
             return View(jogo);
                         
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeletarAsync(Jogo jogo)
+
+        [HttpDelete, Route("Deletar")]
+        public async Task<ActionResult> Deletar(Jogo jogo)
         {
-            var jogoBanco = await repository.FindAsync(jogo.Id);
-            await repository.RemoveAndSaveAsync(jogoBanco);
-            return RedirectToAction(nameof(IndexAsync));
+            var jogoBanco = await _jogoRepository.FindAsync(jogo.Id);
+            await _jogoRepository.RemoveAndSaveAsync(jogoBanco);
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<ActionResult> DetalharAsync(int id)
+        [Route("Detalhes")]
+        public async Task<ActionResult> Detalhar(int id)
         {
-            var jogo = await repository.FindAsync(id);
+            var jogo = await _jogoRepository.FindAsync(id);
             if (jogo == null) 
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(Index));
 
             return View(jogo);
         }
-            
-
     }
 }
