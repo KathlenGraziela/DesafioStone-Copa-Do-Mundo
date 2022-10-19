@@ -8,31 +8,41 @@ namespace StoneDesafio.Controllers
 {
     public class LoginController : AppBaseController
     {
-        private readonly IRepository<Administrador> repository;
-        private readonly AdministradorService administradorService;
+        private readonly LoginService loginService;
 
-        public LoginController(IRepository<Administrador> repository, AdministradorService administradorService)
+        public LoginController(LoginService loginService)
         {
-            this.repository = repository;
-            this.administradorService = administradorService;
+            this.loginService = loginService;
         }
 
         public IActionResult Index([FromQuery] string msg = null)
         {
-            ViewBag.msg = msg;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> EntrarAsync(AdministradorLoginDto login)
         {
-            var administrador = await repository.FindFirstAsync(a => a.Email == login.Email);
-            if (!ModelState.IsValid || administrador == null || !CriptografiaService.Verficar(login.Senha, administrador.Senha))
+            if (!ModelState.IsValid)
             {
-                TempData["Email"] = login.Email;
-                return RedirectToAction(nameof(Index), new { msg = "Usuário e/ou Senha inválidos. Por favor, tente novamente." });
+                return View(nameof(Index), login);
             }
+
+            var result = await loginService.Login(login);
+            ViewBag.msg = result.Mensagem;
+
+            if (result.Resultado != MensagemResultado.Falha)
+            {
+                //Setar token no cliente
+            }
+
             return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
+        }
+
+        [Route("cadastrar")]
+        public IActionResult CadastrarAsync()
+        {
+            return View();   
         }
 
         [Route("cadastrar")]
@@ -41,11 +51,16 @@ namespace StoneDesafio.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Email"] = createDto.Email;
-                TempData["Nome"] = createDto.Email;
-                return RedirectToAction(nameof(Index), new { msg = "Erro. Por favor, tente novamente." });
+                createDto.Senha = "";
+                return View(createDto);
             }
-            await administradorService.CriarAsync(createDto);
+
+            var result = await loginService.Cadastrar(createDto);
+            if(result.Resultado != MensagemResultado.Sucesso)
+            {
+                ViewBag.msg = result.Mensagem;
+                return View(createDto);
+            }
             return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
     }

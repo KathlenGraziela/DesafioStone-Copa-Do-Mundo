@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace GenericRepositoryBuilder
 {
@@ -16,5 +17,6 @@ namespace GenericRepositoryBuilder
         public Task UpdateAndSaveAsync(T entity);
         public Task RemoveAndSaveAsync(T entity);
         public Task SaveChangesAsync();
+        public DbSet<T> GetSet();
     }
 }

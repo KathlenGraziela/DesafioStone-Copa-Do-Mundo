@@ -18,7 +18,7 @@
     <div class="container col-sm-5">
         <div class="form-group">
             <label for="login" class="form-label">Login</label>
-            <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login" value="@TempData["Email"]">
+            <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login" value="@Model?.Email">
             @Html.ValidationMessageFor(x => x.Email)
         </div>
     
