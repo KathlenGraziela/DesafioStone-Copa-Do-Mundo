@@ -60,12 +60,12 @@ namespace StoneDesafio.Controllers
         {
             var jogoBanco = await _jogoRepository.FindAsync(jogo.Id);
 
+            jogoBanco.ClubeAId = jogo.ClubeAId;
+            jogoBanco.ClubeBId = jogo.ClubeBId;
             jogoBanco.ClubeA = jogo.ClubeA;
             jogoBanco.ClubeB = jogo.ClubeB;
-            jogoBanco.GolsClubeA = jogo.GolsClubeA;
-            jogoBanco.GolsClubeB = jogo.GolsClubeB;
+
             jogoBanco.InicioJogo = jogo.InicioJogo;
-            jogoBanco.FimJogo = jogo.FimJogo;
 
             await _jogoRepository.UpdateAndSaveAsync(jogoBanco);
 

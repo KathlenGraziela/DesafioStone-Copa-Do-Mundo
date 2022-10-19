@@ -11,6 +11,7 @@ namespace StoneDesafio.Entities
         public DbSet<Clube> Clubes { get; set; }
         public DbSet<Jogo> Jogos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Resultado> Resultados { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)
@@ -43,7 +44,18 @@ namespace StoneDesafio.Entities
             modelBuilder.Entity<Clube>().HasIndex(u => u.Id).IsUnique();
             #endregion
 
-            
+            #region Jogo
+            modelBuilder.Entity<Jogo>().HasIndex(u => u.Id).IsUnique();
+            #endregion
+
+            #region Resultado
+            modelBuilder.Entity<Resultado>().HasIndex(u => u.Id).IsUnique();
+            #endregion
+
+            #region Grupo
+            modelBuilder.Entity<Grupo>().HasIndex(u => u.Id).IsUnique();
+            #endregion
+
         }
     }
 }

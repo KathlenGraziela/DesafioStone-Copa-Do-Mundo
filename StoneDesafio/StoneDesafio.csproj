@@ -11,9 +11,13 @@
 
   <ItemGroup>
     <Compile Remove="Data\Utils\**" />
+    <Compile Remove="Views\FasesDeCampeonatos\**" />
     <Content Remove="Data\Utils\**" />
+    <Content Remove="Views\FasesDeCampeonatos\**" />
     <EmbeddedResource Remove="Data\Utils\**" />
+    <EmbeddedResource Remove="Views\FasesDeCampeonatos\**" />
     <None Remove="Data\Utils\**" />
+    <None Remove="Views\FasesDeCampeonatos\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\FasesDeCampeonatos\" />
     <Folder Include="Views\TabelaDeJogos\" />
   </ItemGroup>
 
