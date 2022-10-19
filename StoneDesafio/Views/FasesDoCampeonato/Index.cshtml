@@ -1,22 +1,15 @@
-﻿@model IEnumerable<StoneDesafio.Models.Jogo>
+﻿@model IEnumerable<StoneDesafio.Models.FasesDoCampeonato>
 
 @{
-    Layout = "_TabelaLayout";
-    ViewData["Title"] = "Listagem de Jogos";
-
-    ViewBag.ModelGenericType = typeof(Jogo);
-    ViewBag.SubTitulo = "Jogos";
-    ViewBag.BotaoTexto = "Novo Jogo";
+    ViewData["Title"] = "Listagem das fases do campeonato";
 }
-<<<<<<< HEAD
-=======
 
 
-<h2>Jogos</h2>
+<h2>Fases do campeonato</h2>
 
 
 <p>
-    <a asp-action="Criar">Novo Jogo</a>
+    <a asp-action="Criar">Nova fase do campeonato</a>
 </p>
 
 <table class="table">
@@ -26,13 +19,10 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClubeA)
+                @Html.DisplayNameFor(model => model.FasesDoCampeonato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClubeB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InicioJogo)
+                @Html.DisplayNameFor(model => model.Jogos)
             </th>
             <th></th>
         </tr>
@@ -45,13 +35,10 @@
                     @Html.DisplayFor(model => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.ClubeA.Nome)
+                    @Html.DisplayFor(model => item.FasesDoCampeonato)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.ClubeB.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.InicioJogo)
+                    @Html.DisplayFor(model => item.Jogos)
                 </td>
                 <td>
                     <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
@@ -62,4 +49,3 @@
         }
     </tbody>
 </table>
->>>>>>> 02b49d4b40b79d4546ba1320617cf79b40382f6d

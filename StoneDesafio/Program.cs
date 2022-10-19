@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connecti
 builder.Services.AddGenericRepository<IRepository<Administrador>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<Grupo>, AppDbContext>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
@@ -51,9 +52,9 @@ if (app.Environment.IsDevelopment())
         
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<AppDbContext>();
-        
-       dbContext.Database.EnsureDeleted();
-       dbContext.Database.EnsureCreated();
+        //dbContext.Database.EnsureDeleted();
+        //dbContext.Database.EnsureCreated();
+
     }
 
     app.UseHsts();

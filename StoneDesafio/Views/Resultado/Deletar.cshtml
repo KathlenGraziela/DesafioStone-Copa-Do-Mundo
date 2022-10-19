@@ -1,10 +1,10 @@
-﻿@model StoneDesafio.Models.Clube
+﻿@model StoneDesafio.Models.Resultado
 
 @{
-    ViewData["Title"] = "Deletar clube";
+    ViewData["Title"] = "Deletar Resultado";
 }
 
-<h1 style="color: red;">Deseja realmente deletar esse clube? Essa operação é irreversível</h1>
+<h1 style="color: red;">Deseja realmente deletar esse resultado? Essa operação é irreversível</h1>
 
 <form asp-action="Deletar">
     <div>
@@ -13,22 +13,22 @@
                 @Html.EditorFor(x => x.Id)
             </div>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.Nome)
+            @Html.DisplayNameFor(x => x.GolsClubeA)
         </dt>
         <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.Nome)
+                @Html.DisplayFor(x => x.GolsClubeA)
         </dt>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.Descricao)
+                @Html.DisplayNameFor(x => x.GolsClubeB)
         </dt>
         <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.Descricao)
+                @Html.DisplayFor(x => x.GolsClubeB)
         </dt>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(x => x.UrlFoto)
+            @Html.DisplayNameFor(x => x.FimJogo)
         </dt>
         <dt class="col-sm-10">
-            @Html.DisplayFor(x => x.UrlFoto)
+            @Html.DisplayFor(x => x.FimJogo)
         </dt>
     </d1>
 </div>
