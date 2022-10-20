@@ -28,12 +28,13 @@
     <thead>
         <tr>
             @foreach (var propriedade in propriedades) {
+                if (propriedade.Name == propId.Name) continue;
                 <th>
                     @propriedade.Name
                 </th>
             }
             <th class="text-center">
-                Acoes
+                Ações
             </th>
         </tr>
     </thead>
@@ -43,6 +44,7 @@
             <tr>
                 @foreach (var propriedade in propriedades)
                 {
+                    if (propriedade.Name == propId.Name) continue;
                     <td>
                         @propriedade.GetValue(item)?.ToString()
                     </td>

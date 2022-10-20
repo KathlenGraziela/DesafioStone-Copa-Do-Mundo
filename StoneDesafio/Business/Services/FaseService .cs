@@ -1,14 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Crypto.Generators;
-using Org.BouncyCastle.Utilities.Encoders;
-using StoneDesafio.Business.Repositorys;
-using StoneDesafio.Businesss;
+﻿using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Data;
-using StoneDesafio.Data.AdministradorDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
-using System.Text;
 
 namespace StoneDesafio.Business.Services
 {
@@ -32,7 +26,7 @@ namespace StoneDesafio.Business.Services
         {
             if (await faseRepository.FindFirstAsync(a => a.FaseAtualCampeonato == createDto.FasesCampeonato) != null)
             {
-                throw new ApiException($"Fase {createDto.FasesCampeonato} já existe");
+                throw new Exception($"Fase {createDto.FasesCampeonato} já existe");
             }
             var jogos = await jogoRepository.SelectWhereAsync(j => createDto.Jogos.Contains(j.Id));
 
@@ -50,7 +44,7 @@ namespace StoneDesafio.Business.Services
         public async Task<FaseCampeonato> EditarAsync(int id, FaseEditarDto editDto)
         {
             var fase = await faseRepository.FindFirstAsync(a => a.Id == id)  ??
-                throw new ApiException($"Fase com id {id} não foi encontrado"); 
+                throw new Exception($"Fase com id {id} não foi encontrado"); 
 
             modelConverter.ConvertInPlace(editDto, fase, checkNull: true);
 
@@ -62,7 +56,7 @@ namespace StoneDesafio.Business.Services
         public async Task DeletarAsync(int id)
         {
             var administrador = await faseRepository.FindFirstAsync(a => a.Id == id) ??
-                    throw new ApiException($"Fase com id {id} não foi encontrado");
+                    throw new Exception($"Fase com id {id} não foi encontrado");
 
             await faseRepository.RemoveAndSaveAsync(administrador);
         }

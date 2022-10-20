@@ -63,5 +63,11 @@ namespace StoneDesafio.Controllers
                 .ToListAsync();
             return View (jogos);
         }
+
+        public override async Task<IActionResult> Index(MensagemRota<Jogo> msg = null)
+        {
+            var jogos = await repository.GetSet().Include(j => j.ClubeA).Include(j => j.ClubeB).ToListAsync();
+            return View(jogos);
+        }
     }
 }

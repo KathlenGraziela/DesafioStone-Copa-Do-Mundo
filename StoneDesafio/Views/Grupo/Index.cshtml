@@ -1,7 +1,32 @@
-﻿
+﻿@model List<StoneDesafio.Models.Grupo>
+
+@{
+    ViewData["Title"] = "Listagem de Grupos";
+}
+
 <section class="section-mother" id="curiosidades"></section>
 <h2 class="curiosity"> Sorteios dos Jogos  </h2>
 <div class="image-container">
+    @foreach (var grupo in Model)
+    {
+        <section class="image-ms">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" @*grupo.UrlFoto"*@ alt="">
+            <h3 class="grupo"> @grupo.Nome </h3>
+            <p> Clube 1 </p>
+            <p> X </p>
+            <p> Clube 2</p>
+            <p> ---------------------------------------------</p>
+            <p> Clube a1</p>
+            <p> X </p>
+            <p> Clube a2</p>
+            <div class="d-flex mb-2 gap-1">
+                <a class="btn btn-warning" asp-action="Editar" asp-route-id="@grupo.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@grupo.Id">Detalhes</a>
+                <a id="deletar" class="btn btn-close btn-danger p-3 bg-danger" asp-action="Deletar" asp-route-id="@grupo.Id"></a>
+            </div>
+        </section>
+    }
+    @*
     <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" alt="">
         <h3 class ="grupo"> Grupo A </h3>
         <p> Alemanha</p>
@@ -61,5 +86,16 @@
         <p> África do Sul </p>
         <p> X </p>
         <p> Russia </p>
-    </section>
+    </section>*@
 </div>
+
+<a class="btn btn-success" asp-action="Criar">Novo Grupo</a>
+<script>
+    function Deletar(e) {
+        console.log(e);
+        let excluir = confirm("Tem certeza que deseja excluir?");
+        if (!excluir) e.preventDefault();
+    }
+
+    document.querySelectorAll("#deletar").forEach(element => element.addEventListener("click", Deletar));
+</script>
