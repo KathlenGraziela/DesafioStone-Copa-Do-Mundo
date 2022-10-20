@@ -45,10 +45,6 @@
     <ProjectReference Include="..\GenericRepositoryBuilder\GenericRepositoryBuilder.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\FasesDeCampeonatos\" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

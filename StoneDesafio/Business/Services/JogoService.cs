@@ -1,4 +1,5 @@
-﻿using StoneDesafio.Business.Repositorys;
+﻿using Microsoft.EntityFrameworkCore;
+using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;

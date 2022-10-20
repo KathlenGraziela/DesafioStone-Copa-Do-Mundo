@@ -1,0 +1,46 @@
+﻿@model IEnumerable<StoneDesafio.Data.JogoDtos.JogoResultadoDto>
+
+@{
+    ViewData["Title"] = "Listagem de Jogos e Resultados";
+}
+
+
+<h2>Jogos e Resultados</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubeA.Nome)
+            </th>
+            <th>
+                <label >Resultado</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubeB.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.ClubeA.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Resultado.GolsClubeA) x @Html.DisplayFor(model => item.Resultado.GolsClubeB)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ClubeB.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.DataInicio)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

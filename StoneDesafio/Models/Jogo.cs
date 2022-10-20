@@ -14,5 +14,7 @@ namespace StoneDesafio.Models
         public virtual Clube ClubeB { get; set; }
 
         public DateTime InicioJogo { get; set; }
+
+        public virtual Resultado Resultado { get; set; }
     }
 }
