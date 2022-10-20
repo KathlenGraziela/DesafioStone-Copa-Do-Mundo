@@ -27,7 +27,7 @@ builder.Services.AddGenericRepository<IRepository<Grupo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Resultado>, AppDbContext>();
 
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
-builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
+//builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
 builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
 
 builder.Services.AddScoped<AdministradorService>();

@@ -27,10 +27,10 @@ namespace StoneDesafio.Tests.Administrador
         [Fact(Skip = "Skip")]
         public async Task Test1Async()
         {
-            var services = new ServiceCollection()
-                .AddTransient<AdministradorController>()
-                .BuildServiceProvider()
-                .GetRequiredService<AdministradorController>();
+            //var services = new ServiceCollection()
+            //    .AddTransient<AdministradorController>()
+            //    .BuildServiceProvider()
+            //    .GetRequiredService<AdministradorController>();
 
             //var administradorController = applicationFactory.Services.GetRequiredService<AdministradorController>();
             //var result = await administradorController.CriarAsync(new() { Nome = "Teste", Email = "Testando@t.com", Senha = "1234" });

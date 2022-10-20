@@ -25,5 +25,7 @@ namespace StoneDesafio.Controllers
             ViewData["ListaClubes"] = clubes;
             return View();
         }
+        [Route("indexjogo")]
+        public IActionResult IndexJogo() => View();
     }
 }
