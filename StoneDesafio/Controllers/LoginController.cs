@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.AdministradorDtos;
@@ -31,21 +33,22 @@ namespace StoneDesafio.Controllers
             var result = await loginService.Login(login);
             ViewBag.msg = result.Mensagem;
 
-            if (result.Resultado != MensagemResultado.Falha)
+            if (result.Resultado == MensagemResultado.Falha)
             {
-                //Setar token no cliente
+                login.Senha = null;
+                return View(nameof(Index), login);
             }
-
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Sucessos);
             return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
 
-        [Route("cadastrar")]
+        [Route("Cadastrar")]
         public IActionResult CadastrarAsync()
         {
             return View();   
         }
 
-        [Route("cadastrar")]
+        [Route("Cadastrar")]
         [HttpPost]
         public async Task<IActionResult> CadastrarAsync(AdministradorCriarDto createDto)
         {
@@ -61,7 +64,15 @@ namespace StoneDesafio.Controllers
                 ViewBag.msg = result.Mensagem;
                 return View(createDto);
             }
-            return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
+            return RedirectPermanent(HttpContext.Request.Headers.Referer);
+        }
+
+
+        [Route("Sair")]
+        public IActionResult Sair()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToActionPermanent(nameof(Index));
         }
     }
 }
