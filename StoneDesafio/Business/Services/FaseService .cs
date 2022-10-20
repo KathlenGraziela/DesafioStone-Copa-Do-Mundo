@@ -38,7 +38,6 @@ namespace StoneDesafio.Business.Services
 
             var fase = new FaseCampeonato
             {
-                Id = Guid.NewGuid(),
                 FaseAtualCampeonato = createDto.FasesCampeonato,
                 Jogos = jogos
             };
@@ -48,7 +47,7 @@ namespace StoneDesafio.Business.Services
             return fase;
         }
 
-        public async Task<FaseCampeonato> EditarAsync(Guid id, FaseEditarDto editDto)
+        public async Task<FaseCampeonato> EditarAsync(int id, FaseEditarDto editDto)
         {
             var fase = await faseRepository.FindFirstAsync(a => a.Id == id)  ??
                 throw new ApiException($"Fase com id {id} não foi encontrado"); 
@@ -60,7 +59,7 @@ namespace StoneDesafio.Business.Services
             return fase;
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeletarAsync(int id)
         {
             var administrador = await faseRepository.FindFirstAsync(a => a.Id == id) ??
                     throw new ApiException($"Fase com id {id} não foi encontrado");

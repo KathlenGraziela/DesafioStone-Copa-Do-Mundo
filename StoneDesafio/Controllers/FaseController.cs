@@ -57,7 +57,7 @@ namespace StoneDesafio.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditarAsync(Guid id,  FaseEditarDto editarDto)
+        public async Task<ActionResult> EditarAsync(int id,  FaseEditarDto editarDto)
         {
             var fase = await faseService.EditarAsync(id, editarDto);
 
@@ -76,7 +76,7 @@ namespace StoneDesafio.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeletarAsync(Guid id)
+        public async Task<ActionResult> DeletarAsync(int id)
         {
             await faseService.DeletarAsync(id);
             return RedirectToAction(nameof(IndexAsync));
