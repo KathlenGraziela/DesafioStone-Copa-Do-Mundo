@@ -1,11 +1,4 @@
-﻿using GenericRepositoryBuilder;
-using StoneDesafio.Businesss;
-using StoneDesafio.Data.AdministradorDtos;
-using StoneDesafio.Models.Utils;
-using StoneDesafio.Models;
-using StoneDesafio.Business.Repositorys;
-using StoneDesafio.Data.ClubeDtos;
-using StoneDesafio.Entities;
+﻿using StoneDesafio.Models;
 
 namespace StoneDesafio.Business.Services
 {
