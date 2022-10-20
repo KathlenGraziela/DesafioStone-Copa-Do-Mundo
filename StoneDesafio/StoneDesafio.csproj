@@ -10,14 +10,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\FaseDtos\**" />
     <Compile Remove="Data\Utils\**" />
     <Compile Remove="Views\FasesDeCampeonatos\**" />
+    <Compile Remove="Views\TabelaDeJogos\**" />
+    <Content Remove="Data\FaseDtos\**" />
     <Content Remove="Data\Utils\**" />
     <Content Remove="Views\FasesDeCampeonatos\**" />
+    <Content Remove="Views\TabelaDeJogos\**" />
+    <EmbeddedResource Remove="Data\FaseDtos\**" />
     <EmbeddedResource Remove="Data\Utils\**" />
     <EmbeddedResource Remove="Views\FasesDeCampeonatos\**" />
+    <EmbeddedResource Remove="Views\TabelaDeJogos\**" />
+    <None Remove="Data\FaseDtos\**" />
     <None Remove="Data\Utils\**" />
     <None Remove="Views\FasesDeCampeonatos\**" />
+    <None Remove="Views\TabelaDeJogos\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\FaseDtos\" />
     <Folder Include="Views\FasesDeCampeonatos\" />
-    <Folder Include="Views\TabelaDeJogos\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

@@ -88,6 +88,8 @@ namespace GenericRepositoryBuilder
                 GenericDbSetIL(il, nameof(DbSet<object>.FindAsync));
             };
             methodsIL.Add("FindAsync", FindAsync);
+
+            methodsIL.Add("GetSet", (il) => { });
         }
 
         private void GenericQueriableIL(ILGenerator iLGenerator, string methName)
