@@ -30,5 +30,4 @@
   <ItemGroup>
     <ProjectReference Include="..\StoneDesafio\StoneDesafio.csproj" />
   </ItemGroup>
-  <ItemGroup />
 </Project>

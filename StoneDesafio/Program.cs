@@ -59,7 +59,7 @@ if (app.Environment.IsDevelopment())
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<AppDbContext>();
         //dbContext.Database.EnsureDeleted();
-        dbContext.Database.EnsureCreated();
+        //dbContext.Database.EnsureCreated();
 
     }
 
@@ -82,3 +82,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+public partial class Program { }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Controllers.Teste;
 using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Entities;

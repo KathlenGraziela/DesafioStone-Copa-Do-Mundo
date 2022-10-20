@@ -4,9 +4,9 @@ using StoneDesafio.Business.Services;
 using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Models;
 
-namespace StoneDesafio.Controllers.Teste
+namespace StoneDesafio.Controllers
 {
-    public class GenericController<TModel, TCriarDto, TEditarDto> : AppBaseController where TModel : class 
+    public class GenericController<TModel, TCriarDto, TEditarDto> : AppBaseController where TModel : class
     {
         protected readonly IRepository<TModel> repository;
         protected readonly IService<TModel, TCriarDto, TEditarDto> service;
