@@ -7,6 +7,7 @@ using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.FaseDtos;
+using StoneDesafio.Data.GrupoDtos;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Data.ResultadoDtos;
 using StoneDesafio.Entities;
@@ -34,7 +35,7 @@ builder.Services.AddGenericRepository<IRepository<Resultado>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<FaseCampeonato>, AppDbContext>();
 
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
-//builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
+builder.Services.AddScoped<IService<Grupo, GrupoCriarDto, GrupoEditarDto>, GrupoService>();
 builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
 builder.Services.AddScoped<IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>, FaseService>();
 

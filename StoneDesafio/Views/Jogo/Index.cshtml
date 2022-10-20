@@ -17,6 +17,7 @@
         </div>
     </div>
 }
+<<<<<<< HEAD
 <div class="d-flex justify-content-between">
     <h2 class="mb-3">
         Todos jogos
@@ -40,6 +41,50 @@
         </div>
     }
 </div>
+=======
+
+<h2>
+    Jogos
+</h2>
+
+<table border="1" class="table table-striped shadow mb-2 bg-white">
+    <thead>
+        <tr>
+            <th>
+                Clube A
+            </th>
+            <th>
+                Clube B
+            </th>
+            <th>
+                Fase
+            </th>
+            <th class="text-center">
+                Ações
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jogo in Model)
+        {
+            <tr>
+                <td>@jogo.ClubeA.Nome</td>
+
+                <td>@jogo.ClubeB.Nome</td>
+
+                <td>@jogo.Fase.FaseAtualCampeonato.ToString()</td>
+                
+                <td class="d-flex justify-content-center gap-2 align-items-center">
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@jogo.Id">Detalhes</a>
+                    <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@jogo.Id"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Criar">Novo Jogo</a>
+>>>>>>> 68c47138a7a32e1333de08b67d6d8d1e7f104854
 <script>
     function Deletar(e) {
         console.log(e);

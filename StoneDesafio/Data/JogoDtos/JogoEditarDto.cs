@@ -14,8 +14,9 @@ namespace StoneDesafio.Data.JogoDtos
 
         public int GolsClubeB { get; set; }
 
+        public int FaseId { get; set; }
+
         public DateTime InicioJogo { get; set; }
 
-        public DateTime FimJogo { get; set; }
     }
 }

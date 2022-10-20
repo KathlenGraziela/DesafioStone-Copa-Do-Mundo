@@ -7,6 +7,7 @@ namespace StoneDesafio.Models
     {
         public int Id { get; set; }
         public FasesCampeonato FaseAtualCampeonato { get; set; }
-        public List<Jogo> Jogos { get; set; }
+
+        public virtual ICollection<Jogo> Jogos { get; set; }
     }
 }

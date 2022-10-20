@@ -28,12 +28,10 @@ namespace StoneDesafio.Business.Services
             {
                 throw new Exception($"Fase {createDto.FasesCampeonato} já existe");
             }
-            var jogos = await jogoRepository.SelectWhereAsync(j => createDto.Jogos.Contains(j.Id));
 
             var fase = new FaseCampeonato
             {
                 FaseAtualCampeonato = createDto.FasesCampeonato,
-                Jogos = jogos
             };
 
             await faseRepository.AddAndSaveAsync(fase);
