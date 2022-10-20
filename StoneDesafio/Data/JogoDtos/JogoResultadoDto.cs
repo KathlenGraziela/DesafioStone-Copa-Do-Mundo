@@ -7,6 +7,7 @@ namespace StoneDesafio.Data.JogoDtos
     {
         public int Id { get; set; }
         public string DataInicio { get; set; }
+        public string Fase { get; set; }
         public ClubeDetalheDto ClubeA  { get; set; }
         public ClubeDetalheDto ClubeB  { get; set; }
         public ResultadoDetalheDto Resultado { get; set; }

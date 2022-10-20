@@ -31,6 +31,9 @@
             <th>
                 Clube B
             </th>
+            <th>
+                Fase
+            </th>
             <th class="text-center">
                 Ações
             </th>
@@ -43,6 +46,8 @@
                 <td>@jogo.ClubeA.Nome</td>
 
                 <td>@jogo.ClubeB.Nome</td>
+
+                <td>@jogo.Fase.FaseAtualCampeonato.ToString()</td>
                 
                 <td class="d-flex justify-content-center gap-2 align-items-center">
                     <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>

@@ -16,5 +16,8 @@ namespace StoneDesafio.Models
         public DateTime InicioJogo { get; set; }
 
         public virtual Resultado Resultado { get; set; }
+
+        public int FaseId { get; set; }
+        public virtual FaseCampeonato Fase { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace StoneDesafio.Entities
         public DbSet<Jogo> Jogos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Resultado> Resultados { get; set; }
+        public DbSet<FaseCampeonato> Fases { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
         base(options)

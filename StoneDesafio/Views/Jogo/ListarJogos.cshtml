@@ -11,13 +11,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ClubeA.Nome)
+                @Html.DisplayNameFor(model => model.Fase)
             </th>
-            <th>
+            <th align="right">
+                Clube A (Grupo)
+            </th>
+            <th align="center">
                 <label >Resultado</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClubeB.Nome)
+                Clube B (Grupo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataInicio)
@@ -29,13 +32,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.ClubeA.Nome)
+                    @Html.DisplayFor(model => item.Fase)
                 </td>
-                <td>
+                <td align="right">
+                    <b>@Html.DisplayFor(model => item.ClubeA.Nome)</b> (@Html.DisplayFor(model => item.ClubeA.Grupo))
+                </td>
+                <td align="center">
                     @Html.DisplayFor(model => item.Resultado.GolsClubeA) x @Html.DisplayFor(model => item.Resultado.GolsClubeB)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.ClubeB.Nome)
+                    <b>@Html.DisplayFor(model => item.ClubeB.Nome)</b> (@Html.DisplayFor(model => item.ClubeB.Grupo))
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.DataInicio)

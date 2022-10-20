@@ -3,7 +3,7 @@
     public class ResultadoDetalheDto
     {
         public int Id { get; set; }
-        public int GolsClubeA { get; set; }
-        public int GolsClubeB { get; set; }
+        public string GolsClubeA { get; set; }
+        public string GolsClubeB { get; set; }
     }
 }

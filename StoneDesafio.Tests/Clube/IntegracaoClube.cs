@@ -22,20 +22,20 @@ namespace StoneDesafio.Tests.ClubeTests
 {
     public class IntegracaoClube : IClassFixture<WebTestFixture>
     {
-        private readonly IService<Clube, ClubeCriarDto, ClubeEditarDto> clubeService;
+        private readonly IService<Clube, GrupoCriarDto, ClubeEditarDto> clubeService;
         private readonly IRepository<Clube> clubeRepository;
 
         public IntegracaoClube(WebTestFixture webTestFixture)
         {
             var serviceProvider = webTestFixture.ServiceProvider;
-            clubeService = serviceProvider.GetRequiredService<IService<Clube, ClubeCriarDto, ClubeEditarDto>>();
+            clubeService = serviceProvider.GetRequiredService<IService<Clube, GrupoCriarDto, ClubeEditarDto>>();
             clubeRepository = serviceProvider.GetRequiredService<IRepository<Clube>>();
         }
 
         [Fact]
         public async Task DeveFazerCRUDClube()
         {
-            var criarDto = new ClubeCriarDto() { Nome = "Teste", Descricao = "algo", UrlFoto = "url" };
+            var criarDto = new GrupoCriarDto() { Nome = "Teste", Descricao = "algo", UrlFoto = "url" };
             var resultCriar = await clubeService.CriarAsync(criarDto);
 
             Assert.True(resultCriar.Resultado == MensagemResultado.Sucesso);
