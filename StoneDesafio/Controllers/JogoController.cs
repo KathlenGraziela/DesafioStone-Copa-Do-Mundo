@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Controllers.Teste;
 using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Entities;
@@ -25,5 +24,7 @@ namespace StoneDesafio.Controllers
             ViewData["ListaClubes"] = clubes;
             return View();
         }
+        [Route("indexjogo")]
+        public IActionResult IndexJogo() => View();
     }
 }

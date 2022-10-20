@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Models;
 using StoneDesafio.ViewModel;
 using System.Diagnostics;
@@ -14,6 +15,7 @@ namespace StoneDesafio.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();

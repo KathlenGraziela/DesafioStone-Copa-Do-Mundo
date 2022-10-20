@@ -12,7 +12,7 @@ namespace GenericRepositoryBuilder
         private readonly Type dbContextType;
         private readonly List<MethodInfo> interfaceMethods = new();
         private static readonly Dictionary<Type, Type> Repositorys = new();
-        private FieldBuilder? fbDbContext;
+        private FieldBuilder fbDbContext;
 
         private Builder(Type interfaceType, Type dbContextType)
         {
@@ -29,7 +29,7 @@ namespace GenericRepositoryBuilder
             if (Repositorys.ContainsKey(repositoryInterfaceType)) return;
 
             var repositoryBuildType = new Builder(repositoryInterfaceType, typeof(TDbContext)).BuildType();
-            Repositorys.Add(repositoryInterfaceType, repositoryBuildType);
+            Repositorys.TryAdd(repositoryInterfaceType, repositoryBuildType);
         }
 
         public static T GetScopedRepository<T>(DbContext dbContext)
@@ -46,7 +46,7 @@ namespace GenericRepositoryBuilder
             AssemblyBuilder ab = AssemblyBuilder.DefineDynamicAssembly(aName, AssemblyBuilderAccess.Run);
 
             // The module name is usually the same as the assembly name.
-            ModuleBuilder mb = ab.DefineDynamicModule(aName.Name);
+            ModuleBuilder mb = ab.DefineDynamicModule(aName.Name ?? throw new Exception());
 
             return mb.DefineType($"{interfaceType.Name}DynamicType", TypeAttributes.Public);
         }
@@ -128,7 +128,7 @@ namespace GenericRepositoryBuilder
             ILGenerator iLGenerator = constructor.GetILGenerator();
 
             iLGenerator.Emit(OpCodes.Ldarg_0);
-            iLGenerator.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes));
+            iLGenerator.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes) ?? throw new Exception());
 
             iLGenerator.Emit(OpCodes.Ldarg_0);
             iLGenerator.Emit(OpCodes.Ldarg_1);
