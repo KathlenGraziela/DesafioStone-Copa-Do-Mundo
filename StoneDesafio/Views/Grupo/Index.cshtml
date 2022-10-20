@@ -1,40 +1,65 @@
-﻿@model IEnumerable<StoneDesafio.Models.Grupo>
-
-@{
-    ViewData["Title"] = "Listagem de Grupos";
-}
-
-<h2>Grupos</h2>
-<p>
-    <a asp-action="Criar">Novo Grupo</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Nome)
-                </td>
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+﻿
+<section class="section-mother" id="curiosidades"></section>
+<h2 class="curiosity"> Sorteios dos Jogos  </h2>
+<div class="image-container">
+    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" alt="">
+        <h3 class ="grupo"> Grupo A </h3>
+        <p> Alemanha</p>
+        <p> X </p>
+        <p> Brasil</p>
+        <p> ---------------------------------------------</p>
+        <p> Portugal</p>
+        <p> X </p>
+        <p> França</p>
+    </section>
+    <section class="image-ms"> <img src="https://tse3.mm.bing.net/th?id=OIP.UiBwB1-lpZP6uVjY6UCc3AHaE8&pid=Api&P=0" alt="">
+        <h3 class="grupo"> Grupo B </h3>
+        <p> Polonia </p>
+        <p> X </p>
+        <p> Italia </p>
+        <p> ---------------------------------------------</p>
+        <p> Egito </p>
+        <p> X </p>
+        <p> Inglaterra </p>
+    </section>
+    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.U9PdLTSSdL8zBfL9HTmb4wHaE7&pid=Api&P=0" alt="">
+        <h3 class="grupo"> Grupo C </h3>
+        <p> Estados Unidos </p>
+        <p> X </p>
+        <p> Uruguai </p>
+        <p> ---------------------------------------------</p>
+        <p> Argentina </p>
+        <p> X </p>
+        <p> Holanda </p>                   
+    </section>
+    <section class="image-ms"> <img src="https://i.pinimg.com/736x/dd/74/e4/dd74e4cfc114acde909d20af9eab8c7a.jpg" alt="">
+        <h3 class="grupo"> Grupo D </h3>
+        <p> Austrália </p>
+        <p> X </p>
+        <p> Japão </p>
+        <p> ---------------------------------------------</p>
+        <p> Coréia do Sul </p>
+        <p> X </p>
+        <p> México </p>
+    </section>
+    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.VAyexOXAa_5JFvJPcdzEBQHaDt&pid=Api&P=0" alt="">
+        <h3 class="grupo"> Grupo E </h3>
+        <p> Colômbia </p>
+        <p> X </p>
+        <p> Finlância </p>
+        <p> ---------------------------------------------</p>
+        <p> Croácia </p>
+        <p> X </p>
+        <p> Grécia </p>
+    </section>
+    <section class="image-ms"> <img src="http://cdn.shopify.com/s/files/1/1008/8768/products/simple-fashion1355038-soccer-stadium-mural2_1024x1024.jpg?v=1614824838" alt="">
+        <h3 class="grupo"> Grupo F </h3>
+        <p> Suiça </p>
+        <p> X </p>
+        <p> Nigéria </p>
+        <p> ---------------------------------------------</p>
+        <p> África do Sul </p>
+        <p> X </p>
+        <p> Russia </p>
+    </section>
+</div>
