@@ -46,7 +46,7 @@ namespace StoneDesafio.Controllers
             return View(fase);
         }
 
-        public async Task<ActionResult> EditarAsync(Guid id)
+        public async Task<ActionResult> EditarAsync(int id)
         {
             var fase = await repository.FindAsync(id);
             if (fase == null)
@@ -65,7 +65,7 @@ namespace StoneDesafio.Controllers
             return RedirectToAction(nameof(IndexAsync));
         }
 
-        public async Task<ActionResult> DeletarViewAsync(Guid id)
+        public async Task<ActionResult> DeletarViewAsync(int id)
         {
             var fase = await repository.FindAsync(id);
 
