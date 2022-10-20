@@ -51,5 +51,10 @@ namespace StoneDesafio.Business.Services
             await genericRepository.RemoveAndSaveAsync(jogo);
             return new(MensagemResultado.Sucesso, "Jogo deletado com sucesso!");
         }
+
+    //    public async Task<List<JogoResultadoDto>> ObterJogos()
+    //    {
+
+    //    }
     }
 }
