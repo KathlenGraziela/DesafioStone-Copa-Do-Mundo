@@ -40,21 +40,15 @@
   </a>
   
    <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/95540848?v=4" 
+  src="[https://avatars.githubusercontent.com/u/52175846?v=4](https://avatars.githubusercontent.com/u/95540848?v=4)" 
   alt="Eliézer Alves Bernardino"/><br /><sub><b>Eliézer Alves Bernardino</b></sub></a><br />
   <a href="https://www.linkedin.com/in/eliezeralvesbernardino/" alt="Linkedin">
   <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/eliezeralvesbernardino/"  style= "width:90px;"/>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link="https://www.linkedin.com/in/eliezeralvesbernardino/"  style= "width:90px;"/>
   </a>
   
-     <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/95540848?v=4" 
-  alt="Eliézer Alves Bernardino"/><br /><sub><b>Eliézer Alves Bernardino</b></sub></a><br />
-  <a href="https://www.linkedin.com/in/eliezeralvesbernardino/" alt="Linkedin">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/eliezeralvesbernardino/"  style= "width:90px;"/>
-  </a>
-</table>
+</table>  
+
 
 ### Esteira
 [![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml)
