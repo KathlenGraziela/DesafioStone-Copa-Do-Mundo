@@ -1,10 +1,52 @@
 ﻿@model IEnumerable<StoneDesafio.Models.Clube>
 
 @{
-    Layout = "_TabelaLayout";
     ViewData["Title"] = "Listagem de Clubes";
-
-    ViewBag.ModelGenericType = typeof(Clube);
-    ViewBag.SubTitulo = "Clubes";
-    ViewBag.BotaoTexto = "Novo Clube";
 }
+
+@if (ViewData["Mensagem"] != null)
+{
+    var erro = (MensagemResultado)ViewBag.Mensagem.Resultado == MensagemResultado.Falha;
+
+    <div class="alert d-flex justify-content-between @(erro ? "alert-danger" : "alert-success")">
+        <div class="d-inline-block">
+            @ViewBag.Mensagem
+        </div>
+        <div class="d-inline-block">
+            <button type="button" class="btn btn-warning btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+    </div>
+}
+<div class="d-flex justify-content-between">
+    <h2 class="mb-3">
+        Todos clubes
+    </h2>
+    <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Clube</a>
+</div>
+<div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+    @foreach (var clube in Model)
+    {
+        <div class="card" style="height: 370px; width: 300px">
+            <img class="card-img-top" src="@clube.UrlFoto" alt="Card image cap" style="min-height: 200px; max-height: 200px;">
+            <div class="card-body">
+                <h5 class="card-title">@clube.Nome</h5>
+                <h6>Descricao:</h6>
+                <p>@clube.Descricao</p>
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@clube.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@clube.Id">Detalhes</a>
+                    <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@clube.Id"></a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    function Deletar(e) {
+        console.log(e);
+        let excluir = confirm("Tem certeza que deseja excluir?");
+        if (!excluir) e.preventDefault();
+    }
+
+    document.querySelectorAll("#deletar").forEach(element => element.addEventListener("click", Deletar));
+</script>

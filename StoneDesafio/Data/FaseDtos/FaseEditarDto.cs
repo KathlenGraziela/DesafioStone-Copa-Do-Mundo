@@ -1,6 +1,6 @@
 ﻿using StoneDesafio.Enum;
 
-namespace StoneDesafio.Data
+namespace StoneDesafio.Data.FaseDtos
 {
     public class FaseEditarDto
     {

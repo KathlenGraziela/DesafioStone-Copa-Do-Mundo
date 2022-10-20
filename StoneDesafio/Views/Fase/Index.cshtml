@@ -1,0 +1,53 @@
+﻿@using StoneDesafio.Enum
+@using StoneDesafio.Services
+@model IEnumerable<StoneDesafio.Models.FaseCampeonato>
+
+@{
+    ViewData["Title"] = "Listagem de Jogos";
+}
+
+@if (ViewData["Mensagem"] != null)
+{
+    var erro = (MensagemResultado)ViewBag.Mensagem.Resultado == MensagemResultado.Falha;
+
+    <div class="alert d-flex justify-content-between @(erro ? "alert-danger" : "alert-success")">
+        <div class="d-inline-block">
+            @ViewBag.Mensagem
+        </div>
+        <div class="d-inline-block">
+            <button type="button" class="btn btn-warning btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+    </div>
+}
+
+@foreach (var fase in Model){
+    <div class="d-flex justify-content-between">
+        <h4 class="text-start">Jogos @FaseTradutor.Traduzir(fase.FaseAtualCampeonato)</h4>
+        <div>
+            <a class="btn btn-warning" asp-action="Editar" asp-route-id="@fase.Id">Editar</a>
+            <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@fase.Id"></a>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+        @foreach (var jogo in fase.Jogos)
+        {
+            <div class="card" style="height: 300px; width: 300px">
+                <img class="card-img-top" src="https://conteudo.imguol.com.br/c/esporte/c9/2022/04/01/sorteio-da-fase-de-grupos-da-copa-do-mundo-de-2022-realizado-pela-fifa-no-qatar-1648825834904_v2_1x1.jpg" alt="Card image cap" style="height: 200px">
+                <div class="card-body">
+                    <h5 class="card-title">@jogo.ClubeA.Nome x @jogo.ClubeB.Nome</h5>
+                    <p>@jogo.GolsA - @jogo.GolsB</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+<a class="btn btn-success" asp-action="Criar">Nova Fase</a>
+<script>
+    function Deletar(e) {
+        console.log(e);
+        let excluir = confirm("Tem certeza que deseja excluir?");
+        if (!excluir) e.preventDefault();
+    }
+
+    document.querySelectorAll("#deletar").forEach(element => element.addEventListener("click", Deletar));
+</script>

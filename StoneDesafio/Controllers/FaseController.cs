@@ -1,96 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Data;
+using StoneDesafio.Data.FaseDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Controllers
 {
-    public class FaseController : AppBaseController
+    public class FaseController : GenericController<FaseCampeonato, FaseCriarDto, FaseEditarDto>
     {
-        
-        private readonly IRepository<FaseCampeonato> repository;
-        private readonly FaseService faseService;
-        private readonly ModelConverter modelConverter;
-
-
-        public FaseController(IRepository<FaseCampeonato> repository, ModelConverter modelConverter, FaseService faseService)
+        private readonly IRepository<Jogo> jogoRepository;
+        public FaseController(IRepository<FaseCampeonato> repository, IService<FaseCampeonato, FaseCriarDto, FaseEditarDto> service, IRepository<Jogo> jogoRepository) : base(repository, service)
         {
-            this.repository = repository;
-            this.modelConverter = modelConverter;
-            this.faseService = faseService;
+            this.jogoRepository = jogoRepository;
+        }
+        public override async Task<IActionResult> Index(MensagemRota<FaseCampeonato> msg = null)
+        {
+            ViewBag.msg = msg;
+            var fases = await repository.GetSet()
+                .Include(f => f.Jogos)
+                .ThenInclude(j => j.ClubeA)
+                .Include(f => f.Jogos)
+                .ThenInclude(j => j.ClubeB).ToListAsync();
+
+            return View(fases);
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public override async Task<IActionResult> Criar()
         {
-            var FasesCampeonato = await repository.SelectAllAsync();
-            return View(FasesCampeonato);
+            var jogos = await jogoRepository.SelectAllAsync();
+            ViewData["ListaJogos"] = jogos;
+            return View();
         }
 
-        public ActionResult Criar() => View();
-
-        [HttpPost]
-
-        public async Task<ActionResult> CriarAsync(FaseCriarDto FaseDto)
+        public override async Task<IActionResult> Editar(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(IndexAsync));
-            }
-            var fase = modelConverter.Convert<FaseCampeonato>(FaseDto);
-            await repository.AddAndSaveAsync(fase);
+            var fase = await repository.GetSet()
+                .Include(f => f.Jogos)
+                .ThenInclude(j => j.ClubeA)
+                .Include(f => f.Jogos)
+                .ThenInclude(j => j.ClubeB).FirstOrDefaultAsync(f => f.Id == id);
 
+            var jogos = await jogoRepository.SelectAllAsync();
+            ViewData["ListaJogos"] = jogos;
 
             return View(fase);
         }
-
-        public async Task<ActionResult> EditarAsync(int id)
-        {
-            var fase = await repository.FindAsync(id);
-            if (fase == null)
-                return RedirectToAction(nameof(IndexAsync));
-
-            return View(fase);
-            
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> EditarAsync(int id,  FaseEditarDto editarDto)
-        {
-            var fase = await faseService.EditarAsync(id, editarDto);
-
-
-            return RedirectToAction(nameof(IndexAsync));
-        }
-
-        public async Task<ActionResult> DeletarViewAsync(int id)
-        {
-            var fase = await repository.FindAsync(id);
-
-            if (fase == null)
-                return RedirectToAction(nameof(IndexAsync));
-            return View(fase);
-                        
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult> DeletarAsync(int id)
-        {
-            await faseService.DeletarAsync(id);
-            return RedirectToAction(nameof(IndexAsync));
-        }
-
-        public async Task<ActionResult> DetalharAsync(Guid id)
-        {
-            var fase = await repository.FindAsync(id);
-            if (fase == null) 
-                return RedirectToAction(nameof(IndexAsync));
-
-            return View(fase);
-        }
-            
-
     }
 }

@@ -1,12 +1,12 @@
 ﻿using StoneDesafio.Business.Repositorys;
-using StoneDesafio.Data;
+using StoneDesafio.Data.FaseDtos;
 using StoneDesafio.Entities;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Business.Services
 {
-    public class FaseService
+    public class FaseService : IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>
     {
         private readonly AppDbContext dbContext;
         private readonly ModelConverter modelConverter;
@@ -59,6 +59,21 @@ namespace StoneDesafio.Business.Services
                     throw new Exception($"Fase com id {id} não foi encontrado");
 
             await faseRepository.RemoveAndSaveAsync(administrador);
+        }
+
+        Task<MensagemRota<FaseCampeonato>> IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>.CriarAsync(FaseCriarDto criarDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<MensagemRota<FaseCampeonato>> IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>.EditarAsync(FaseEditarDto editarDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<MensagemRota<FaseCampeonato>> IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>.DeletarAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

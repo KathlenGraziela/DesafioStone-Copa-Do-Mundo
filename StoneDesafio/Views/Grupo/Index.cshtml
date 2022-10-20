@@ -4,25 +4,24 @@
     ViewData["Title"] = "Listagem de Grupos";
 }
 
+<h2 class="text-center">Grupos</h2>
 <section class="section-mother" id="curiosidades"></section>
-<h2 class="curiosity"> Sorteios dos Jogos  </h2>
 <div class="image-container">
     @foreach (var grupo in Model)
     {
         <section class="image-ms">
+            <a id="deletar" class="btn btn-close btn-danger p-3 bg-danger position-absolute bo" asp-action="Deletar" asp-route-id="@grupo.Id" style="margin-right: 253px; border-top-left-radius: 20px"></a>
             <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" @*grupo.UrlFoto"*@ alt="">
             <h3 class="grupo"> @grupo.Nome </h3>
-            <p> Clube 1 </p>
-            <p> X </p>
-            <p> Clube 2</p>
-            <p> ---------------------------------------------</p>
-            <p> Clube a1</p>
-            <p> X </p>
-            <p> Clube a2</p>
+            @*
+        @foreach (var clube in grupo.Clubes)
+        {
+        <p> clube.Nome </p
+        }
+            *@
+            
             <div class="d-flex mb-2 gap-1">
                 <a class="btn btn-warning" asp-action="Editar" asp-route-id="@grupo.Id">Editar</a>
-                <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@grupo.Id">Detalhes</a>
-                <a id="deletar" class="btn btn-close btn-danger p-3 bg-danger" asp-action="Deletar" asp-route-id="@grupo.Id"></a>
             </div>
         </section>
     }

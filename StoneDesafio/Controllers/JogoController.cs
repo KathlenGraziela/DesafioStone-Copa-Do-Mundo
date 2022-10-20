@@ -24,13 +24,28 @@ namespace StoneDesafio.Controllers
             ViewData["ListaClubes"] = clubes;
             return View();
         }
-        [Route("indexjogo")]
-        public IActionResult IndexJogo() => View();
 
         public override async Task<IActionResult> Index(MensagemRota<Jogo> msg = null)
         {
             var jogos = await repository.GetSet().Include(j => j.ClubeA).Include(j => j.ClubeB).ToListAsync();
             return View(jogos);
+        }
+
+        public override async Task<IActionResult> Editar(int id)
+        {
+            var jogo = await repository.GetSet()
+                .Include(j => j.ClubeA)
+                .Include(j => j.ClubeB)
+                .FirstOrDefaultAsync(j => j.Id == id);
+
+            var clubes = await clubeRepository.SelectAllAsync();
+            ViewData["ListaClubes"] = clubes;
+            if (jogo == null)
+            {
+                var msg = new MensagemRota<Clube>(MensagemResultado.Falha, $"Clube nao encontrado!");
+                return RedirectToAction(nameof(Index), msg);
+            }
+            return View(jogo);
         }
     }
 }
