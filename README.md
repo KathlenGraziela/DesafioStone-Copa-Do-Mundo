@@ -40,7 +40,7 @@
   </a>
   
    <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="[https://avatars.githubusercontent.com/u/52175846?v=4](https://avatars.githubusercontent.com/u/95540848?v=4)" 
+  src="https://avatars.githubusercontent.com/u/52175846?v=4" 
   alt="Eliézer Alves Bernardino"/><br /><sub><b>Eliézer Alves Bernardino</b></sub></a><br />
   <a href="https://www.linkedin.com/in/eliezeralvesbernardino/" alt="Linkedin">
   <br>
