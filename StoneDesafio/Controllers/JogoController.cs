@@ -1,16 +1,16 @@
-﻿using GenericRepositoryBuilder;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
-using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.JogoDtos;
+using StoneDesafio.Data.ClubeDtos;
 using StoneDesafio.Data.ResultadoDtos;
-using StoneDesafio.Entities;
 using StoneDesafio.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StoneDesafio.Controllers
 {
+    [Authorize]
     public class JogoController : GenericController<Jogo, JogoCriarDto, JogoEditarDto>
     {
         private readonly IRepository<Clube> clubeRepository;
@@ -41,7 +41,7 @@ namespace StoneDesafio.Controllers
             return View();
         }
 
-        [Route ("ListarJogos")]
+        [Route("ListarJogos")]
         public async Task<IActionResult> ListarJogos()
         {
             var jogos = await repository.GetSet()
@@ -68,9 +68,9 @@ namespace StoneDesafio.Controllers
                         Nome = j.ClubeB.Nome,
                         Grupo = j.ClubeB.Grupo.Nome
                     },
-                    Resultado = 
-                    j.Resultado == null ? 
-                    new ResultadoDetalheDto() : 
+                    Resultado =
+                    j.Resultado == null ?
+                    new ResultadoDetalheDto() :
                     new ResultadoDetalheDto()
                     {
                         Id = j.Resultado.Id,
@@ -79,7 +79,7 @@ namespace StoneDesafio.Controllers
                     }
                 })
                 .ToListAsync();
-            return View (jogos);
+            return View(jogos);
         }
 
         public override async Task<IActionResult> Editar(int id)

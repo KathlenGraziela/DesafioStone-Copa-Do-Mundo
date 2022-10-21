@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
@@ -9,6 +10,9 @@ using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Controllers
 {
+
+
+    [Authorize]
     public class FaseController : Controller
     {
         private readonly IRepository<Jogo> jogoRepository;

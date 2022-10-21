@@ -6,10 +6,6 @@
 
 <h2 class="text-center">Grupos</h2>
 <section class="section-mother" id="curiosidades"></section>
-<<<<<<< HEAD
-<h2 class="curiosity"> Jogos  </h2>
-=======
->>>>>>> 347be1d0cf7a53fe43bdfe591f54becab8cc560b
 <div class="image-container">
     @foreach (var grupo in Model)
     {
@@ -17,81 +13,17 @@
             <a id="deletar" class="btn btn-close btn-danger p-3 bg-danger position-absolute bo" asp-action="Deletar" asp-route-id="@grupo.Id" style="margin-right: 253px; border-top-left-radius: 20px"></a>
             <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" @*grupo.UrlFoto"*@ alt="">
             <h3 class="grupo"> @grupo.Nome </h3>
-            @*
-        @foreach (var clube in grupo.Clubes)
-        {
-        <p> clube.Nome </p
-        }
-            *@
+            @foreach (var clube in grupo.Clubes)
+            {
+                <p> clube.Nome </p>
+            }
             
             <div class="d-flex mb-2 gap-1">
                 <a class="btn btn-warning" asp-action="Editar" asp-route-id="@grupo.Id">Editar</a>
             </div>
         </section>
     }
-    @*
-    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.PUiHY4RkX9OmqRn3-4kn5wHaEK&pid=Api&P=0" alt="">
-        <h3 class ="grupo"> Grupo A </h3>
-        <p> Alemanha</p>
-        <p> X </p>
-        <p> Brasil</p>
-        <p> ---------------------------------------------</p>
-        <p> Portugal</p>
-        <p> X </p>
-        <p> França</p>
-    </section>
-    <section class="image-ms"> <img src="https://tse3.mm.bing.net/th?id=OIP.UiBwB1-lpZP6uVjY6UCc3AHaE8&pid=Api&P=0" alt="">
-        <h3 class="grupo"> Grupo B </h3>
-        <p> Polonia </p>
-        <p> X </p>
-        <p> Italia </p>
-        <p> ---------------------------------------------</p>
-        <p> Egito </p>
-        <p> X </p>
-        <p> Inglaterra </p>
-    </section>
-    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.U9PdLTSSdL8zBfL9HTmb4wHaE7&pid=Api&P=0" alt="">
-        <h3 class="grupo"> Grupo C </h3>
-        <p> Estados Unidos </p>
-        <p> X </p>
-        <p> Uruguai </p>
-        <p> ---------------------------------------------</p>
-        <p> Argentina </p>
-        <p> X </p>
-        <p> Holanda </p>                   
-    </section>
-    <section class="image-ms"> <img src="https://i.pinimg.com/736x/dd/74/e4/dd74e4cfc114acde909d20af9eab8c7a.jpg" alt="">
-        <h3 class="grupo"> Grupo D </h3>
-        <p> Austrália </p>
-        <p> X </p>
-        <p> Japão </p>
-        <p> ---------------------------------------------</p>
-        <p> Coréia do Sul </p>
-        <p> X </p>
-        <p> México </p>
-    </section>
-    <section class="image-ms"> <img src="https://tse1.mm.bing.net/th?id=OIP.VAyexOXAa_5JFvJPcdzEBQHaDt&pid=Api&P=0" alt="">
-        <h3 class="grupo"> Grupo E </h3>
-        <p> Colômbia </p>
-        <p> X </p>
-        <p> Finlância </p>
-        <p> ---------------------------------------------</p>
-        <p> Croácia </p>
-        <p> X </p>
-        <p> Grécia </p>
-    </section>
-    <section class="image-ms"> <img src="http://cdn.shopify.com/s/files/1/1008/8768/products/simple-fashion1355038-soccer-stadium-mural2_1024x1024.jpg?v=1614824838" alt="">
-        <h3 class="grupo"> Grupo F </h3>
-        <p> Suiça </p>
-        <p> X </p>
-        <p> Nigéria </p>
-        <p> ---------------------------------------------</p>
-        <p> África do Sul </p>
-        <p> X </p>
-        <p> Russia </p>
-    </section>*@
 </div>
-
 <a class="btn btn-success" asp-action="Criar">Novo Grupo</a>
 <script>
     function Deletar(e) {

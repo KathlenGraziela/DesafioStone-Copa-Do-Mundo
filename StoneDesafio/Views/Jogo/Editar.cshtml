@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Editar jogo";
     var listaClubes = (List<Clube>)ViewData["ListaClubes"];
+    var listaFases = (List<FaseCampeonato>)ViewData["ListaFases"];
 }
 
 <h1>Criar novo jogo</h1>
@@ -37,16 +38,32 @@
                 @Html.LabelFor(model => model.ClubeB)
                 @Html.ValidationMessageFor(model => model.ClubeB, "", new { @class = "text-danger" })
                 @Html.DropDownListFor(
-                model => model.ClubeBId,
-                new SelectList(listaClubes, "Id", "Nome"),
-                "Selecione...",
-                new {
-                @class = "dropdown-toggle form-control",
-                style = "width: 100%",
-                @required = true,
-                id = "Id",
-                @tabindex = "1"
-                }
+                    model => model.ClubeBId,
+                    new SelectList(listaClubes, "Id", "Nome"),
+                    "Selecione...",
+                    new {
+                            @class = "dropdown-toggle form-control",
+                            style = "width: 100%",
+                            @required = true,
+                            id = "Id",
+                            @tabindex = "1"
+                        }
+                )
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fase)
+                @Html.ValidationMessageFor(model => model.Fase, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(
+                    model => model.FaseId,
+                    new SelectList(listaFases, "Id", "FaseAtualCampeonato"),
+                    "Selecione...",
+                    new {
+                        @class = "dropdown-toggle form-control",
+                        style = "width: 100%",
+                        @required = true,
+                        Id = "Id",
+                        @tabindex = "1"
+                    }
                 )
             </div>
             <div class="form-group">

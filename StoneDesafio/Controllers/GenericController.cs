@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.ClubeDtos;
@@ -6,6 +7,7 @@ using StoneDesafio.Models;
 
 namespace StoneDesafio.Controllers
 {
+    [Authorize]
     public class GenericController<TModel, TCriarDto, TEditarDto> : AppBaseController where TModel : class
     {
         protected readonly IRepository<TModel> repository;
