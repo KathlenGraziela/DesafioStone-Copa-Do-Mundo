@@ -7,9 +7,12 @@
 
 <h2>Jogos e Resultados</h2>
 
-<p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
     <a asp-action="Criar">Novo Resultado</a>
-</p>
+    </p>
+}
 
 <table class="table">
     <thead>
@@ -50,11 +53,14 @@
                 <td>
                     @Html.DisplayFor(model => item.DataInicio)
                 </td>
-                <td class="d-flex justify-content-center gap-2 align-items-center">
-                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
-                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
-                    <a class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@item.Id"></a>
-                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td class="d-flex justify-content-center gap-2 align-items-center">
+                        <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                        <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                        <a class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@item.Id"></a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

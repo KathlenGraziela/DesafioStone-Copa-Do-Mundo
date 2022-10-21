@@ -25,6 +25,7 @@ namespace StoneDesafio.Controllers
             this.service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(MensagemRota<FaseCampeonato> msg = null)
         {
             if (msg.Mensagem != null)

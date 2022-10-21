@@ -51,17 +51,27 @@
                     </ul>
                     <div class="d-flex justify-content-center">
                         <ul class="d-flex gap-1 mb-0 flex-wrap justify-content-center">
-                            @*Finalizar usando o link para alterar dados - apoio samuel*@
-                            <li>
-                                <a class="nav-link text-white" href="Link do alterar">
-                                    <span class="glyphicon glyphicon-user"></span>Alterar dados
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link text-white" asp-controller="Login" asp-action="Sair">
-                                    <span class="glyphicon glyphicon-log-in"></span> Sair
-                                </a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a class="nav-link text-white" href="Link do alterar">
+                                        <span class="glyphicon glyphicon-user"></span>Alterar dados
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-white" asp-controller="Login" asp-action="Sair">
+                                        <span class="glyphicon glyphicon-log-out"></span> Sair
+                                    </a>
+                                </li>          
+                            }
+                            else
+                            {
+                                <li>
+                                    <a class="nav-link text-white" asp-controller="Login" asp-action="index">
+                                        <span class="glyphicon glyphicon-log-in"></span> Entrar
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

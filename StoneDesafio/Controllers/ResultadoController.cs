@@ -24,6 +24,7 @@ namespace StoneDesafio.Controllers
             this.faseCampeonatoRepository = faseCampeonatoRepository;
         }
 
+        [AllowAnonymous]
         public override async Task<IActionResult> Index(MensagemRota<Resultado> msg = null)
         {
                 var jogos = await jogoRepository.GetSet()

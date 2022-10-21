@@ -9,7 +9,6 @@ using StoneDesafio.Models;
 
 namespace StoneDesafio.Controllers
 {
-    [Authorize]
     public class ClubeController : GenericController<Clube, ClubeCriarDto, ClubeEditarDto>
     {
         private readonly IRepository<Grupo> grupoRepository;
@@ -18,6 +17,8 @@ namespace StoneDesafio.Controllers
         {
             this.grupoRepository = grupoRepository;
         }
+        
+        [Authorize]
         public override async Task<IActionResult> Criar()
         {
             var grupo = await grupoRepository.SelectAllAsync();

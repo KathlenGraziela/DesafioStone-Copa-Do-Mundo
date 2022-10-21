@@ -18,7 +18,7 @@ namespace StoneDesafio.Controllers
             this.repository = repository;
             this.service = service;
         }
-
+        [AllowAnonymous]
         virtual public async Task<IActionResult> Index(MensagemRota<TModel> msg = null)
         {
             var models = await repository.SelectAllAsync();
@@ -46,6 +46,7 @@ namespace StoneDesafio.Controllers
             return RedirectToAction(nameof(Index), resultado);
         }
 
+        [Authorize]
         [Route("Editar")]
         virtual public async Task<IActionResult> Editar(int id)
         {
@@ -56,6 +57,7 @@ namespace StoneDesafio.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost, Route("Editar")]
         virtual public async Task<IActionResult> EditarPost(TEditarDto editarDto)
         {
@@ -64,6 +66,7 @@ namespace StoneDesafio.Controllers
             return RedirectToAction(nameof(Index), resultado);
         }
 
+        [Authorize]
         [Route("Deletar")]
         virtual public async Task<IActionResult> DeletarAsync(int id)
         {

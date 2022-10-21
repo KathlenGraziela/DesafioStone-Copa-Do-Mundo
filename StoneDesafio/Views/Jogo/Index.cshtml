@@ -7,7 +7,10 @@
     <h2 class="mb-3">
         Todos jogos
     </h2>
-    <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Jogo</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Jogo</a>
+    }
 </div>
 <div class="container d-flex justify-content-start flex-wrap text-start mb-2">
     @foreach (var jogo in Model)
@@ -17,10 +20,13 @@
             <div class="card-body">
                 <h5 class="card-title">@jogo.ClubeA.Nome x @jogo.ClubeB.Nome</h5>
                 <p>@jogo.GolsA - @jogo.GolsB</p>
-            <div class="d-flex align-items-center gap-2 justify-content-center">
-                <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>
-                <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@jogo.Id"></a>
-            </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="d-flex align-items-center gap-2 justify-content-center">
+                        <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>
+                        <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@jogo.Id"></a>
+                    </div>
+                }
             </div>
         </div>
     }

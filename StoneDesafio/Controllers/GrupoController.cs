@@ -17,11 +17,14 @@ namespace StoneDesafio.Controllers
         {
             this.clubeRepository = clubeRepository;
         }
+
+        [AllowAnonymous]
         public override async Task<IActionResult> Index(MensagemRota<Grupo> msg = null)
         {
             var grupos = await repository.GetSet()
                 .Include(g => g.Clubes)
                 .ToListAsync();
+
             return View(grupos);
         }
     }
