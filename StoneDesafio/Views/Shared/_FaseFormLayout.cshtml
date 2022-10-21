@@ -55,10 +55,8 @@
                                 @class = "dropdown-toggle form-control",
                                 style = "width: 100%",
                                 @required = true,
-                                id = "Id",
-                                @tabindex = "1",
-                                @value = Model.Jogos.ElementAt(i)
-                                
+                                id = "select",
+                                @tabindex = "0",
                                 }
                             )
                             <span asp-validation-for="Jogos" class="text-danger"></span>
@@ -97,4 +95,6 @@
 
         clone.children[1].focus();
     }
+    document.querySelectorAll("select").value = 1
+
 </script>

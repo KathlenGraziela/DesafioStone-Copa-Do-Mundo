@@ -64,16 +64,6 @@ namespace StoneDesafio.Controllers
             return RedirectToAction(nameof(Index), resultado);
         }
 
-        [Route("Detalhes")]
-        virtual public async Task<IActionResult> DetalhesAsync(int id)
-        {
-            var clube = await repository.FindAsync(id);
-            if (clube == null)
-                return RedirectToAction(nameof(Index), new MensagemRota<TModel>(MensagemResultado.Falha, $"{typeof(TModel).Name} nao encontrado!"));
-
-            return View(clube);
-        }
-
         [Route("Deletar")]
         virtual public async Task<IActionResult> DeletarAsync(int id)
         {

@@ -89,12 +89,44 @@ namespace StoneDesafio.Entities
                 }
             };
 
+            var jogos2 = new List<Jogo>()
+            {
+                new ()
+                {
+                    Nome = "Marocos vs Trade",
+                    Id = 2,
+                    ClubeA = new()
+                    {
+                        Id = 3,
+                        Descricao = "n/a",
+                        Nome = "Marocos",
+                        UrlFoto = "https://pbs.twimg.com/profile_images/1542795679956930561/ZgR6xp8c_400x400.jpg"
+                    },
+                    ClubeB = new()
+                    {
+                        Id = 4,
+                        Descricao = "n/a",
+                        Nome = "Trade",
+                        UrlFoto = "https://www.realmadrid.com/StaticFiles/RealMadridResponsive/images/static/og-image.png"
+                    },
+                    GolsA = 3,
+                    GolsB = 2
+                }
+            };
+
             FaseCampeonatos.Add(
             new()
             {
                 Id = 1,
                 FaseAtualCampeonato = FasesCampeonato.DeGrupo,
                 Jogos = jogos
+            });
+            FaseCampeonatos.Add(
+            new()
+            {
+                Id = 2,
+                FaseAtualCampeonato = FasesCampeonato.Oitavas,
+                Jogos = jogos2
             });
 
             SaveChanges();
