@@ -67,7 +67,7 @@
 
 <h2>👨🏻‍💻 Sobre o projeto</h2> 
 <p>Nós recebemos o desafio de desenvolver uma sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos, e precisamos construir uma API para gerenciar o administrador, onde o sistema deve permitir o cadastro de novos clubes, jogos, grupos e fases de campeonato.</p>
-<br>
+
  <h2>📄 Sobre as entregas do projeto</h2>
  ✔️ Metodologias Ágeis: Kanban com todas as tarefas organizadas e responsáveis definidos <br>
  ✔️ Front-end: Interface realizada com as seguintes tecnologias: HTML5 e CSS3; <br>
