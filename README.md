@@ -65,7 +65,6 @@
 ### Esteira
 [![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml)
 
-<br>
 <h2>👨🏻‍💻 Sobre o projeto</h2> 
 <p>Nós recebemos o desafio de desenvolver uma sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos, e precisamos construir uma API para gerenciar o administrador, onde o sistema deve permitir o cadastro de novos clubes, jogos, grupos e fases de campeonato.</p>
 <br>
@@ -75,29 +74,14 @@
  ✔️ Back-end: Cadastrar, listar, atualizar, deleter clubes, grupos, jogos e fornecer resultados dos jogos;  <br>
  ✔️ Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes.  <br>
  ✔️ Amazon AWS: Onde a API deve ser disponibilizada em ambiente AWS com EC2, a aplicação deve ter um pipeline em Jenkins ou no AWS Build.  <br>
- 
-</h4>
 
 <h2>💻 Tecnologias necessárias para executar o projeto: <h2>
-<br>
 
-  <tr>
-    <td align="center">
-	[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
-    <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
-    <td align="center">
-   <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
-   <td align="center">  
-   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=w
-     <td align="center">  
-   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
-   <td align="center">  
-   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">   
-   <td align="center">
-    <img src="https://tm.ibxk.com.br/2022/06/01/01090719586019.jpg?ims=1120x420" width="100" height="50" />
-    <td align="center">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" width="80" height="50"/>
- </tr>
+  <p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,github,docker,bootstrap,dotnet,cs,html,mysql" />
+  </a>
+</p>
 
 </table>
 
