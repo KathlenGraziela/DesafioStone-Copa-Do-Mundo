@@ -48,79 +48,57 @@
   <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link="https://www.linkedin.com/in/samuel-patrac%C3%A3o-50a74123b/"  style= "width:90px;"/>
   </a>
 
-  
+  </table>
+ </h2>
+<h3 align="center">
+    Desafio Final - StoneTech | Trilha de Especialização - Gama Academy & Stone
+</h3>
+<p align="center">
+</p>
+<h2 align= "center" >
+    Copa Do Mundo 
+</h2>
+
 </table>  
 
 
 ### Esteira
 [![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml)
 
-## HEY, PRONTOS PARA O DESAFIO FINAL?
+<br>
+<h2>👨🏻‍💻 Sobre o projeto</h2> 
+<p>Nós recebemos o desafio de desenvolver uma sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos, e precisamos construir uma API para gerenciar o administrador, onde o sistema deve permitir o cadastro de novos clubes, jogos, grupos e fases de campeonato.</p>
+<br>
+ <h2>📄 Sobre as entregas do projeto</h2>
+ ✔️ Metodologias Ágeis: Kanban com todas as tarefas organizadas e responsáveis definidos <br>
+ ✔️ Front-end: Interface realizada com as seguintes tecnologias: HTML5 e CSS3; <br>
+ ✔️ Back-end: Cadastrar, listar, atualizar, deleter clubes, grupos, jogos e fornecer resultados dos jogos;  <br>
+ ✔️ Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes.  <br>
+ ✔️ Amazon AWS: Onde a API deve ser disponibilizada em ambiente AWS com EC2, a aplicação deve ter um pipeline em Jenkins ou no AWS Build.  <br>
+ 
+</h4>
 
-Em ano de Copa do Mundo, seu cliente está querendo fazer um sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos.
-Com isso devemos criar um sistema para que possamos fazer este acompanhamento.
-O mesmo irá precisar de uma área administrativa para o cadastro dos itens essenciais e uma página de front-end para acompanhar todas as fases do campeonato.
-	
-## O sistema será desenvolvido em AspNet core MVC C#
-- Para testes na API pode ser utilizado ferramentas como uma as opções abaixo:
-- Site simples em javascript
-- Shell script com curl
-- postman
-- Testes automatizados
+<h2>💻 Tecnologias necessárias para executar o projeto: <h2>
+<br>
 
-# Funções administrativas na API:
-- Cadastro de administradores 
-- Cadastro de clube
-- Cadastro de Jogos
-- Cadastro de Fases do campeonato
+  <tr>
+    <td align="center">
+    <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
+    <td align="center">
+   <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
+   <td align="center">  
+   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=w
+     <td align="center">  
+   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+   <td align="center">  
+   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">   
+   <td align="center">
+    <img src="https://tm.ibxk.com.br/2022/06/01/01090719586019.jpg?ims=1120x420" width="100" height="50" />
+    <td align="center">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" width="80" height="50"/>
+ </tr>
 
-## Estrutura:
-- Administradores (Responsável pela geração do Token JWT (Opcional))
-- Nome
-- Email
-- Senha (Criptografada opcional)
-- Clube
-- Nome
-- Descrição
-- URL Foto
-
-## Jogo
-- clube_a
-- clube_b
-- gols_clube _a
-- gols_clube_b
-- jogo_iniciado
-- jogo_finalizado
-- tempo_atual
-
-## Fase do campeonato
-- Nome
-- Jogos da fase, exemplo:
-- De grupos
-- Oitavas
-- Quarta
-- Semi
-- Final
-
-## TECNOLOGIAS UTILIZADAS
-- Dotnet MVC C# com API
-- Testes com UnitTest (opcional)
-- Banco de dados MySQL
-- [Deploy] no próprio localhost usando docker
-- Criar um front-end para utilizar a API criada, pode ser com Razor em c# ou HTML ou React, Angular ou Vue.js
-- SUGESTÃO DE ORGANIZAÇÃO DO PROJETO
-- Elaboração do kanban com definição dos entregáveis
-- Elaboração do kanban (sugestão de utilização: Trello, Jira, etc) 
-- Criação do backlog
-- Detalhamento descritivo das tarefas da squad dentro dos seus cards (e não apenas com títulos genéricos no card)
-- Formatação do kanban padrão "to do, doing, done"
-- Definição de data de entrega das tarefas nos cards
-- Definição de responsável pelo card ou checklist de completude
-- Priorização dos cards (ex: tags com cores para maior relevância ou com títulos descritivos para nível de importância na priorização)
-
-## CRITÉRIOS DE AVALIAÇÃO
-- Itens mínimos para entrega
-- Organização do projeto (Kanban no Trello, Jira ou outra ferramenta)
+</table>
 
 BackEnd:
 - APIs construídas (segurança JWT opcional)
