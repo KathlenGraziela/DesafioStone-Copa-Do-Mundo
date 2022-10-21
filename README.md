@@ -83,6 +83,7 @@
 
   <tr>
     <td align="center">
+	[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
     <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
     <td align="center">
    <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
