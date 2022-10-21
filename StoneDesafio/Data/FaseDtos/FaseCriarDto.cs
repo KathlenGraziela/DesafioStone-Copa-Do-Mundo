@@ -6,6 +6,7 @@ namespace StoneDesafio.Data.FaseDtos
     public class FaseCriarDto
     {
         public FasesCampeonato FasesCampeonato { get; set; }
+        public List<int> Jogos { get; set; }
     }
 
 }

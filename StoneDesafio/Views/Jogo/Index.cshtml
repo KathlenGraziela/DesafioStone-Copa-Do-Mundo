@@ -3,20 +3,6 @@
 @{
     ViewData["Title"] = "Listagem de Jogos";
 }
-
-@if (ViewData["Mensagem"] != null)
-{
-    var erro = (MensagemResultado)ViewBag.Mensagem.Resultado == MensagemResultado.Falha;
-
-    <div class="alert d-flex justify-content-between @(erro ? "alert-danger" : "alert-success")">
-        <div class="d-inline-block">
-            @ViewBag.Mensagem
-        </div>
-        <div class="d-inline-block">
-            <button type="button" class="btn btn-warning btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
-        </div>
-    </div>
-}
 <div class="d-flex justify-content-between">
     <h2 class="mb-3">
         Todos jogos
