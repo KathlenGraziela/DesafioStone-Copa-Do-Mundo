@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Criar novo jogo";
     var listaClubes = (List<Clube>)ViewData["ListaClubes"];
+    var listaFases = (List<FaseCampeonato>)ViewData["ListaFases"];
 }
 
 <h1>Criar novo jogo</h1>
@@ -11,6 +12,11 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="criar">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.ClubeA)
                 @Html.ValidationMessageFor(model => model.ClubeA, "", new { @class = "text-danger" })
@@ -39,6 +45,22 @@
                         style = "width: 100%",
                         @required = true,
                         id = "Id",
+                        @tabindex = "1"
+                    }
+                )
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fase)
+                @Html.ValidationMessageFor(model => model.Fase, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(
+                    model => model.FaseId,
+                    new SelectList(listaFases, "Id", "FaseAtualCampeonato"),
+                    "Selecione...",
+                    new {
+                        @class = "dropdown-toggle form-control",
+                        style = "width: 100%",
+                        @required = true,
+                        Id = "Id",
                         @tabindex = "1"
                     }
                 )

@@ -3,57 +3,29 @@
 @{
     ViewData["Title"] = "Listagem de Jogos";
 }
-
-@if (ViewData["Mensagem"] != null)
-{
-    var erro = (MensagemResultado)ViewBag.Mensagem.Resultado == MensagemResultado.Falha;
-
-    <div class="alert d-flex justify-content-between @(erro ? "alert-danger" : "alert-success")">
-        <div class="d-inline-block">
-            @ViewBag.Mensagem
+<div class="d-flex justify-content-between">
+    <h2 class="mb-3">
+        Todos jogos
+    </h2>
+    <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Jogo</a>
+</div>
+<div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+    @foreach (var jogo in Model)
+    {
+        <div class="card" style="height: 350px; width: 300px">
+            <img class="card-img-top" src="https://i1.wp.com/www.dci.com.br/wp-content/uploads/2022/04/51857433903_31fc331539_k-e1651242297343-940x627.jpg" alt="Card image cap" style="height: 200px">
+            <div class="card-body">
+                <h5 class="card-title">@jogo.ClubeA.Nome x @jogo.ClubeB.Nome</h5>
+                <p>@jogo.GolsA - @jogo.GolsB</p>
+            <div class="d-flex align-items-center gap-2 justify-content-center">
+                <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@jogo.Id">Detalhes</a>
+                <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@jogo.Id"></a>
+            </div>
+            </div>
         </div>
-        <div class="d-inline-block">
-            <button type="button" class="btn btn-warning btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
-        </div>
-    </div>
-}
-
-<h2>
-    Jogos
-</h2>
-
-<table border="1" class="table table-striped shadow mb-2 bg-white">
-    <thead>
-        <tr>
-            <th>
-                Clube A
-            </th>
-            <th>
-                Clube B
-            </th>
-            <th class="text-center">
-                Ações
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var jogo in Model)
-        {
-            <tr>
-                <td>@jogo.ClubeA.Nome</td>
-
-                <td>@jogo.ClubeB.Nome</td>
-                
-                <td class="d-flex justify-content-center gap-2 align-items-center">
-                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@jogo.Id">Editar</a>
-                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@jogo.Id">Detalhes</a>
-                    <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@jogo.Id"></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<a class="btn btn-success" asp-action="Criar">Novo Jogo</a>
+    }
+</div>
 <script>
     function Deletar(e) {
         console.log(e);

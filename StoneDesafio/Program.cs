@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.ClubeDtos;
+using StoneDesafio.Data.FaseDtos;
+using StoneDesafio.Data.GrupoDtos;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Data.ResultadoDtos;
 using StoneDesafio.Entities;
@@ -30,25 +32,17 @@ builder.Services.AddGenericRepository<IRepository<Jogo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Clube>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Grupo>, AppDbContext>();
 builder.Services.AddGenericRepository<IRepository<Resultado>, AppDbContext>();
+builder.Services.AddGenericRepository<IRepository<FaseCampeonato>, AppDbContext>();
 
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
-//builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
+builder.Services.AddScoped<IService<Grupo, GrupoCriarDto, GrupoEditarDto>, GrupoService>();
 builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
+builder.Services.AddScoped<IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>, FaseService>();
 
 builder.Services.AddScoped<AdministradorService>();
 builder.Services.AddScoped<LoginService>();
 
 builder.Services.AddSingleton<ModelConverter>();
-
-//builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-//{
-//    builder.AllowAnyOrigin()
-//           .AllowAnyMethod()
-//           .AllowAnyHeader();
-//}));
-
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -73,7 +67,11 @@ if (app.Environment.IsDevelopment())
         var dbContext = services.GetRequiredService<AppDbContext>();
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
+<<<<<<< HEAD
 
+=======
+        dbContext.SeedDb();
+>>>>>>> 347be1d0cf7a53fe43bdfe591f54becab8cc560b
     }
 
     app.UseHsts();

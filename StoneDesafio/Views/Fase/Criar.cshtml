@@ -1,0 +1,9 @@
+﻿@using StoneDesafio.Enum
+@model StoneDesafio.Models.FaseCampeonato
+
+@{
+    Layout = "_FaseFormLayout";
+    ViewData["Title"] = "Criar nova fase";
+    var listaJogos = (List<Jogo>)ViewData["ListaJogos"];
+    ViewData["Subtitulo"] = "Criar nova fase";
+}

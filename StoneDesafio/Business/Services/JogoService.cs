@@ -1,4 +1,5 @@
-﻿using StoneDesafio.Business.Repositorys;
+﻿using Microsoft.EntityFrameworkCore;
+using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Data.JogoDtos;
 using StoneDesafio.Models;
 using StoneDesafio.Models.Utils;
@@ -27,7 +28,7 @@ namespace StoneDesafio.Business.Services
 
         public async Task<MensagemRota<Jogo>> EditarAsync(JogoEditarDto editarDto)
         {
-            var jogo = await genericRepository.FindAsync(editarDto.Id);
+            var jogo = await genericRepository.FindFirstAsync(j => j.Id == editarDto.Id);
             if (jogo == null)
             {
                 return new(MensagemResultado.Falha, "Jogo nao encontrado!");

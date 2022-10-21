@@ -7,8 +7,7 @@ namespace GenericRepositoryBuilder
     {
         private MethodInfo GetDbSetGenericGetter(Type contextType) =>
                     contextType
-                    .GetProperties().Where(p => p.PropertyType.GenericTypeArguments.First() == genericType)
-                    .First()
+                    .GetProperties().First(p => p.PropertyType.GenericTypeArguments.First() == genericType)
                     .GetGetMethod() ?? throw new Exception();
 
         private MethodInfo GetMethod(Type typeName, string name)
