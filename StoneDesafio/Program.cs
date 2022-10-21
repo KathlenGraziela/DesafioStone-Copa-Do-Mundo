@@ -36,6 +36,7 @@ builder.Services.AddGenericRepository<IRepository<FaseCampeonato>, AppDbContext>
 
 builder.Services.AddScoped<IService<Clube, ClubeCriarDto, ClubeEditarDto>, ClubeService>();
 builder.Services.AddScoped<IService<Grupo, GrupoCriarDto, GrupoEditarDto>, GrupoService>();
+builder.Services.AddScoped<IService<Resultado, ResultadoCriarDto, ResultadoEditarDto>, ResultadoService>();
 builder.Services.AddScoped<IService<Jogo, JogoCriarDto, JogoEditarDto>, JogoService>();
 builder.Services.AddScoped<IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>, FaseService>();
 

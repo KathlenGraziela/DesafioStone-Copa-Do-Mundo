@@ -16,5 +16,7 @@ namespace StoneDesafio.Data.ClubeDtos
         [MaxLength(300)]
         public string UrlFoto { get; set; }
 
+        public int GrupoId { get; set; }
+
     }
 }

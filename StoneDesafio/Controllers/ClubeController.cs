@@ -12,9 +12,18 @@ namespace StoneDesafio.Controllers
     [Authorize]
     public class ClubeController : GenericController<Clube, ClubeCriarDto, ClubeEditarDto>
     {
-        
-        public ClubeController(IRepository<Clube> repository, IService<Clube, ClubeCriarDto, ClubeEditarDto> service) : base(repository, service)
+        private readonly IRepository<Grupo> grupoRepository;
+
+        public ClubeController(IRepository<Clube> repository, IService<Clube, ClubeCriarDto, ClubeEditarDto> service, IRepository<Grupo> grupoRepository) : base(repository, service)
         {
+            this.grupoRepository = grupoRepository;
+        }
+        public override async Task<IActionResult> Criar()
+        {
+            var grupo = await grupoRepository.SelectAllAsync();
+            ViewData["ListaGrupo"] = grupo;
+  
+            return View();
         }
     }
 }
