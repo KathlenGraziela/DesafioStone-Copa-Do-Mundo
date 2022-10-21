@@ -76,7 +76,7 @@ namespace StoneDesafio.Business.Services
             {
                 return new(MensagemResultado.Falha, $"Fase nao pode conter jogos de outras fases!");
             }
-            fase.Jogos =
+            fase.Jogos = jogos;
 
             await faseRepository.UpdateAndSaveAsync(fase);
 

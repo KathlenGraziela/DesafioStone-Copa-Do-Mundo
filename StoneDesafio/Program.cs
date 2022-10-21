@@ -67,11 +67,7 @@ if (app.Environment.IsDevelopment())
         var dbContext = services.GetRequiredService<AppDbContext>();
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
-<<<<<<< HEAD
-
-=======
         dbContext.SeedDb();
->>>>>>> 347be1d0cf7a53fe43bdfe591f54becab8cc560b
     }
 
     app.UseHsts();
