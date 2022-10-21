@@ -9,10 +9,10 @@
     </h2>
     <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Jogo</a>
 </div>
-<div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+<div class="container d-flex justify-content-start flex-wrap text-start mb-2">
     @foreach (var jogo in Model)
     {
-        <div class="card" style="height: 350px; width: 300px">
+        <div class="card m-2" style="height: 350px; width: 300px">
             <img class="card-img-top" src="https://i1.wp.com/www.dci.com.br/wp-content/uploads/2022/04/51857433903_31fc331539_k-e1651242297343-940x627.jpg" alt="Card image cap" style="height: 200px">
             <div class="card-body">
                 <h5 class="card-title">@jogo.ClubeA.Nome x @jogo.ClubeB.Nome</h5>

@@ -9,15 +9,19 @@ using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Controllers
 {
-    public class FaseController : GenericController<FaseCampeonato, FaseCriarDto, FaseEditarDto>
+    public class FaseController : Controller
     {
         private readonly IRepository<Jogo> jogoRepository;
-        public FaseController(IRepository<FaseCampeonato> repository, IService<FaseCampeonato, FaseCriarDto, FaseEditarDto> service, IRepository<Jogo> jogoRepository) : base(repository, service)
+        private readonly IRepository<FaseCampeonato> repository;
+        private readonly FaseService service;
+        public FaseController(IRepository<FaseCampeonato> repository, IRepository<Jogo> jogoRepository, FaseService service)
         {
             this.jogoRepository = jogoRepository;
+            this.repository = repository;
+            this.service = service;
         }
 
-        public override async Task<IActionResult> Index(MensagemRota<FaseCampeonato> msg = null)
+        public async Task<IActionResult> Index(MensagemRota<FaseCampeonato> msg = null)
         {
             if (msg.Mensagem != null)
             {
@@ -32,26 +36,33 @@ namespace StoneDesafio.Controllers
 
             return View(fases);
         }
-
-        public override async Task<IActionResult> Criar()
+        
+        [Route("Criar")]
+        public async Task<IActionResult> Criar()
         {
             var jogos = await jogoRepository.SelectAllAsync();
             ViewData["ListaJogos"] = jogos;
             return View();
         }
 
-        public override async Task<IActionResult> Editar(int id)
+        [HttpPost, Route("Criar")]
+        virtual public async Task<IActionResult> CriarPost(FaseCriarDto criarDto)
         {
-            var fase = await repository.GetSet()
-                .Include(f => f.Jogos)
-                .ThenInclude(j => j.ClubeA)
-                .Include(f => f.Jogos)
-                .ThenInclude(j => j.ClubeB).FirstOrDefaultAsync(f => f.Id == id);
+            if (!ModelState.IsValid)
+            {
+                return View(criarDto);
+            }
 
-            var jogos = await jogoRepository.SelectAllAsync();
-            ViewData["ListaJogos"] = jogos;
+            var resultado = await service.CriarAsync(criarDto);
+            return RedirectToAction(nameof(Index), resultado);
+        }
 
-            return View(fase);
+
+        [Route("Deletar")]
+         public async Task<IActionResult> DeletarAsync(int id)
+        {
+            var resultado = await service.DeletarAsync(id);
+            return RedirectToAction(nameof(Index), resultado);
         }
     }
 }

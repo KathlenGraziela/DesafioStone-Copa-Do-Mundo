@@ -10,14 +10,13 @@
     <div class="d-flex justify-content-between">
         <h4 class="text-start">Jogos @FaseTradutor.Traduzir(fase.FaseAtualCampeonato)</h4>
         <div>
-            <a class="btn btn-warning" asp-action="Editar" asp-route-id="@fase.Id">Editar</a>
             <a id="deletar" class="btn btn-close btn-danger p-2 bg-danger" asp-action="Deletar" asp-route-id="@fase.Id"></a>
         </div>
     </div>
-    <div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+    <div class="container d-flex justify-content-start flex-wrap text-start mb-2">
         @foreach (var jogo in fase.Jogos)
         {
-            <div class="card" style="height: 300px; width: 300px">
+            <div class="card m-2" style="height: 300px; width: 300px">
                 <img class="card-img-top" src="https://conteudo.imguol.com.br/c/esporte/c9/2022/04/01/sorteio-da-fase-de-grupos-da-copa-do-mundo-de-2022-realizado-pela-fifa-no-qatar-1648825834904_v2_1x1.jpg" alt="Card image cap" style="height: 200px">
                 <div class="card-body">
                     <h5 class="card-title">@jogo.ClubeA.Nome x @jogo.ClubeB.Nome</h5>

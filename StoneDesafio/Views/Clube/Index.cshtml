@@ -23,10 +23,10 @@
     </h2>
     <a class="btn btn-success" asp-action="Criar" style="max-height: 40px;">Novo Clube</a>
 </div>
-<div class="container d-flex justify-content-start gap-3 flex-wrap text-start mb-2">
+<div class="container d-flex justify-content-start flex-wrap text-start mb-2">
     @foreach (var clube in Model)
     {
-        <div class="card" style="height: 370px; width: 300px">
+        <div class="card m-2" style="height: 370px; width: 300px">
             <img class="card-img-top" src="@clube.UrlFoto" alt="Card image cap" style="min-height: 200px; max-height: 200px;">
             <div class="card-body">
                 <h5 class="card-title">@clube.Nome</h5>

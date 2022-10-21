@@ -2,7 +2,7 @@
 {
     public enum FasesCampeonato : int
     {
-        DeGrupo = 1,
+        Grupo = 1,
         Oitavas = 2,
         Quarta = 3,
         SemiFinal = 4,

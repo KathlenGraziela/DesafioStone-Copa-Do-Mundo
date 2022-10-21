@@ -11,33 +11,12 @@
     <div class="col-md-4">
         <form asp-action="criar">
             <div class="form-group">
-                <label asp-for="FaseAtualCampeonato" class="control-label">Fase Atual</label>
+                <label asp-for="FaseAtualCampeonato" class="control-label">Fase</label>
                 @Html.ValidationMessageFor(model => model.FaseAtualCampeonato, "", new { @class = "text-danger" })
                 @Html.DropDownListFor(
                 model => model.FaseAtualCampeonato,
                 Html.GetEnumSelectList<FasesCampeonato>(),
                 "Selecione...")
-            </div>
-            <div id="jogos">
-                <div id="jogo">
-                    <label asp-for="Jogos" class="control-label">Jogo 1</label>
-                    @Html.DropDownListFor(
-                    model => model.Jogos,
-                    new SelectList(listaJogos, "Id", "Nome"),
-                    "Selecione...",
-                    new {
-                    @class = "dropdown-toggle form-control",
-                    style = "width: 100%",
-                    @required = true,
-                    id = "Id",
-                    @tabindex = "1"
-                    }
-                    )
-                    <span asp-validation-for="Jogos" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="mt-1">
-                <input type="button" value="+" class="btn-sm btn-success" onclick="AddJogo()" />
             </div>
             <br>
             <div class="form-group mt-2">
@@ -51,22 +30,3 @@
 <div>
     <a asp-action="Index">Voltar</a>
 </div>
-
-<script>
-    const _jogoClone = document.querySelector("#jogo").cloneNode(true);
-    const _jogosContainer = document.querySelector("#jogos");
-    let _jogosCount = 1;
-
-    _jogoClone.children[1].value = "";
-
-    const AddJogo = () => {
-        const clone = _jogoClone.cloneNode(true);
-        clone.firstElementChild.textContent = "Jogo " + ++_jogosCount;
-
-        _jogosContainer.appendChild(clone);
-
-        clone.children[1].focus();
-    }
-    document.querySelectorAll("select").value = 1
-
-</script>

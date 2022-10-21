@@ -81,7 +81,7 @@ namespace StoneDesafio.Entities
                     {
                         Id = 2,
                         Descricao = "n/a",
-                        Nome = "Real Madri",
+                        Nome = "Real Madrid",
                         UrlFoto = "https://www.realmadrid.com/StaticFiles/RealMadridResponsive/images/static/og-image.png"
                     },
                     GolsA = 3,
@@ -100,14 +100,14 @@ namespace StoneDesafio.Entities
                         Id = 3,
                         Descricao = "n/a",
                         Nome = "Marocos",
-                        UrlFoto = "https://pbs.twimg.com/profile_images/1542795679956930561/ZgR6xp8c_400x400.jpg"
+                        UrlFoto = "https://upload.wikimedia.org/wikipedia/pt/7/71/F%C3%A9d%C3%A9ration_Royale_Marocaine_de_Football.png"
                     },
                     ClubeB = new()
                     {
                         Id = 4,
                         Descricao = "n/a",
-                        Nome = "Trade",
-                        UrlFoto = "https://www.realmadrid.com/StaticFiles/RealMadridResponsive/images/static/og-image.png"
+                        Nome = "Brasil",
+                        UrlFoto = "https://cf.shopee.com.br/file/cbeb085f3ccc2acf1e5eaf8fcaa65eb0"
                     },
                     GolsA = 3,
                     GolsB = 2
@@ -118,7 +118,7 @@ namespace StoneDesafio.Entities
             new()
             {
                 Id = 1,
-                FaseAtualCampeonato = FasesCampeonato.DeGrupo,
+                FaseAtualCampeonato = FasesCampeonato.Grupo,
                 Jogos = jogos
             });
             FaseCampeonatos.Add(

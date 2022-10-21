@@ -9,7 +9,7 @@ namespace StoneDesafio.Services
             string traducao = "";
             switch (fase)
             {
-                case FasesCampeonato.DeGrupo:
+                case FasesCampeonato.Grupo:
                     traducao = "de grupo";
                     break;
                 case FasesCampeonato.Oitavas:
