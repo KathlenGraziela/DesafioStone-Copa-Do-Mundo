@@ -16,7 +16,6 @@ namespace StoneDesafio.Tests
         private IServiceScope scope;
         public IServiceProvider ServiceProvider { get; private set; }
 
-
         public WebTestFixture()
         {
             scope = Services.CreateScope();
@@ -25,6 +24,7 @@ namespace StoneDesafio.Tests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseEnvironment("Test");
             builder.ConfigureServices(services =>
             {
                 using(var scope = services.BuildServiceProvider().CreateScope())
