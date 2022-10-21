@@ -100,10 +100,4 @@
 
 </table>
 
-BackEnd:
-- APIs construídas (segurança JWT opcional)
-- Estrutura do projeto atendendo o requisito
-- Apresentação das APIs no localhost
-- CRUD's em funcionamento na área administrativa API
-- Repositório do GIT para APIs e do Front-end.
 
