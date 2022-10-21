@@ -24,11 +24,10 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "MySqlConnectionString": "Server=127.0.0.1;DataBase=Copa;Uid=root;Pwd=maria123"
+        "MySqlConnectionString": "Server=host.docker.internal;DataBase=Copa;Uid=sam;Pwd=maria123"
       },
       "publishAllPorts": true,
-      "useSSL": true,
-      "DockerfileRunArguments": "--network=\"host\""
+      "useSSL": true
     },
     "WSL": {
       "commandName": "WSL2",

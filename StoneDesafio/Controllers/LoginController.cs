@@ -5,16 +5,21 @@ using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
 using StoneDesafio.Data.AdministradorDtos;
 using StoneDesafio.Models;
+using StoneDesafio.Models.Utils;
 
 namespace StoneDesafio.Controllers
 {
     public class LoginController : AppBaseController
     {
         private readonly LoginService loginService;
+        private readonly IRepository<Administrador> repository;
+        private readonly ModelConverter modelConverter;
 
-        public LoginController(LoginService loginService)
+        public LoginController(LoginService loginService, IRepository<Administrador> repository, ModelConverter modelConverter)
         {
             this.loginService = loginService;
+            this.repository = repository;
+            this.modelConverter = modelConverter;
         }
 
         public IActionResult Index([FromQuery] string msg = null)
@@ -61,10 +66,39 @@ namespace StoneDesafio.Controllers
             var result = await loginService.Cadastrar(createDto);
             if(result.Resultado != MensagemResultado.Sucesso)
             {
-                ViewBag.msg = result.Mensagem;
+                ViewBag.Mensagem = result.Mensagem;
+
                 return View(createDto);
             }
-            return RedirectPermanent(HttpContext.Request.Headers.Referer);
+            return RedirectPermanent(nameof(Index));
+        }
+
+        [Route("Editar")]
+        public async Task<IActionResult> EditarAsync()
+        {
+            var id = int.Parse(User.Identities.First().Claims.First().Value);
+            var administrador = await repository.FindAsync(id);
+            var admDto = modelConverter.Convert<AdministradorEditarDto>(administrador);
+            return View(admDto);
+        }
+
+        [Route("Editar")]
+        [HttpPost]
+        public async Task<IActionResult> EditarAsync(AdministradorEditarDto editarDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                editarDto.Senha = "";
+                return View(editarDto);
+            }
+
+            var result = await loginService.Editar(editarDto);
+            ViewBag.Mensagem = result.Mensagem;
+            if (result.Resultado != MensagemResultado.Sucesso)
+            {
+                return View(editarDto);
+            }
+            return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
 
 

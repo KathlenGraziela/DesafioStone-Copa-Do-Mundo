@@ -1,12 +1,18 @@
 ﻿@using StoneDesafio.Data.AdministradorDtos
 
-@model AdministradorLoginDto
+@model AdministradorCriarDto
 @{
 	ViewData["Tittle"] = "Login";
 }
 
-<form asp-controller="login" asp-action="Entrar">
+<form asp-controller="login" asp-action="Cadastrar" method="post">
     <div class="container col-sm-5">
+        <div class="form-group">
+            <label for="login" class="form-label">Nome</label>
+            <input type="text" asp-for="Nome" placeholder="Coloque seu login" class="form-control input-sm" id="login" value="@Model?.Email">
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+
         <div class="form-group">
             <label for="login" class="form-label">Email</label>
             <input type="text" asp-for="Email" placeholder="Coloque seu login" class="form-control input-sm" id="login" value="@Model?.Email">
@@ -19,7 +25,6 @@
             @Html.ValidationMessageFor(x => x.Senha)
         </div>
 
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        <a asp-action="cadastrar" class="btn btn-primary">Cadastrar-se</a>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form> 
