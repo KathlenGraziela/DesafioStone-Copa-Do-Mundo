@@ -65,7 +65,6 @@
 ### Esteira
 [![DesafioStone](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml/badge.svg)](https://github.com/KathlenGraziela/DesafioStone-Copa-Do-Mundo/actions/workflows/testPipeline.yml)
 
-<br>
 <h2>👨🏻‍💻 Sobre o projeto</h2> 
 <p>Nós recebemos o desafio de desenvolver uma sistema com objetivo de acompanhar o andamento dos clubes e os seus respectivos jogos, e precisamos construir uma API para gerenciar o administrador, onde o sistema deve permitir o cadastro de novos clubes, jogos, grupos e fases de campeonato.</p>
 <br>
@@ -79,9 +78,8 @@
 </h4>
 
 <h2>💻 Tecnologias necessárias para executar o projeto: <h2>
-<br>
 
-  <p align="center">
+  <p align="right">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=git,github,docker,bootstrap,dotnet,cs,html,mysql" />
   </a>
