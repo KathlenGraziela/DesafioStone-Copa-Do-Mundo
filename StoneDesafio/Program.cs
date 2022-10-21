@@ -59,20 +59,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseExceptionHandler();
-
-    using (var scope = app.Services.CreateScope())
-    {
-        
-        var services = scope.ServiceProvider;
-        var dbContext = services.GetRequiredService<AppDbContext>();
-        dbContext.Database.EnsureDeleted();
-        dbContext.Database.EnsureCreated();
-        dbContext.SeedDb();
-    }
-
     app.UseHsts();
 }
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<AppDbContext>();
+    dbContext.Database.EnsureDeleted();
+    dbContext.Database.EnsureCreated();
+    dbContext.SeedDb();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 
