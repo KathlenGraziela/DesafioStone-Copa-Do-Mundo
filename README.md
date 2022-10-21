@@ -79,7 +79,7 @@
 
 <h2>💻 Tecnologias necessárias para executar o projeto: <h2>
 
-  <p align="right">
+  <p align="left">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=git,github,docker,bootstrap,dotnet,cs,html,mysql" />
   </a>
