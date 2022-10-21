@@ -11,6 +11,6 @@ namespace StoneDesafio.Models
         [MaxLength(300)]
         public string UrlFoto { get; set; }
         public virtual Grupo Grupo { get; set; }
-        public int? GrupoId { get; set; }
+        public int GrupoId { get; set; }
     }
 }

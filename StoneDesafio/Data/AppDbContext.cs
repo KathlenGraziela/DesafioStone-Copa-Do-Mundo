@@ -63,7 +63,14 @@ namespace StoneDesafio.Entities
 
         public void SeedDb()
         {
-
+            var grupos =
+                new List<Grupo>() {
+                    new() { Id = 1, Nome = "Grupo A" },
+                    new() { Id = 2, Nome = "Grupo B" },
+                    new() { Id = 3, Nome = "Grupo C" },
+                    new() { Id = 4, Nome = "Grupo D" }
+                };
+            Grupos.AddRange(grupos);
             var jogos = new List<Jogo>()
             {
                 new ()
@@ -75,14 +82,16 @@ namespace StoneDesafio.Entities
                         Id = 1,
                         Descricao = "n/a",
                         Nome = "Barcelona",
-                        UrlFoto = "https://pbs.twimg.com/profile_images/1542795679956930561/ZgR6xp8c_400x400.jpg"
+                        UrlFoto = "https://pbs.twimg.com/profile_images/1542795679956930561/ZgR6xp8c_400x400.jpg",
+                        Grupo = grupos.ElementAt(0)
                     },
                     ClubeB = new()
                     {
                         Id = 2,
                         Descricao = "n/a",
                         Nome = "Real Madrid",
-                        UrlFoto = "https://www.realmadrid.com/StaticFiles/RealMadridResponsive/images/static/og-image.png"
+                        UrlFoto = "https://www.realmadrid.com/StaticFiles/RealMadridResponsive/images/static/og-image.png",
+                        Grupo = grupos.ElementAt(1)
                     },
                     GolsA = 3,
                     GolsB = 2
@@ -100,14 +109,16 @@ namespace StoneDesafio.Entities
                         Id = 3,
                         Descricao = "n/a",
                         Nome = "Marocos",
-                        UrlFoto = "https://upload.wikimedia.org/wikipedia/pt/7/71/F%C3%A9d%C3%A9ration_Royale_Marocaine_de_Football.png"
+                        UrlFoto = "https://upload.wikimedia.org/wikipedia/pt/7/71/F%C3%A9d%C3%A9ration_Royale_Marocaine_de_Football.png",
+                        Grupo = grupos.ElementAt(2)
                     },
                     ClubeB = new()
                     {
                         Id = 4,
                         Descricao = "n/a",
                         Nome = "Brasil",
-                        UrlFoto = "https://cf.shopee.com.br/file/cbeb085f3ccc2acf1e5eaf8fcaa65eb0"
+                        UrlFoto = "https://cf.shopee.com.br/file/cbeb085f3ccc2acf1e5eaf8fcaa65eb0",
+                        Grupo = grupos.ElementAt(3)
                     },
                     GolsA = 3,
                     GolsB = 2

@@ -19,10 +19,10 @@ namespace StoneDesafio.Controllers
         }
         public override async Task<IActionResult> Index(MensagemRota<Grupo> msg = null)
         {
-            var clubes = await repository.GetSet()
+            var grupos = await repository.GetSet()
                 .Include(g => g.Clubes)
                 .ToListAsync();
-            return View(clubes);
+            return View(grupos);
         }
     }
 }
