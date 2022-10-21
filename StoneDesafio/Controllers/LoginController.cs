@@ -36,7 +36,6 @@ namespace StoneDesafio.Controllers
             }
 
             var result = await loginService.Login(login);
-            ViewBag.msg = result.Mensagem;
 
             if (result.Resultado == MensagemResultado.Falha)
             {
@@ -66,7 +65,6 @@ namespace StoneDesafio.Controllers
             var result = await loginService.Cadastrar(createDto);
             if(result.Resultado != MensagemResultado.Sucesso)
             {
-                ViewBag.Mensagem = result.Mensagem;
 
                 return View(createDto);
             }
@@ -93,7 +91,6 @@ namespace StoneDesafio.Controllers
             }
 
             var result = await loginService.Editar(editarDto);
-            ViewBag.Mensagem = result.Mensagem;
             if (result.Resultado != MensagemResultado.Sucesso)
             {
                 return View(editarDto);
