@@ -83,6 +83,7 @@
 
   <tr>
     <td align="center">
+	[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
     <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
     <td align="center">
    <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
@@ -100,10 +101,4 @@
 
 </table>
 
-BackEnd:
-- APIs construídas (segurança JWT opcional)
-- Estrutura do projeto atendendo o requisito
-- Apresentação das APIs no localhost
-- CRUD's em funcionamento na área administrativa API
-- Repositório do GIT para APIs e do Front-end.
 
