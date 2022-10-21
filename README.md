@@ -81,23 +81,11 @@
 <h2>💻 Tecnologias necessárias para executar o projeto: <h2>
 <br>
 
-  <tr>
-    <td align="center">
-	[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
-    <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
-    <td align="center">
-   <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
-   <td align="center">  
-   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=w
-     <td align="center">  
-   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
-   <td align="center">  
-   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">   
-   <td align="center">
-    <img src="https://tm.ibxk.com.br/2022/06/01/01090719586019.jpg?ims=1120x420" width="100" height="50" />
-    <td align="center">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" width="80" height="50"/>
- </tr>
+  <p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,github,docker,bootstrap,dotnet,cs,html,mysql" />
+  </a>
+</p>
 
 </table>
 
