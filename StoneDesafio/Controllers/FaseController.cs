@@ -16,9 +16,14 @@ namespace StoneDesafio.Controllers
         {
             this.jogoRepository = jogoRepository;
         }
+
         public override async Task<IActionResult> Index(MensagemRota<FaseCampeonato> msg = null)
         {
-            ViewBag.msg = msg;
+            if (msg.Mensagem != null)
+            {
+                ViewData["Mensagem"] = msg;
+            }
+
             var fases = await repository.GetSet()
                 .Include(f => f.Jogos)
                 .ThenInclude(j => j.ClubeA)

@@ -1,4 +1,5 @@
 ﻿using GenericRepositoryBuilder;
+using Microsoft.EntityFrameworkCore;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Data.FaseDtos;
 using StoneDesafio.Entities;
@@ -37,14 +38,14 @@ namespace StoneDesafio.Business.Services
 
         async Task<MensagemRota<FaseCampeonato>> IService<FaseCampeonato, FaseCriarDto, FaseEditarDto>.CriarAsync(FaseCriarDto criarDto)
         {
-            if (await faseRepository.FindFirstAsync(a => a.FaseAtualCampeonato == criarDto.FasesCampeonato) != null)
+            if (await faseRepository.FindFirstAsync(a => a.FaseAtualCampeonato == criarDto.FaseAtualCampeonato) != null)
             {
                 return new(MensagemResultado.Falha, "Essa fase ja existe!");
             }
 
             var fase = new FaseCampeonato
             {
-                FaseAtualCampeonato = criarDto.FasesCampeonato,
+                FaseAtualCampeonato = criarDto.FaseAtualCampeonato,
                 Jogos = await jogoRepository.SelectWhereAsync(j => criarDto.Jogos.Contains(j.Id)),
             };
 
@@ -58,11 +59,24 @@ namespace StoneDesafio.Business.Services
             var fase = await faseRepository.FindFirstAsync(f => f.Id == editarDto.Id);
             if (fase == null)
             {
-                return new(MensagemResultado.Falha, $"Fase com id {fase.Id} não foi encontrada!");
+                return new(MensagemResultado.Falha, $"Fase com id {editarDto.Id} não foi encontrada!");
             }
 
+            if (editarDto.Jogos.Count == 0)
+            {
+                return new(MensagemResultado.Falha, $"Fase nao pode ser criada sem jogos!");
+            }
 
-            fase.Jogos = await jogoRepository.SelectWhereAsync(j => editarDto.Jogos.Contains(j.Id));
+            var jogos = await jogoRepository.GetSet()
+                .Include(j => j.Fase)
+                .Where(j => editarDto.Jogos.Contains(j.Id) && j.Fase == null)
+                .ToListAsync();
+
+            if (jogos.Count == 0)
+            {
+                return new(MensagemResultado.Falha, $"Fase nao pode conter jogos de outras fases!");
+            }
+            fase.Jogos =
 
             await faseRepository.UpdateAndSaveAsync(fase);
 
