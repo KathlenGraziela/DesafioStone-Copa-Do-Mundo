@@ -1,4 +1,4 @@
 1- docker network create --driver bridge --subnet=192.20.0.0/16 stonedesafionetwork
 2- docker run --name mysql --network=stonedesafionetwork -p 3306 -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_ROOT_HOST=192.20.0.10 -d mysql/mysql-server:latest
-3- Espere o db ter iniciado ~8s
+3- Espere o db iniciar ~8s
 4- docker run --name desafio --network=stonedesafionetwork --ip 192.20.0.10 -p 5003:80 -e MySqlConnectionString="Server=mysql;DataBase=Copa;Uid=root;Pwd=pass" -d stonedesafio:latest
