@@ -59,7 +59,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseHsts();
 }
 using (var scope = app.Services.CreateScope())
 {
@@ -69,6 +68,7 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.EnsureCreated();
     dbContext.SeedDb();
 }
+app.UseHsts();
 
 app.UseStaticFiles();
 app.UseRouting();

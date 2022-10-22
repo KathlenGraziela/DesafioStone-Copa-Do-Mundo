@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoneDesafio.Business.Repositorys;
 using StoneDesafio.Business.Services;
@@ -71,6 +72,7 @@ namespace StoneDesafio.Controllers
             return RedirectPermanent(nameof(Index));
         }
 
+        [Authorize]
         [Route("Editar")]
         public async Task<IActionResult> EditarAsync()
         {
@@ -80,6 +82,7 @@ namespace StoneDesafio.Controllers
             return View(admDto);
         }
 
+        [Authorize]
         [Route("Editar")]
         [HttpPost]
         public async Task<IActionResult> EditarAsync(AdministradorEditarDto editarDto)
@@ -98,12 +101,21 @@ namespace StoneDesafio.Controllers
             return RedirectToActionPermanent(nameof(HomeController.Index), "Home");
         }
 
-
+        [Authorize]
         [Route("Sair")]
         public IActionResult Sair()
         {
             HttpContext.SignOutAsync();
             return RedirectToActionPermanent(nameof(Index));
+        }
+
+        [Authorize]
+        [Route("Deletar")]
+        virtual public async Task<IActionResult> DeletarAsync(int id)
+        {
+            await HttpContext.SignOutAsync();
+            var resultado = await loginService.DeletarAsync(id);
+            return RedirectToAction(nameof(Index), resultado);
         }
     }
 }

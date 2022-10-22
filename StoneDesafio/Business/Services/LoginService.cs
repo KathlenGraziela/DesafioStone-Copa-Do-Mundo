@@ -60,5 +60,11 @@ namespace StoneDesafio.Business.Services
 
             return result;
         }
+
+        internal async Task<MensagemRota<Administrador>> DeletarAsync(int id)
+        {
+            var result = await administradorService.DeletarAsync(id);
+            return result;
+        }
     }
 }
